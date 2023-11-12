@@ -2,35 +2,64 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sociedad Española</title>
+
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
+
         body {
-            background-color: #add8e6;
+            background-image: url("../imagenes/fondo-login.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
         }
+
         .login-container {
+            margin: 100px auto 0;
             width: 300px;
-            padding: 16px;
-            background-color: white;
-            margin: 50px auto 0;
-            text-align: center;
-            box-shadow: 0 0 20px 0 rgba(0,0,0,0.1);
+            background-color: ghostwhite;
+            box-shadow: 15px 15px 15px 5px rgba(0,0,0,0.5);
         }
-        #logo {
-            width: 100px;
-            margin-bottom: 16px;
+
+        img {
+            width: 100%;
+            height: 200px;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+        input {
+            margin: 0 10px 10px;
+            width: 93%;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 15px 15px 15px 5px rgba(0,0,0,0.1);
+        }
+
+        input[type="submit"] {
+            background-image: linear-gradient(to left top, #d0d20c, #d6a800, #d57d00, #cc4f00, #bc0a0a);
+            color: whitesmoke;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-<div class="login-container">
-    <img id="logo" src="/templates/imagenes/wot_artboard.png" alt="Logo"> <!-- reemplzar dirección -->
-    <form th:action="@{/login}" method="post">
-        <label for="username">Usuario</label>
-        <input type="text" id="username" name="username" placeholder="Usuario" required><br/>
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password" placeholder="Contraseña" required><br/>
-        <input type="submit" value="Iniciar sesión"><br/>
-    </form>
-</div>
+    <div class="login-container">
+        <img src="../imagenes/logo-remastered.png" alt="Logo">
+        <h1>Login</h1>
+        <form th:action="@{/login}" method="post">
+            <input type="text" id="username" name="username" placeholder="Usuario" required>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            <input type="submit" value="Iniciar sesión">
+        </form>
+    </div>
 </body>
 </html>
