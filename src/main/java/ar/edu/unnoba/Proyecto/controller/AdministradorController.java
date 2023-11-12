@@ -24,7 +24,7 @@ public class AdministradorController {
     @GetMapping("/login")
     public String login() {
         return "administradores/login";
-    }//Luego de /login accede a /admin (ver SecurityConfig)
+    }//Luego de /login accede a /main (ver SecurityConfig)
 
     public Usuario obtenerUsuarioActual() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
