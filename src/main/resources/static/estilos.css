@@ -8,3 +8,30 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+
+/* estilo de las cards de eventos */
+.event_card {
+    min-height: 25rem;
+    max-width: 20rem;
+    margin: 4px;
+    border: 2px grey solid;
+}
+
+.img_card {
+    max-height: 15rem;
+    max-width: 20rem;
+}
+
+.img_container {
+    border: 2px grey solid;
+    padding: 1px;
+    background-color: black;
+}
+
+.events_container {
+    padding: 10px 30px 5px 30px;
+    margin-bottom: 10px;
+    border: 2px grey solid;
+    border-radius: 5px;
+}
