@@ -36,8 +36,8 @@ public class SecurityConfig {
                         .requestMatchers("/administrador/**").authenticated()
                 )
                 .formLogin(formLogin -> formLogin
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/main", true)
+                        .loginPage("visitantes/login")
+                        .defaultSuccessUrl("administradores/main", true)
                         .permitAll())
                 .logout(LogoutConfigurer::permitAll
                 );

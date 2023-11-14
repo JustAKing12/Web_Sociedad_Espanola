@@ -21,11 +21,6 @@ public class AdministradorController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/login")
-    public String login() {
-        return "administradores/login";
-    }//Luego de /login accede a /main (ver SecurityConfig)
-
     public Usuario obtenerUsuarioActual() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();

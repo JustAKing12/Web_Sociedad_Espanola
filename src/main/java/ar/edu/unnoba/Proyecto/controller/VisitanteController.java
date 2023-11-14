@@ -20,6 +20,11 @@ public class VisitanteController {
     @Autowired
     private NovedadService novedadService;
 
+    @GetMapping("/login")
+    public String login() {
+        return "administradores/login";
+    }//Luego de /login accede a /main (ver SecurityConfig)
+
     @GetMapping("/actividades")
     public String actividades(Model model) {
         List<Novedad> novedades = novedadService.getAll();
