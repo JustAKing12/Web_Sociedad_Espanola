@@ -28,16 +28,16 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .userDetailsService(userDetailsService)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/visitante/**").permitAll()
-                        .requestMatchers("/administrador/**").authenticated()
+                        .requestMatchers("/visitantes/**").permitAll()
+                        .requestMatchers("/administradores/**").authenticated()
                 )
                 .formLogin(formLogin -> formLogin
-                        .loginPage("visitantes/login")
-                        .defaultSuccessUrl("administradores/main", true)
+                        .loginPage("/visitantes/login")
+                        .defaultSuccessUrl("/administradores/main", true)
                         .permitAll())
                 .logout(LogoutConfigurer::permitAll
                 );

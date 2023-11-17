@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/visitante")
+@RequestMapping("/visitantes")
 public class VisitanteController {
 
     @Autowired
@@ -22,7 +22,7 @@ public class VisitanteController {
 
     @GetMapping("/login")
     public String login() {
-        return "administradores/login";
+        return "visitantes/login";
     }//Luego de /login accede a /main (ver SecurityConfig)
 
     @GetMapping("/actividades")
@@ -44,4 +44,11 @@ public class VisitanteController {
         model.addAttribute("username", username);
         return "visitantes/actividad";
     }//FUNCIONALIDAD: Mostrar en detalle una Novedad
+
+    @GetMapping("/historia")
+    public String historia() {
+        return "visitantes/historia";
+    }
+
+
 }
