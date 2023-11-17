@@ -32,12 +32,13 @@ public class SecurityConfig {
         http
                 .userDetailsService(userDetailsService)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/visitante/**").permitAll()
                         .requestMatchers("/administrador/**").authenticated()
                 )
                 .formLogin(formLogin -> formLogin
-                        .loginPage("visitantes/login")
-                        .defaultSuccessUrl("administradores/index", true)
+                        .loginPage("/administrador/login")
+                        .defaultSuccessUrl("/administrador/index", true)
                         .permitAll())
                 .logout(LogoutConfigurer::permitAll
                 );
