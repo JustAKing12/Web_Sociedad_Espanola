@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,10 +35,17 @@ public class SecurityConfig {
                         .requestMatchers("/administrador/**").authenticated()
                 )
                 .formLogin(formLogin -> formLogin
-                        .loginPage("/administradores/login")
+                        .loginPage("/autenticaciones/login")
                         .defaultSuccessUrl("/administradores/index", true)
                         .permitAll())
-                .logout(LogoutConfigurer::permitAll
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .authenticationEntryPoint((request, response, authException) ->
+                                response.sendRedirect("/autenticaciones/login?error=true"))// Redirige a login con parametro de error
+                        .accessDeniedPage("/403") // Se cambia el error 403 por el mensaje en AutenticationController
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/salir") /* debe utilizarse con thymeleaf */
+                        .logoutSuccessUrl("/login?salir")
                 );
         return http.build();
     }

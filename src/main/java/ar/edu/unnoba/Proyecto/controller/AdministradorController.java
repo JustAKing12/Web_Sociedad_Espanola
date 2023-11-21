@@ -24,13 +24,6 @@ public class AdministradorController {
     @Autowired
     private UsuarioService usuarioService;
 
-    //*****************LOGIN*****************
-
-    @GetMapping("/login")
-    public String login() {
-        return "administradores/login";
-    }//Luego de /login accede a /index (ver SecurityConfig)
-
     //*****************INDEX*****************
 
     @GetMapping("index")
@@ -131,10 +124,3 @@ public class AdministradorController {
         return "administradores/contacto";
     }
 }
-
-/*
-PARA QUE SIRVEN:
-@Valid: para validar un objeto, para esta clase se utiliza en conjunto BindingResult
-BindingResult sirve para comprobar errores al mandar datos de formulario. Por ejem: columna vacía.
-
- */
