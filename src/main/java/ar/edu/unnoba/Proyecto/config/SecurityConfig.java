@@ -35,12 +35,12 @@ public class SecurityConfig {
                         .requestMatchers("/administrador/**").authenticated()
                 )
                 .formLogin(formLogin -> formLogin
-                        .loginPage("/autenticaciones/login")
-                        .defaultSuccessUrl("/administradores/index", true)
+                        .loginPage("/autenticacion/login")
+                        .defaultSuccessUrl("/administrador/index", true)
                         .permitAll())
                 .exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint((request, response, authException) ->
-                                response.sendRedirect("/autenticaciones/login?error=true"))// Redirige a login con parametro de error
+                                response.sendRedirect("/autenticacion/login?error=true"))// Redirige a login con parametro de error
                         .accessDeniedPage("/403") // Se cambia el error 403 por el mensaje en AutenticationController
                 )
                 .logout(logout -> logout
