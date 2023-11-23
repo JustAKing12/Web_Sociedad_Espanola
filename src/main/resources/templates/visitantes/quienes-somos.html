@@ -1,181 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../../static/estilos.css" />
-    <title>¿Quienes somos?</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous"
+  />
+  <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto"
+  />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+          rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../../static/estilos.css" />
+  <title>¿Quienes somos?</title>
+</head>
 
-  <body class="d-flex flex-column min-vh-100">
-    <header class="bg-warning text-white" style="--bs-bg-opacity: 0.7">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg">
-          <!-- Logo  y título dentro del contenedor -->
-          <a
-            class="navbar-brand btn btn-light btn-lg d-flex align-items-center p-2 rounded"
-            href="#"
-          >
-            <img
-              src="../imagenes/logo.png"
-              alt="Logo"
-              style="max-height: 35px"
-            />
-            <h1
-              class="h1 ms-2 mt-2"
-              style="font-family: 'Playfair Display', serif; font-size: 20px"
-            >
-              Sociedad Española Junín
-            </h1>
-          </a>
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="btn btn-light btn-lg m-2" href="/visitante/inicio">Inicio</a>
-              <!-- lo que dice "/" es la ruta home si le dejamos un # es lo mismo-->
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-light btn-lg m-2" href="/visitante/eventos"
-                >Eventos</a
-              >
-              <!-- lo que dice "eventos.html" es la ruta
-                    que va a seguir el href, esa ruta debe estar explicita en el backend -->
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-danger btn-lg m-2 bg-danger" href="/visitante/quienes-somos"
-                >¿Quiénes somos?</a
-              >
-              <!-- lo que dice "#" es la ruta home -->
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-light btn-lg m-2" href="/visitante/contacto"
-                >Contacto</a
-              >
-              <!-- lo que dice "contacto.html" es la ruta
-                    que va a seguir el href, esa ruta debe estar explicita en el backend -->
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-    <div>
-      <div class="w-100 mx-auto position-relative">
-        <div
-          class="position-absolute w-100 h-100 top-0 start-0"
-          style="background-color: rgba(0, 0, 0, 0.5)"
-        ></div>
-        <img
-          src="../imagenes/espaola1.jpg"
-          class="shadow mx-auto w-100"
-          alt="espanola"
-          style="max-height: 320px; object-fit: cover"
-        />
+<body class="d-flex flex-column min-vh-100">
+<header class="bg-warning text-white" style="--bs-bg-opacity: 0.7">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg">
+      <!-- Logo  y título dentro del contenedor -->
+      <a
+              class="navbar-brand btn btn-light btn-lg d-flex align-items-center p-2 rounded"
+              href="#"
+      >
+        <img src="../../static/imagenes/logo.png" class="navbar-brand" alt="Logo de la Sociedad Española de Socorros Mutuos Junin" style="max-width: 50px;">
         <h1
-          class="position-absolute top-50 start-50 translate-middle text-center text-white"
+                class="h1 ms-2 mt-2"
+                style="font-family: 'Playfair Display', serif; font-size: 20px"
         >
-          HISTORIA
+          Sociedad Española Junín
         </h1>
+      </a>
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="btn btn-light btn-lg m-2" href="/visitante/inicio">Inicio</a>
+          <!-- lo que dice "/" es la ruta home si le dejamos un # es lo mismo-->
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-light btn-lg m-2" href="/visitante/eventos"
+          >Eventos</a
+          >
+          <!-- lo que dice "eventos.html" es la ruta
+                que va a seguir el href, esa ruta debe estar explicita en el backend -->
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-danger btn-lg m-2 bg-danger" href="/visitante/quienes-somos"
+          >¿Quiénes somos?</a
+          >
+          <!-- lo que dice "#" es la ruta home -->
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-light btn-lg m-2" href="/visitante/contacto"
+          >Contacto</a
+          >
+          <!-- lo que dice "contacto.html" es la ruta
+                que va a seguir el href, esa ruta debe estar explicita en el backend -->
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div>
+  <div class="w-100 mx-auto position-relative">
+    <div
+            class="position-absolute w-100 h-100 top-0 start-0"
+            style="background-color: rgba(0, 0, 0, 0.5)"
+    ></div>
+    <img src="../../static/imagenes/logo.png"  alt="page historia" style="max-width: 60px;">
+    <h1
+            class="position-absolute top-50 start-50 translate-middle text-center text-white"
+    >
+      HISTORIA
+    </h1>
+  </div>
+</div>
+<div class="container content mt-4">
+  <h2>¿Quiénes somos?</h2>
+  La Sociedad Española Socorros Mutuos Junín es una organización sin fines
+  de lucro que se dedica al mutualismo y la cultura. Con más de 130 años de
+  permanencia en Junín, la organización tiene como objetivo mantener viva la
+  herencia hispana y propagarla en las distintas actividades que realiza en
+  la comunidad.
+  <br />Algunas de las actividades que realiza la Sociedad Española Junín
+  son:<br />
+  <p>
+    <strong>Cursos de idioma español:</strong> La organización ofrece cursos
+    de español para extranjeros y para aquellos que deseen mejorar su
+    español. <br /><strong>Actividades culturales: </strong>La Sociedad
+    Española Junín organiza actividades culturales como exposiciones de
+    arte, presentaciones de libros, conferencias y charlas.<br />
+    <strong>Eventos sociales:</strong> La organización organiza eventos
+    sociales como cenas, bailes y fiestas para celebrar festividades
+    españolas y argentinas. <br /><strong>Actividades deportivas:</strong>
+    La Sociedad Española Junín tiene un equipo de fútbol y organiza torneos
+    de fútbol y otros deportes.<br />
+
+  </p>
+  <img src="../../static/imagenes/ImgEjemplo.jpg" class="img-fluid    img ejemplo " alt="Imagen quienes somos" style="max-width: 700px;">
+</div>
+
+
+<div class="container content mt-1">
+  <h2>Historia</h2>
+  <!-- ... (contenido de Historia) ... -->
+  Lorem lorem lorem lorem lorem Lorem lorem lorem lorem lorem Lorem lorem
+  lorem lorem lorem Lorem lorem lorem lorem lorem Lorem lorem lorem lorem
+  lorem Lorem lorem lorem lorem lorem Lorem lorem lorem lorem lorem Lorem
+  lorem lorem lorem lorem
+</div>
+
+<footer class="mt-auto bg-secondary-subtle">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="fw-medium">
+        <p class="p-1 mb-0">
+          Contacto:<br />sociedad.española.junin@gmail.com.ar<br />+54 2364
+          xxxxxxx
+        </p>
+      </div>
+      <div class="text-center">
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="70"
+                height="70"
+                viewBox="0,0,256,256"
+        >
+          <g
+                  fill="#ffffff"
+                  fill-rule="nonzero"
+                  stroke="none"
+                  stroke-width="1"
+                  stroke-linecap="butt"
+                  stroke-linejoin="miter"
+                  stroke-miterlimit="10"
+                  stroke-dasharray=""
+                  stroke-dashoffset="0"
+                  font-family="none"
+                  font-size="none"
+                  style="mix-blend-mode: normal"
+          >
+            <g transform="scale(10.66667,10.66667)">
+              <path
+                      d="M11.666,2.005c-5.046,0.165 -9.292,4.246 -9.641,9.283c-0.369,5.329 3.442,9.832 8.481,10.589v-7.227h-1.614c-0.726,0 -1.314,-0.588 -1.314,-1.314v0c0,-0.726 0.588,-1.314 1.314,-1.314h1.613v-1.749c0,-2.896 1.411,-4.167 3.818,-4.167c0.357,0 0.662,0.008 0.921,0.021c0.636,0.031 1.129,0.561 1.129,1.198v0c0,0.663 -0.537,1.2 -1.2,1.2h-0.442c-1.022,0 -1.379,0.969 -1.379,2.061v1.437h1.87c0.591,0 1.043,0.527 0.953,1.111l-0.108,0.701c-0.073,0.47 -0.477,0.817 -0.953,0.817h-1.762v7.247c4.883,-0.663 8.648,-4.837 8.648,-9.899c0,-5.634 -4.659,-10.179 -10.334,-9.995z"
+              ></path>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="mt-3 fw-medium">
+        <p class="">
+          Ubicación:<br />Narbondo 32<br />Junín, Buenos Aires, Argentina.
+        </p>
       </div>
     </div>
-    <div class="container content mt-4">
-      <h2>¿Quiénes somos?</h2>
-      La Sociedad Española Socorros Mutuos Junín es una organización sin fines
-      de lucro que se dedica al mutualismo y la cultura. Con más de 130 años de
-      permanencia en Junín, la organización tiene como objetivo mantener viva la
-      herencia hispana y propagarla en las distintas actividades que realiza en
-      la comunidad.
-      <br />Algunas de las actividades que realiza la Sociedad Española Junín
-      son:<br />
-      <p>
-        <strong>Cursos de idioma español:</strong> La organización ofrece cursos
-        de español para extranjeros y para aquellos que deseen mejorar su
-        español. <br /><strong>Actividades culturales: </strong>La Sociedad
-        Española Junín organiza actividades culturales como exposiciones de
-        arte, presentaciones de libros, conferencias y charlas.<br />
-        <strong>Eventos sociales:</strong> La organización organiza eventos
-        sociales como cenas, bailes y fiestas para celebrar festividades
-        españolas y argentinas. <br /><strong>Actividades deportivas:</strong>
-        La Sociedad Española Junín tiene un equipo de fútbol y organiza torneos
-        de fútbol y otros deportes.<br />
-        <img
-          src="../imagenes/ImgEjemplo.jpg"
-          alt="imgEjemplo"
-          style="max-height: 225px"
-        />
-      </p>
-    </div>
-
-    <div class="container content mt-1">
-      <h2>Historia</h2>
-      <!-- ... (contenido de Historia) ... -->
-      Lorem lorem lorem lorem lorem Lorem lorem lorem lorem lorem Lorem lorem
-      lorem lorem lorem Lorem lorem lorem lorem lorem Lorem lorem lorem lorem
-      lorem Lorem lorem lorem lorem lorem Lorem lorem lorem lorem lorem Lorem
-      lorem lorem lorem lorem
-    </div>
-
-    <footer class="mt-auto bg-secondary-subtle">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="fw-medium">
-            <p class="p-1 mb-0">
-              Contacto:<br />sociedad.española.junin@gmail.com.ar<br />+54 2364
-              xxxxxxx
-            </p>
-          </div>
-          <div class="text-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="70"
-              height="70"
-              viewBox="0,0,256,256"
-            >
-              <g
-                fill="#ffffff"
-                fill-rule="nonzero"
-                stroke="none"
-                stroke-width="1"
-                stroke-linecap="butt"
-                stroke-linejoin="miter"
-                stroke-miterlimit="10"
-                stroke-dasharray=""
-                stroke-dashoffset="0"
-                font-family="none"
-                font-size="none"
-                style="mix-blend-mode: normal"
-              >
-                <g transform="scale(10.66667,10.66667)">
-                  <path
-                    d="M11.666,2.005c-5.046,0.165 -9.292,4.246 -9.641,9.283c-0.369,5.329 3.442,9.832 8.481,10.589v-7.227h-1.614c-0.726,0 -1.314,-0.588 -1.314,-1.314v0c0,-0.726 0.588,-1.314 1.314,-1.314h1.613v-1.749c0,-2.896 1.411,-4.167 3.818,-4.167c0.357,0 0.662,0.008 0.921,0.021c0.636,0.031 1.129,0.561 1.129,1.198v0c0,0.663 -0.537,1.2 -1.2,1.2h-0.442c-1.022,0 -1.379,0.969 -1.379,2.061v1.437h1.87c0.591,0 1.043,0.527 0.953,1.111l-0.108,0.701c-0.073,0.47 -0.477,0.817 -0.953,0.817h-1.762v7.247c4.883,-0.663 8.648,-4.837 8.648,-9.899c0,-5.634 -4.659,-10.179 -10.334,-9.995z"
-                  ></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <div class="mt-3 fw-medium">
-            <p class="">
-              Ubicación:<br />Narbondo 32<br />Junín, Buenos Aires, Argentina.
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- Scripts de Bootstrap y cualquier otro script necesario -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+  </div>
+</footer>
+<!-- Scripts de Bootstrap y cualquier otro script necesario -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
