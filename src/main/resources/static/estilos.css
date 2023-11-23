@@ -1,9 +1,13 @@
 .custom-bg{
-    color: #FCDC77
+    color: #ffffff
 }
 .colorcito{
     -webkit-text-stroke: 0.8px black;
     text-stroke: 1px black;
+}
+.colorcitoFondo{
+    background-color: #343a40;
+    color: white;
 }
 body {
     font-family: 'Roboto', sans-serif;
