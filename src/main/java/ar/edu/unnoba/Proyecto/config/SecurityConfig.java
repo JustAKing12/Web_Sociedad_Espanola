@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint((request, response, authException) ->
                                 response.sendRedirect("/autenticacion/login?error=true"))// Redirige a login con parametro de error
-                        .accessDeniedPage("/403") // Se cambia el error 403 por el mensaje en AutenticationController
+                        .accessDeniedPage("/403")
                 )
                 .logout(logout -> logout
                         .logoutUrl("/salir") /* debe utilizarse con thymeleaf */

@@ -26,8 +26,8 @@ public class AdministradorController {
 
     //*****************INDEX*****************
 
-    @GetMapping("index")
-    public String index(Model model, Authentication authentication){
+    @GetMapping("/index")
+    public String index(Model model, Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();
         model.addAttribute("user", sessionUser); //Se añade usuario para mostrar su nombre.
         return "administradores/index";
@@ -109,7 +109,7 @@ public class AdministradorController {
     //*****************QUIENES SOMOS*****************
 
     @GetMapping("/quienes-somos")
-    public String quienesSomos(Model model, Authentication authentication){
+    public String quienesSomos(Model model, Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();
         model.addAttribute("user", sessionUser);
         return "administradores/quienes-somos";
@@ -118,9 +118,47 @@ public class AdministradorController {
     //*****************CONTACTO*****************
 
     @GetMapping("/contacto")
-    public String contacto(Model model, Authentication authentication){
+    public String contacto(Model model, Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();
         model.addAttribute("user", sessionUser);
         return "administradores/contacto";
+    }
+
+    //*****************USUARIOS*****************
+
+    @GetMapping("/usuario/crear")
+    public String crearUsuario(Model model, Authentication authentication) {
+        User sessionUser = (User) authentication.getPrincipal();
+
+        Usuario usuario = new Usuario();
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("user", sessionUser);
+        return "administradores/nuevo-usuario";
+    }
+
+    @PostMapping("/usuario/crear")
+    public String crearUsuario(Model model, Authentication authentication, @Valid Usuario usuario, BindingResult result) {
+        User sessionUser = (User) authentication.getPrincipal();
+
+        if (result.hasErrors()) {
+            model.addAttribute("usuario", usuario);
+            model.addAttribute("user", sessionUser);
+            return "administradores/nuevo-usuario";
+        }
+        usuarioService.save(usuario);
+        model.addAttribute("success", "El usuario ha sido creado correctamente.");
+        return "redirect:/administrador/index";
+    }
+
+    @GetMapping("/usuarios/eliminar/{id}")
+    public String eliminarUsuario(Model model, @PathVariable Long id) {
+        long totalUsuarios = usuarioService.countUsuarios();
+        if (totalUsuarios > 1) {
+            usuarioService.delete(id);
+            model.addAttribute("success", "El usuario ha sido eliminado correctamente.");
+        } else {
+            model.addAttribute("error", "No es posible eliminar el único usuario en la base de datos.");
+        }
+        return "redirect:/administrador/index";
     }
 }

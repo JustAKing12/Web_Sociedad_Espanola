@@ -31,6 +31,10 @@ public class Usuario implements UserDetails {
         this.password = password;
     }
 
+    public Usuario(String username) {
+        this.username = username;
+    }
+
     public Long getId() {
         return id;
     }

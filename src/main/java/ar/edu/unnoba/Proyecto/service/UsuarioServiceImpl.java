@@ -11,22 +11,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.naming.AuthenticationException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
     @Override
     @Transactional(readOnly = true) //Transactional permite que se realize las transacciones correctamente a la bd
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository.findByUsername(username);
         if (usuario == null) {
-            throw new UsernameNotFoundException("No se encontró el usuario: " + username);
+            throw new UsernameNotFoundException(username);
         }
         return new User(usuario.getUsername(), usuario.getPassword(), List.of(new SimpleGrantedAuthority("ADMIN")));
     }//retorna un User (implementa UserDetails), donde el constructor tiene: username, password y lista de autoridades (roles o permisos).
@@ -56,30 +53,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-
-    //----------
-    @Transactional
-    public void crearUsuario(Usuario usuario){  //Almaceno un usurio PERO antes me fijo si el usuairo ya esta registrado en la BD
-        Optional<Usuario> resp = usuarioRepository.findUserByUsername(usuario.getUsername());
-        if(resp.isPresent()){
-            throw new IllegalStateException("El nombre de usuario ya exite");
-        }
-        else{
-            usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
-            usuarioRepository.save(usuario);
-        }
+    public long countUsuarios() {
+        return usuarioRepository.count();
     }
-
-    //-----------
-
-    //########### Esto se va a usar para el login ####################
-    @Transactional //REVISAR QUE EXCEPCION LANZAR EN CASO DE QUE NO SE ENCUENTRE EL USUARIO EN LA BD(UNA EXCEPCION YA EXISTENTE, OSEA QUE NOSOTROS NO CREEMOS)
-    public void validarUser(String username, String password) throws AuthenticationException {
-        Optional<Usuario> resp = usuarioRepository.findByUsernameAndPassword(username, password);
-        if (!resp.isPresent()) {
-            throw new AuthenticationException("Error: Usuario incorrecto");
-        }
-    }
-
-
 }

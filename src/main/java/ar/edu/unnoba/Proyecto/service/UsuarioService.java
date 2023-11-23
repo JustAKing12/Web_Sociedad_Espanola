@@ -12,6 +12,7 @@ public interface UsuarioService extends UserDetailsService {
     List<Usuario> getAll();
     void save(Usuario usuario);
     void delete(Long id);
+    long countUsuarios();
 
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 }
