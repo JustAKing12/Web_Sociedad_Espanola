@@ -31,6 +31,7 @@ public class SecurityConfig {
         http
                 .userDetailsService(userDetailsService)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers("/imagenes/**").permitAll()  // permite la visualización de las imagenes
                         .requestMatchers("/autenticacion/**").permitAll()
                         .requestMatchers("/visitante/**").permitAll()
                         .requestMatchers("/administrador/**").permitAll()//authenticated() POR AHORA LO DEJO ASI PARA PRUEBAS
@@ -39,11 +40,12 @@ public class SecurityConfig {
                         .loginPage("/autenticacion/login")
                         .defaultSuccessUrl("/administrador/index", true)
                         .permitAll())
-                .exceptionHandling(exceptionHandling -> exceptionHandling //ESTO ESTA ACIENDO QUE SE GENEREN CONFLICTOS A LA HORA DE MOSTRAR QUE "EL USUARIO O CONTRANIA SON INCORRECTOS"
+/*                .exceptionHandling(exceptionHandling -> exceptionHandling //ESTO ESTA ACIENDO QUE SE GENEREN CONFLICTOS A LA HORA DE MOSTRAR QUE "EL USUARIO O CONTRANIA SON INCORRECTOS"
                         .authenticationEntryPoint((request, response, authException) ->
                                 response.sendRedirect("/autenticacion/login?error=true"))// Redirige a login con parametro de error
                         .accessDeniedPage("/403") // Se cambia el error 403 por el mensaje en AutenticationController
                 )
+                no se que hace esto pero si lo comento no se rompe más */
                 .logout(logout -> logout
                         .logoutUrl("/salir") /* debe utilizarse con thymeleaf */
                         .logoutSuccessUrl("/login?salir")
