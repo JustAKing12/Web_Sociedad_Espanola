@@ -52,4 +52,26 @@ public class VisitanteController {
         model.addAttribute("username", username);
         return "visitantes/evento";
     }//FUNCIONALIDAD: Mostrar en detalle un Evento
+
+    //*****************INICIO*****************
+
+    @GetMapping("")
+    public String redireccion(){
+        return "redirect:/visitante/inicio";
+    }
+
+    @GetMapping("/inicio")
+    public String inicio(){
+        return "visitantes/inicio";
+    }
+
+    @GetMapping("/quienes-somos")
+    public String historia(){
+        return "visitantes/quienes-somos";
+    }
+    @GetMapping("/contacto")
+    public String contacto(){
+        return "visitantes/contacto";
+    }
+
 }

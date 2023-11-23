@@ -30,7 +30,8 @@ public class AutenticacionController {
         try {
             UserDetails userDetails = usuarioService.loadUserByUsername(username);
 
-            if (username.equals(userDetails.getUsername()) && passwordEncoder.matches(password, userDetails.getPassword())) {
+            if (userDetails != null && username.equals(userDetails.getUsername()) &&
+                    passwordEncoder.matches(password, userDetails.getPassword())) {
                 return "redirect:/administrador/index";
             } else {
                 return "redirect:/autenticacion/login?error";
