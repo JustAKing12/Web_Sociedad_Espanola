@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomAuthProvider implements AuthenticationProvider {
-
+    // Clase para manejar las autenticaciones de manera especial
     @Autowired
     private UserDetailsService userService;
 
