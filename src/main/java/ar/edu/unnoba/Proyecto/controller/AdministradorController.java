@@ -4,6 +4,7 @@ import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.model.Usuario;
 import ar.edu.unnoba.Proyecto.service.EventoService;
 import ar.edu.unnoba.Proyecto.service.UsuarioService;
+import ar.edu.unnoba.Proyecto.service.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 
+import javax.naming.AuthenticationException;
 import javax.validation.Valid;
 
 @Controller
@@ -22,11 +24,11 @@ public class AdministradorController {
     private EventoService eventoService;
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioServiceImpl usuarioService;
 
     //*****************INDEX*****************
 
-    @GetMapping("index")
+    @GetMapping("/index")
     public String index(Model model, Authentication authentication){
         User sessionUser = (User) authentication.getPrincipal();
         model.addAttribute("user", sessionUser); //Se añade usuario para mostrar su nombre.
@@ -123,4 +125,26 @@ public class AdministradorController {
         model.addAttribute("user", sessionUser);
         return "administradores/contacto";
     }
+
+    //************* newAdmin ********************
+    @GetMapping("/newAdmin")
+    public String newAdmin(){
+        return "administradores/newAdmin";
+    }
+
+
+    //*********Crear usuario***********
+    @PostMapping("/newUser")
+    public String newUser(String username, String password){  //Los nombre de los parametros deben ser iguales a la de los parametros "name" en el "newAdmin.html"
+        try{
+            usuarioService.crearUsuario(username,password);
+            return "administradores/index";
+        } catch (IllegalStateException e){
+            //return "redirect:/administrador/newUser?error"; //NO ME DEJA USAR ESTA OPCION, NOSE PORQUE
+            return "administradores/newAdmin";
+        }//FUNCINALIDAD: Creamos y almacenamos un usuario en la BD
+
+    }
+
+
 }

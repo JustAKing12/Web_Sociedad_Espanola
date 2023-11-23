@@ -33,13 +33,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/autenticacion/**").permitAll()
                         .requestMatchers("/visitante/**").permitAll()
-                        .requestMatchers("/administrador/**").authenticated()
+                        .requestMatchers("/administrador/**").permitAll()//authenticated() POR AHORA LO DEJO ASI PARA PRUEBAS
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/autenticacion/login")
                         .defaultSuccessUrl("/administrador/index", true)
                         .permitAll())
-                .exceptionHandling(exceptionHandling -> exceptionHandling
+                .exceptionHandling(exceptionHandling -> exceptionHandling //ESTO ESTA ACIENDO QUE SE GENEREN CONFLICTOS A LA HORA DE MOSTRAR QUE "EL USUARIO O CONTRANIA SON INCORRECTOS"
                         .authenticationEntryPoint((request, response, authException) ->
                                 response.sendRedirect("/autenticacion/login?error=true"))// Redirige a login con parametro de error
                         .accessDeniedPage("/403") // Se cambia el error 403 por el mensaje en AutenticationController

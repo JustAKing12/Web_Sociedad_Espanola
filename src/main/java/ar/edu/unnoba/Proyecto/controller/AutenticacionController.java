@@ -32,13 +32,12 @@ public class AutenticacionController {
         try{
             usuarioService.validarUser(username,password);
             return "administradores/index";
-            //return "redirect:/administrador/index";
+            //return "redirect:/administrador/index"; PARECE QUE NO ME DEJA REDIRIGIR A ESA URL PORQUE "ADMINISTRADOR" NECESITA ESTAR AUTENTICADO Y POR LO VISTO EN NUESTRO LOGIN POR MAS QUE INGRESE EL USUARIO Y CONTRASEÑA CORRECTA NO LO ESTAMOS AUTENTICANDO
         } catch (AuthenticationException e){
             return "redirect:/autenticacion/login?error";
         }//FUNCINALIDAD: Valida que un usuario y su contraseña coincidan el la BD
 
     }
-    //HAY QUE ACLARAR QUE ESTAMOS IGNORANDO EL ".defaultSuccessUrl" DEL "securityConfig" AL MOMENTO DE LOGUEARNOS POR LO QUE NO SE SI REDIRIGIRNOS NOSOTROS MISMOS ESTA BIEN
-//POR LO QUE PUEDO VER NOSOTROS ACCEDEMOS A "administradores/index" mediante la URL "/visitante/validarUsuario" y tenmos que hacerlo ingresando a "/administrador" cosa que no nos va a dejar hasta que estemos logueados, y hay que verificar si lo que estamos haciendo nos sirve para figurar como "logueados" para Spring
+
 
 }
