@@ -1,156 +1,164 @@
 <!DOCTYPE html>
 <html>
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Se importan los estilos de Boostrap 5 -->
-  <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-          crossorigin="anonymous"
-  />
-  <!-- Se importan los estilos propios puestos en el archivo estilos.css -->
-  <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
-          rel="stylesheet"
-  />
-  <link rel="stylesheet" href="../../static/estilos.css" />
-  <title>Title</title>
-</head>
-<body class="d-flex flex-column min-vh-100">
-<!-- Header de la Página (La parte de arriba) -->
-<header class="bg-warning text-white" style="--bs-bg-opacity: 0.7">
-  <div class="container">
-    <nav class="navbar navbar-expand-lg">
-      <!-- Logotipo y título dentro del contenedor de botón -->
-      <a
-              class="navbar-brand btn btn-light btn-lg d-flex align-items-center p-2 rounded"
-              href="#"
-      >
-        <img
-                src="../imagenes/logo.png"
-                alt="Logo"
-                style="max-height: 50px"
-        />
-        <h1
-                class="h1 ms-2"
-                style="font-family: 'Playfair Display', serif; font-size: 25px"
-        >
-          Sociedad Española Junín
-        </h1>
-      </a>
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-          <a class="btn btn-light btn-lg mx-2" href="/visitante/inicio">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-light btn-lg mx-2" href="/visitante/eventos">Eventos</a>
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-light btn-lg mx-2" href="/visitante/quienes.somos"
-          >¿Quiénes somos?</a
+  <!--<html xmlns:th="http://www.thymeleaf.org">-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Se importan los estilos de Boostrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <!-- Se importan los estilos propios puestos en el archivo estilos.css -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/estilos.css" />
+    <title>Title</title>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <!-- Header de la Página (La parte de arriba) -->
+    <header class="bg-warning text-white" style="--bs-bg-opacity: 0.7">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg">
+          <!-- Logotipo y título dentro del contenedor de botón -->
+          <a
+            class="navbar-brand btn btn-light btn-lg d-flex align-items-center p-2 rounded"
+            href="#"
           >
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-light btn-lg mx-2" href="/visitante/contacto">Contacto</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-<!-- Relleno de ejemplo del body (el cuerpo de la pagina, lo del medio) -->
-<div class="container content mt-2">
-  <h2>Contenido del Body</h2>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-    lacus turpis, finibus vel libero id, dapibus porttitor dolor. In auctor
-    tellus diam, eu gravida orci condimentum vel. Proin fringilla laoreet
-    arcu. Fusce sollicitudin sem lacus, vel luctus risus vestibulum nec.
-    Nullam vel quam metus. Aliquam scelerisque tortor sem, sed bibendum enim
-    lobortis sed. Ut ut venenatis ligula, eu porta lacus. Nam egestas
-    sagittis imperdiet. Sed eget dui volutpat, ornare tortor et, pulvinar
-    mauris. Proin interdum mollis lacus non hendrerit. vitae tortor. Vivamus
-    nec mauris sed eros hendrerit ullamcorper non ac neque. Praesent finibus
-    risus eros, sed sodales urna laoreet et. Etiam iaculis in orci eu
-    porttitor. Ut tempor eleifend vestibulum. Phasellus commodo turpis
-    felis, a laoreet turpis dictum id. Curabitur a arcu et elit scelerisque
-    accumsan. Nullam vulputate orci nec diam imperdiet, vitae faucibus ex
-    commodo. Integer luctus sapien ut eros ullamcorper facilisis. vehicula
-    sit amet aliquet nec, varius sed sem. Vestibulum facilisis velit semper
-    orci aliquet sagittis at eget orci. Sed et sem non velit sagittis
-    lacinia. Etiam pulvinar, ipsum ut cursus blandit, risus nisl auctor
-    lacus, sit amet viverra mauris metus a dolor. Nunc quis imperdiet ipsum,
-    quis lobortis velit. Integer laoreet nunc erat, eu interdum nisi
-    vehicula eu. Proin tincidunt sem sollicitudin faucibus volutpat. Aliquam
-    lobortis erat ac maximus vulputate. Vestibulum nec nunc commodo,
-    eleifend purus sit amet, consectetur nibh. Pellentesque vel mauris
-    lacus. Vestibulum euismod vel eros at iaculis. Mauris fermentum, nulla
-    et commodo aliquam, orci est vestibulum ipsum, nec rutrum dolor justo id
-    sapien. Donec semper rhoncus fermentum. In ultrices, velit ut blandit
-    accumsan, Sed et sem non velit sagittis lacinia. Etiam pulvinar, ipsum
-    ut cursus blandit, risus nisl auctor lacus, sit amet viverra mauris
-    metus a dolor. Nunc quis imperdiet ipsum, quis lobortis velit. Integer
-    laoreet nunc erat, eu interdum nisi vehicula eu. Class aptent taciti
-    sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-    Proin tincidunt sem sollicitudin faucibus volutpat. Aliquam lobortis
-    erat ac maximus vulputate. Vestibulum nec nunc commodo, eleifend purus
-    sit amet, consectetur nibh. Pellentesque vel mauris lacus. Vestibulum
-    euismod vel eros at iaculis. Mauris fermentum, nulla et commodo aliquam,
-    orci est vestibulum ipsum, nec rutrum dolor justo id sapien. Donec
-    semper rhoncus fermentum.
-  </p>
-</div>
-
-<!-- Footer de la Página (La parte de abajo) -->
-<footer class="mt-auto bg-secondary-subtle">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
-      <div class="fw-medium">
-        <p class="p-1 mb-0">
-          Contacto:<br />sociedad.española.junin@gmail.com.ar<br />+54 2364
-          xxxxxxx
-        </p>
+            <img
+              src="../imagenes/logo.png"
+              alt="Logo"
+              style="max-height: 50px"
+            />
+            <h1
+              class="h1 ms-2"
+              style="font-family: 'Playfair Display', serif; font-size: 25px"
+            >
+              Sociedad Española Junín
+            </h1>
+          </a>
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="btn btn-light btn-lg mx-2" href="/visitante/inicio"
+                >Inicio</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-light btn-lg mx-2" href="/visitante/eventos"
+                >Eventos</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="btn btn-light btn-lg mx-2"
+                href="/visitante/quienes.somos"
+                >¿Quiénes somos?</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-light btn-lg mx-2" href="/visitante/contacto"
+                >Contacto</a
+              >
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div class="text-center">
-        <svg
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                width="70"
-                height="70"
-                viewBox="0,0,256,256"
-        >
-          <g
-                  fill="#ffffff"
-                  fill-rule="nonzero"
-                  stroke="none"
-                  stroke-width="1"
-                  stroke-linecap="butt"
-                  stroke-linejoin="miter"
-                  stroke-miterlimit="10"
-                  stroke-dasharray=""
-                  stroke-dashoffset="0"
-                  font-family="none"
-                  font-size="none"
-                  style="mix-blend-mode: normal"
-          >
-            <g transform="scale(10.66667,10.66667)">
-              <path
-                      d="M11.666,2.005c-5.046,0.165 -9.292,4.246 -9.641,9.283c-0.369,5.329 3.442,9.832 8.481,10.589v-7.227h-1.614c-0.726,0 -1.314,-0.588 -1.314,-1.314v0c0,-0.726 0.588,-1.314 1.314,-1.314h1.613v-1.749c0,-2.896 1.411,-4.167 3.818,-4.167c0.357,0 0.662,0.008 0.921,0.021c0.636,0.031 1.129,0.561 1.129,1.198v0c0,0.663 -0.537,1.2 -1.2,1.2h-0.442c-1.022,0 -1.379,0.969 -1.379,2.061v1.437h1.87c0.591,0 1.043,0.527 0.953,1.111l-0.108,0.701c-0.073,0.47 -0.477,0.817 -0.953,0.817h-1.762v7.247c4.883,-0.663 8.648,-4.837 8.648,-9.899c0,-5.634 -4.659,-10.179 -10.334,-9.995z"
-              ></path>
-            </g>
-          </g>
-        </svg>
-      </div>
-      <div class="mt-3 fw-medium">
-        <p class="">
-          Ubicación:<br />Narbondo 32<br />Junín, Buenos Aires, Argentina.
-        </p>
-      </div>
+    </header>
+    <!-- Relleno de ejemplo del body (el cuerpo de la pagina, lo del medio) -->
+    <div class="container content mt-2">
+      <h2>Contenido del Body</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+        lacus turpis, finibus vel libero id, dapibus porttitor dolor. In auctor
+        tellus diam, eu gravida orci condimentum vel. Proin fringilla laoreet
+        arcu. Fusce sollicitudin sem lacus, vel luctus risus vestibulum nec.
+        Nullam vel quam metus. Aliquam scelerisque tortor sem, sed bibendum enim
+        lobortis sed. Ut ut venenatis ligula, eu porta lacus. Nam egestas
+        sagittis imperdiet. Sed eget dui volutpat, ornare tortor et, pulvinar
+        mauris. Proin interdum mollis lacus non hendrerit. vitae tortor. Vivamus
+        nec mauris sed eros hendrerit ullamcorper non ac neque. Praesent finibus
+        risus eros, sed sodales urna laoreet et. Etiam iaculis in orci eu
+        porttitor. Ut tempor eleifend vestibulum. Phasellus commodo turpis
+        felis, a laoreet turpis dictum id. Curabitur a arcu et elit scelerisque
+        accumsan. Nullam vulputate orci nec diam imperdiet, vitae faucibus ex
+        commodo. Integer luctus sapien ut eros ullamcorper facilisis. vehicula
+        sit amet aliquet nec, varius sed sem. Vestibulum facilisis velit semper
+        orci aliquet sagittis at eget orci. Sed et sem non velit sagittis
+        lacinia. Etiam pulvinar, ipsum ut cursus blandit, risus nisl auctor
+        lacus, sit amet viverra mauris metus a dolor. Nunc quis imperdiet ipsum,
+        quis lobortis velit. Integer laoreet nunc erat, eu interdum nisi
+        vehicula eu. Proin tincidunt sem sollicitudin faucibus volutpat. Aliquam
+        lobortis erat ac maximus vulputate. Vestibulum nec nunc commodo,
+        eleifend purus sit amet, consectetur nibh. Pellentesque vel mauris
+        lacus. Vestibulum euismod vel eros at iaculis. Mauris fermentum, nulla
+        et commodo aliquam, orci est vestibulum ipsum, nec rutrum dolor justo id
+        sapien. Donec semper rhoncus fermentum. In ultrices, velit ut blandit
+        accumsan, Sed et sem non velit sagittis lacinia. Etiam pulvinar, ipsum
+        ut cursus blandit, risus nisl auctor lacus, sit amet viverra mauris
+        metus a dolor. Nunc quis imperdiet ipsum, quis lobortis velit. Integer
+        laoreet nunc erat, eu interdum nisi vehicula eu. Class aptent taciti
+        sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+        Proin tincidunt sem sollicitudin faucibus volutpat. Aliquam lobortis
+        erat ac maximus vulputate. Vestibulum nec nunc commodo, eleifend purus
+        sit amet, consectetur nibh. Pellentesque vel mauris lacus. Vestibulum
+        euismod vel eros at iaculis. Mauris fermentum, nulla et commodo aliquam,
+        orci est vestibulum ipsum, nec rutrum dolor justo id sapien. Donec
+        semper rhoncus fermentum.
+      </p>
     </div>
-  </div>
-</footer>
-</body>
+
+    <!-- Footer de la Página (La parte de abajo) -->
+    <footer class="mt-auto bg-secondary-subtle">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="fw-medium">
+            <p class="p-1 mb-0">
+              Contacto:<br />sociedad.española.junin@gmail.com.ar<br />+54 2364
+              xxxxxxx
+            </p>
+          </div>
+          <div class="text-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="70"
+              height="70"
+              viewBox="0,0,256,256"
+            >
+              <g
+                fill="#ffffff"
+                fill-rule="nonzero"
+                stroke="none"
+                stroke-width="1"
+                stroke-linecap="butt"
+                stroke-linejoin="miter"
+                stroke-miterlimit="10"
+                stroke-dasharray=""
+                stroke-dashoffset="0"
+                font-family="none"
+                font-size="none"
+                style="mix-blend-mode: normal"
+              >
+                <g transform="scale(10.66667,10.66667)">
+                  <path
+                    d="M11.666,2.005c-5.046,0.165 -9.292,4.246 -9.641,9.283c-0.369,5.329 3.442,9.832 8.481,10.589v-7.227h-1.614c-0.726,0 -1.314,-0.588 -1.314,-1.314v0c0,-0.726 0.588,-1.314 1.314,-1.314h1.613v-1.749c0,-2.896 1.411,-4.167 3.818,-4.167c0.357,0 0.662,0.008 0.921,0.021c0.636,0.031 1.129,0.561 1.129,1.198v0c0,0.663 -0.537,1.2 -1.2,1.2h-0.442c-1.022,0 -1.379,0.969 -1.379,2.061v1.437h1.87c0.591,0 1.043,0.527 0.953,1.111l-0.108,0.701c-0.073,0.47 -0.477,0.817 -0.953,0.817h-1.762v7.247c4.883,-0.663 8.648,-4.837 8.648,-9.899c0,-5.634 -4.659,-10.179 -10.334,-9.995z"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="mt-3 fw-medium">
+            <p class="">
+              Ubicación:<br />Narbondo 32<br />Junín, Buenos Aires, Argentina.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

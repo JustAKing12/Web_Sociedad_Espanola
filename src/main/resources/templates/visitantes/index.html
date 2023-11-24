@@ -1,140 +1,166 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sociedad Española de Socorros Mutuos Junin</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.3/lumen/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.3/lumen/bootstrap.min.css"
+    />
     <!-- AVISO: PROBLEMA CON EL DIRECCIONAMIENTO BOOSTRAP, NO MUESTRA LA IMAGEN (JUAN) -->
     <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
 
-        body {
-            margin: 0;
-            padding: 0;
-        }
+      footer {
+        background-color: #343a40;
+        color: white;
+        padding: 20px 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
 
+      footer p {
+        margin: 0;
+      }
 
-        footer {
-            background-color: #343a40;
-            color: white;
-            padding: 20px 0;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
+      main {
+        padding-bottom: 60px;
+      }
 
+      .navbar-dark .navbar-nav .nav-link {
+        color: black;
+        border-radius: 25px;
+        background-color: white;
+        padding: 10px 20px;
+        margin-right: 10px;
+      }
 
-        footer p {
-            margin: 0;
-        }
+      .navbar-dark .navbar-nav .nav-link.active {
+        background-color: black;
+        color: white;
+      }
 
-        main {
-            padding-bottom: 60px;
-        }
+      .header-content {
+        border-radius: 25px;
+        background-color: white;
+        padding: 10px;
+        display: inline-block;
+      }
 
-        .navbar-dark .navbar-nav .nav-link {
-            color: black;
-            border-radius: 25px;
-            background-color: white;
-            padding: 10px 20px;
-            margin-right: 10px;
-        }
+      .header-content .navbar-brand {
+        color: black;
+      }
 
-
-        .navbar-dark .navbar-nav .nav-link.active {
-            background-color: black;
-            color: white;
-        }
-
-        .header-content {
-            border-radius: 25px;
-            background-color: white;
-            padding: 10px;
-            display: inline-block;
-        }
-
-        .header-content .navbar-brand {
-            color: black;
-        }
-
-        .navbar-dark .navbar-nav .nav-link:hover {
-            color: #333;
-        }
+      .navbar-dark .navbar-nav .nav-link:hover {
+        color: #333;
+      }
     </style>
-
-</head>
-<body>
-
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #fcdc77;">
+  </head>
+  <body>
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navbar-dark"
+        style="background-color: #fcdc77"
+      >
         <div class="container">
+          <div class="header-content">
+            <img
+              src="../../static/imagenes/logo.png"
+              class="navbar-brand"
+              alt="Logo de la Sociedad Española de Socorros Mutuos Junin"
+              style="max-width: 50px"
+            />
+            <a class="navbar-brand" href="#"
+              >Sociedad Española de Socorros Mutuos Junin</a
+            >
+          </div>
 
-            <div class="header-content">
-
-                <img src="../../static/imagenes/logo.png" class="navbar-brand" alt="Logo de la Sociedad Española de Socorros Mutuos Junin" style="max-width: 50px;">
-                <a class="navbar-brand" href="#">Sociedad Española de Socorros Mutuos Junin</a>
+          <div class="justify-content-end">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link active" href="#">Inicio</a>
+                <a class="nav-link" href="#">Eventos</a>
+                <a class="nav-link" href="#">¿Quiénes somos?</a>
+                <a class="nav-link" href="#">Contacto</a>
+              </div>
             </div>
-
-            <div class="justify-content-end">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link active" href="#">Inicio</a>
-                        <a class="nav-link" href="#">Eventos</a>
-                        <a class="nav-link" href="#">¿Quiénes somos?</a>
-                        <a class="nav-link" href="#">Contacto</a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </nav>
-</header>
+      </nav>
+    </header>
 
-
-<main>
-    <div class="container">
+    <main>
+      <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h1 class="text-center text-black">Sociedad Española de Socorros Mutuos Junin</h1>
-            </div>
+          <div class="col-12">
+            <h1 class="text-center text-black">
+              Sociedad Española de Socorros Mutuos Junin
+            </h1>
+          </div>
         </div>
         <div class="row">
-            <div class="col-12">
-                <p class="text-justify text-black">La Sociedad Española de Socorros Mutuos Junin es una asociación sin fines de lucro fundada en 1880. Su objetivo es brindar asistencia social a los españoles residentes en la ciudad de Junín, Argentina.</p>
-            </div>
+          <div class="col-12">
+            <p class="text-justify text-black">
+              La Sociedad Española de Socorros Mutuos Junin es una asociación
+              sin fines de lucro fundada en 1880. Su objetivo es brindar
+              asistencia social a los españoles residentes en la ciudad de
+              Junín, Argentina.
+            </p>
+          </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <h2 class="text-center text-black">Inicio</h2>
-                <p class="text-justify text-black">En esta sección se encuentra información sobre los eventos, actividades y servicios que ofrece la asociación.</p>
-            </div>
-            <div class="col-md-6">
-                <h2 class="text-center text-black">Eventos</h2>
-                <p class="text-justify text-black">La asociación organiza diversos eventos durante el año, como fiestas, festivales y conferencias.</p>
-            </div>
+          <div class="col-md-6">
+            <h2 class="text-center text-black">Inicio</h2>
+            <p class="text-justify text-black">
+              En esta sección se encuentra información sobre los eventos,
+              actividades y servicios que ofrece la asociación.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <h2 class="text-center text-black">Eventos</h2>
+            <p class="text-justify text-black">
+              La asociación organiza diversos eventos durante el año, como
+              fiestas, festivales y conferencias.
+            </p>
+          </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <h2 class="text-center text-black">¿Quiénes somos?</h2>
-                <p class="text-justify text-black">En esta sección se puede encontrar información sobre la historia, la misión y la visión de la asociación.</p>
-            </div>
+          <div class="col-md-6">
+            <h2 class="text-center text-black">¿Quiénes somos?</h2>
+            <p class="text-justify text-black">
+              En esta sección se puede encontrar información sobre la historia,
+              la misión y la visión de la asociación.
+            </p>
+          </div>
         </div>
-    </div>
-</main>
+      </div>
+    </main>
 
-
-<footer class="text-white">
-    <div class="container-fluid">
+    <footer class="text-white">
+      <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <p><b>Contacto:</b> sociedad.española.junin@mail.com.ar</p>
-                <p><b>Ubicación:</b> Narbondo 32, Junín, Buenos Aires, Argentina</p>
-            </div>
+          <div class="col-12">
+            <p><b>Contacto:</b> sociedad.española.junin@mail.com.ar</p>
+            <p><b>Ubicación:</b> Narbondo 32, Junín, Buenos Aires, Argentina</p>
+          </div>
         </div>
-    </div>
-</footer>
-
-
-</body>
+      </div>
+    </footer>
+  </body>
+</html>
