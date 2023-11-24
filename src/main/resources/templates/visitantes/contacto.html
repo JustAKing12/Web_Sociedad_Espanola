@@ -68,7 +68,7 @@
                 class="btn btn-light btn-lg mx-2"
                 style="border-color: #ff8000"
                 href="../visitantes/actividades.html"
-                >actividades</a
+                >Actividades</a
               >
               <!-- lo que dice "#" es la ruta home -->
             </li>
@@ -115,7 +115,55 @@
         </h1>
       </div>
     </div>
+<body>
+  <div class="container py-4">
+    <form id="contactForm">
+      <!-- Nombre -->
+      <div class="mb-3">
+        <label class="form-label" for="name">Nombre</label>
+        <input class="form-control" id="name" type="text" placeholder="Ingrese su nombre." />
+      </div>
 
+      <!-- email -->
+      <div class="mb-3">
+        <label class="form-label" for="emailAddress">Correo Electrónico</label>
+        <input class="form-control" id="emailAddress" type="email" placeholder="Ingrese su email." />
+      </div>
+
+      <!-- Message input -->
+      <div class="mb-3">
+        <label class="form-label" for="message">Consulta</label>
+        <textarea class="form-control" id="message" type="text" placeholder="Ingrese aquí su consulta.  " style="height: 8rem;"></textarea>
+      </div>
+
+      <!-- boton de enviar -->
+      <div class="d-grid">
+        <button class="btn btn-primary opacity-80 btn-lg mx-auto w-50" type="submit">Enviar</button>
+      </div>
+    </form>
+  </div>
+  <!-- jQuery necesario para accionar el boton enviar-->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Define una función para manejar el click del botón
+      $("#btnEnviar").click(function() {
+        // Realiza una solicitud AJAX al servidor
+        $.ajax({
+          type: "POST", // elegimos entre post, put, path, delete, etc, en este caso posts para enviar datos
+          url: "/ruta-controlador/metodo", // ponemos la URL del controlador y metodo Java
+          success: function(response) {
+            // hacemos una especie de try-catch para los errores
+            console.log("Éxito: " + response);
+          },
+          error: function(error) {
+            console.error("Error: " + error);
+          }
+        });
+      });
+    });
+  </script>
+</body>
     <!-- Footer de la Página (La parte de abajo) -->
     <footer class="mt-auto colorcitoFondo">
       <div class="container">
