@@ -4,7 +4,7 @@ import ar.edu.unnoba.Proyecto.repository.UsuarioRepository;
 import ar.edu.unnoba.Proyecto.model.Usuario;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
 public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private UsuarioRepository usuarioRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
