@@ -73,4 +73,18 @@ public class VisitanteController {
         }
         model.addAttribute("eventos", eventosConUsernames);
     }
+
+
+    @GetMapping("/historia")
+    public String historia(){
+        return "visitantes/historia";
+    }
+    @GetMapping("/contacto")
+    public String contacto(){
+        return "visitantes/contacto";
+    }
+    @GetMapping("/actividades")
+    public String actividades(){
+        return "visitantes/actividades";
+    }
 }
