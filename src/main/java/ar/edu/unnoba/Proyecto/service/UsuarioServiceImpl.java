@@ -26,6 +26,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // System.out.println(new BCryptPasswordEncoder().encode("123")); NO BORRAR, SIRVE PARA CAMBIAR CONTRASEÑA EN BD
         Usuario usuario = usuarioRepository.findByUsername(username);
         if (usuario == null) {
             throw new UsernameNotFoundException(username);

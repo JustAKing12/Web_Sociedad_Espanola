@@ -5,8 +5,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -14,7 +14,6 @@ public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -24,11 +23,6 @@ public class Usuario implements UserDetails {
     private String password;
 
     public Usuario() {
-    }
-    public Usuario(Long id, String username, String password){
-        this.id = id;
-        this.username = username;
-        this.password = password;
     }
 
     public Usuario(String username) {
@@ -83,6 +77,6 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ADMIN"));
+        return List.of(new SimpleGrantedAuthority("ADMIN"));
     }
 }

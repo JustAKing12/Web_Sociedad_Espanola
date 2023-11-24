@@ -17,8 +17,8 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(UserDetailsService userDetailsService1) {
-        this.userDetailsService = userDetailsService1;
+    public SecurityConfig(UserDetailsService userDetailsService){
+        this.userDetailsService = userDetailsService;
     }
 
     @Bean
@@ -31,19 +31,13 @@ public class SecurityConfig {
         http
                 .userDetailsService(userDetailsService)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/autenticacion/**").permitAll()
                         .requestMatchers("/visitante/**").permitAll()
                         .requestMatchers("/administrador/**").authenticated()
                 )
                 .formLogin(formLogin -> formLogin
-                        .loginPage("/autenticacion/login")
+                        .loginPage("/login")
                         .defaultSuccessUrl("/administrador/index", true)
                         .permitAll())
-                .exceptionHandling(exceptionHandling -> exceptionHandling
-                        .authenticationEntryPoint((request, response, authException) ->
-                                response.sendRedirect("/autenticacion/login?error=true"))// Redirige a login con parametro de error
-                        .accessDeniedPage("/403")
-                )
                 .logout(logout -> logout
                         .logoutUrl("/salir") /* debe utilizarse con thymeleaf */
                         .logoutSuccessUrl("/login?salir")

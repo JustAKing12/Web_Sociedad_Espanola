@@ -1,8 +1,8 @@
 package ar.edu.unnoba.Proyecto.model;
 
 import jakarta.persistence.*;
-
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "evento")
@@ -12,18 +12,19 @@ public class Evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false) //obliga a que no sea nulo y que tenga una columna en la tabla
+    @Column(nullable = false)
     private String titulo;
 
     @Column(nullable = false)
     private String descripcion;
-//la idea es que se puedan utilizar los recursos de usuario, osea los metodos si es necesario
-    //si no lo vamos a usar luego lo borro
-    //por ahi puede ser necesario cuando abris una novedad, muestra quien es el creador
+
     @ManyToOne(fetch = FetchType.LAZY) //los datos se cargan solo cuando se necesitan con LAZY
     @JoinColumn(name = "usuario_id", nullable = false)
     //Si se accede con frecuencia a los datos de Usuario, es recomendable EAGER. Aunque también existen otros criterios para decidir.
     private Usuario usuario; //un usuario puede publicar muchas novedades, cada novedad es publicada por un solo usuario
+
+    @ManyToMany(mappedBy = "eventos")
+    private Set<Subscriptor> subscriptores; //un evento puede tener muchos suscriptores, un suscriptor puede suscribirse a muchos eventos
 
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
@@ -34,13 +35,6 @@ public class Evento {
     private byte[] imagen;
 
     public Evento() { //JPA necesita constructor sin parametros
-    }
-    public Evento(Long id, String titulo, String descripcion, Usuario usuario, byte[] imagen){
-        this.id = id;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.usuario = usuario;
-        this.imagen = imagen;
     }
 
     public Long getId() {
@@ -73,6 +67,18 @@ public class Evento {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Set<Subscriptor> getSubscriptores() {
+        return subscriptores;
+    }
+
+    public void setSubscriptores(Set<Subscriptor> subscriptores) {
+        this.subscriptores = subscriptores;
+    }
+
+    public Date getFecha() {
+        return fecha;
     }
 
     public byte[] getImagen() {

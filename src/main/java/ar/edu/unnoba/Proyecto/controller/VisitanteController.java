@@ -1,20 +1,17 @@
 package ar.edu.unnoba.Proyecto.controller;
 
 import ar.edu.unnoba.Proyecto.model.Evento;
+import ar.edu.unnoba.Proyecto.model.Subscriptor;
 import ar.edu.unnoba.Proyecto.service.EventoService;
+import ar.edu.unnoba.Proyecto.service.SubscriptorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-//*****************NOTAS*****************
-//En esta clase no es necesario definir más metodos, ya que no se necesita el usuario logueado.
 
 @Controller
 @RequestMapping("/visitante")
@@ -23,15 +20,28 @@ public class VisitanteController {
     @Autowired
     private EventoService eventoService;
 
-    //*****************METODO PARA EVITAR DUPLICAR CODIGO*****************
+    @Autowired
+    private SubscriptorService subscriptorService;
 
-    static void extractEventos(Model model, EventoService eventoService) {
-        List<Evento> eventos = eventoService.getAll();
-        Map<Evento, String> eventosConUsernames = new HashMap<>();
-        for (Evento evento : eventos) {
-            eventosConUsernames.put(evento, evento.getUsuario().getUsername());
+    //*****************INICIO*****************
+
+    @GetMapping("")
+    public String redireccion(){
+        return "redirect:/visitante/inicio";
+    }
+
+    @GetMapping("/inicio")
+    public String inicio(Model model) {
+        model.addAttribute("subscriptor", new Subscriptor());
+        return "visitantes/inicio";
+    }
+
+    @PostMapping("/inicio")
+    public String inicio(@ModelAttribute Subscriptor subscriptor) {
+        if (subscriptor != null) {
+            subscriptorService.save(subscriptor);
         }
-        model.addAttribute("eventos", eventosConUsernames);
+        return "redirect:/visitante/inicio";
     }
 
     //*****************EVENTOS*****************
@@ -53,25 +63,14 @@ public class VisitanteController {
         return "visitantes/evento";
     }//FUNCIONALIDAD: Mostrar en detalle un Evento
 
-    //*****************INICIO*****************
+    //*****************METODOS PARA EVITAR DUPLICAR CODIGO*****************
 
-    @GetMapping("")
-    public String redireccion(){
-        return "redirect:/visitante/inicio";
+    static void extractEventos(Model model, EventoService eventoService) {
+        List<Evento> eventos = eventoService.getAll();
+        Map<Evento, String> eventosConUsernames = new HashMap<>();
+        for (Evento evento : eventos) {
+            eventosConUsernames.put(evento, evento.getUsuario().getUsername());
+        }
+        model.addAttribute("eventos", eventosConUsernames);
     }
-
-    @GetMapping("/inicio")
-    public String inicio(){
-        return "visitantes/inicio";
-    }
-
-    @GetMapping("/quienes-somos")
-    public String historia(){
-        return "visitantes/quienes-somos";
-    }
-    @GetMapping("/contacto")
-    public String contacto(){
-        return "visitantes/contacto";
-    }
-
 }
