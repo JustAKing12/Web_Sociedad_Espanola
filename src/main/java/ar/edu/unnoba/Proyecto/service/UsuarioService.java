@@ -4,7 +4,9 @@ import ar.edu.unnoba.Proyecto.model.Usuario;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.naming.AuthenticationException;
 import java.util.List;
 
 public interface UsuarioService extends UserDetailsService {
