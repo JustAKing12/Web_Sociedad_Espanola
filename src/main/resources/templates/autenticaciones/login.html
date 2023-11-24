@@ -64,17 +64,14 @@
         padding: 4px; /* Añadir espacio alrededor del texto */
         border-radius: 2.5px; /* Esquinas redondeadas */
       }
-
-
     </style>
   </head>
+  
   <body>
     <div class="login-container">
       <img src="/imagenes/logo.png" alt="Logo" />
       <h1>Iniciar sesión</h1>
-
-
-
+      
       <div th:if="${param.error}" class="custom-alert text-center">
         <strong>Usuario o contraseña invalidos</strong><br>
       </div>
@@ -82,10 +79,8 @@
       <div th:if="${param.logout}">
         <div class="alert alert-info">Ha cerrado sesion exitosamente</div>
       </div>
-
-
-
-      <form th:action="@{/autenticacion/validarUsuario}" method="post">
+      
+      <form th:action="@{/login}" method="post">
         <label for="username"></label>
         <input
           type="text"
