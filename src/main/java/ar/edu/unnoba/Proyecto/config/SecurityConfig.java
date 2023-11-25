@@ -51,4 +51,11 @@ public class SecurityConfig {
                 );
         return http.build();
     }
+
+
+
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
+
 }
