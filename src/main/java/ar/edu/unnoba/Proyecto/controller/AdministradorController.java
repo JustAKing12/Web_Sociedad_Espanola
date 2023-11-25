@@ -29,20 +29,20 @@ public class AdministradorController {
     //*****************INDEX*****************
 
     @GetMapping("/index")
-    public String index(Model model, Authentication authentication){
-        User sessionUser = (User) authentication.getPrincipal();
-        model.addAttribute("user", sessionUser); //Se añade usuario para mostrar su nombre.
+    public String index(Model model){
+        //User sessionUser = (User) authentication.getPrincipal();
+        // model.addAttribute("user", sessionUser); //Se añade usuario para mostrar su nombre.
         return "administradores/index";
     }
 
     //*****************EVENTOS*****************
 
     @GetMapping("/eventos")
-    public String eventos(Model model, Authentication authentication) {
-        User sessionUser = (User) authentication.getPrincipal();
+    public String eventos(Model model) {
+        // User sessionUser = (User) authentication.getPrincipal();
+        // model.addAttribute("user", sessionUser);
 
         VisitanteController.extractEventos(model, eventoService);
-        model.addAttribute("user", sessionUser);
         return "administradores/eventos";
     }//FUNCIONALIDAD: muestra los eventos con los usuarios que los creó
 
@@ -60,7 +60,7 @@ public class AdministradorController {
     @GetMapping("/eventos/nuevo")
     public String nuevoEvento(Model model, Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();
-
+        System.out.println("Iniciada sesión con usuario: " + sessionUser.getUsername());
         Evento evento = new Evento();
         model.addAttribute("evento", evento); //el usuario debe introducir: titulo, descripcion, imagen
         model.addAttribute("user", sessionUser);

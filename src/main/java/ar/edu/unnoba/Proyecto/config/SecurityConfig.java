@@ -2,12 +2,15 @@ package ar.edu.unnoba.Proyecto.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
@@ -31,25 +34,28 @@ public class SecurityConfig {
         http
                 .userDetailsService(userDetailsService)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers("/**").authenticated()
                         .requestMatchers("/imagenes/**").permitAll()  // permite la visualización de las imagenes
                         .requestMatchers("/autenticacion/**").permitAll()
                         .requestMatchers("/visitante/**").permitAll()
-                        .requestMatchers("/administrador/**").permitAll()//authenticated() POR AHORA LO DEJO ASI PARA PRUEBAS
+                        .requestMatchers("/administrador/**").authenticated()//authenticated() POR AHORA LO DEJO ASI PARA PRUEBAS
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/autenticacion/login")
                         .defaultSuccessUrl("/administrador/index", true)
                         .permitAll())
-/*                .exceptionHandling(exceptionHandling -> exceptionHandling //ESTO ESTA ACIENDO QUE SE GENEREN CONFLICTOS A LA HORA DE MOSTRAR QUE "EL USUARIO O CONTRANIA SON INCORRECTOS"
-                        .authenticationEntryPoint((request, response, authException) ->
-                                response.sendRedirect("/autenticacion/login?error=true"))// Redirige a login con parametro de error
-                        .accessDeniedPage("/403") // Se cambia el error 403 por el mensaje en AutenticationController
-                )
-                no se que hace esto pero si lo comento no se rompe más */
+
                 .logout(logout -> logout
                         .logoutUrl("/salir") /* debe utilizarse con thymeleaf */
                         .logoutSuccessUrl("/login?salir")
                 );
         return http.build();
     }
+
+
+
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
+
 }

@@ -3,6 +3,10 @@ package ar.edu.unnoba.Proyecto.controller;
 import ar.edu.unnoba.Proyecto.service.UsuarioServiceImpl;
 import jakarta.persistence.Access;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +22,8 @@ public class AutenticacionController {
 
     @Autowired
     private UsuarioServiceImpl usuarioService;
-
+    @Autowired
+    private AuthenticationProvider authenticationProvider;
     @GetMapping("/login")
     public String login(@RequestParam(name = "error", required = false) String error, Model model) {
         if (error != null){
@@ -27,16 +32,25 @@ public class AutenticacionController {
         return "autenticaciones/login";
     }//Luego de /login accede a /index (ver SecurityConfig)
 
-    @PostMapping("/validarUsuario")
+    @PostMapping("/login")
     public String validar(String username, String password){  //Los nombre de los parametros deben ser iguales a la de los parametros "name" en el "login.html"
-        try{
-            usuarioService.validarUser(username,password);
-            return "administradores/index";
-            //return "redirect:/administrador/index"; PARECE QUE NO ME DEJA REDIRIGIR A ESA URL PORQUE "ADMINISTRADOR" NECESITA ESTAR AUTENTICADO Y POR LO VISTO EN NUESTRO LOGIN POR MAS QUE INGRESE EL USUARIO Y CONTRASEÑA CORRECTA NO LO ESTAMOS AUTENTICANDO
-        } catch (AuthenticationException e){
-            return "redirect:/autenticacion/login?error";
-        }//FUNCINALIDAD: Valida que un usuario y su contraseña coincidan el la BD
 
+
+        // Esta es una forma de realizar la autenticación manualmente en Spring Security
+        Authentication authentication = authenticationProvider.authenticate(
+                new UsernamePasswordAuthenticationToken(username, password)
+        );
+        // Establecer la autenticación en el contexto de Spring Security
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return "administradores/index";
+
+
+
+    }
+
+    public void authenticateUser(String username, String password) {
+        Authentication authentication = new UsernamePasswordAuthenticationToken(username, password);
+        authenticationProvider.authenticate(authentication);
     }
 
 
