@@ -4,6 +4,7 @@ import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.model.Usuario;
 import ar.edu.unnoba.Proyecto.service.EventoService;
 import ar.edu.unnoba.Proyecto.service.UsuarioService;
+import ar.edu.unnoba.Proyecto.service.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 
+import javax.naming.AuthenticationException;
 import javax.validation.Valid;
 
 @Controller
@@ -22,25 +24,25 @@ public class AdministradorController {
     private EventoService eventoService;
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioServiceImpl usuarioService;
 
     //*****************INDEX*****************
 
     @GetMapping("/index")
-    public String index(Model model, Authentication authentication) {
-        User sessionUser = (User) authentication.getPrincipal();
-        model.addAttribute("user", sessionUser); //Se añade usuario para mostrar su nombre.
+    public String index(Model model){
+        //User sessionUser = (User) authentication.getPrincipal();
+        // model.addAttribute("user", sessionUser); //Se añade usuario para mostrar su nombre.
         return "administradores/index";
     }
 
     //*****************EVENTOS*****************
 
     @GetMapping("/eventos")
-    public String eventos(Model model, Authentication authentication) {
-        User sessionUser = (User) authentication.getPrincipal();
+    public String eventos(Model model) {
+        // User sessionUser = (User) authentication.getPrincipal();
+        // model.addAttribute("user", sessionUser);
 
         VisitanteController.extractEventos(model, eventoService);
-        model.addAttribute("user", sessionUser);
         return "administradores/eventos";
     }//FUNCIONALIDAD: muestra los eventos con los usuarios que los creó
 
@@ -58,7 +60,7 @@ public class AdministradorController {
     @GetMapping("/eventos/nuevo")
     public String nuevoEvento(Model model, Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();
-
+        System.out.println("Iniciada sesión con usuario: " + sessionUser.getUsername());
         Evento evento = new Evento();
         model.addAttribute("evento", evento); //el usuario debe introducir: titulo, descripcion, imagen
         model.addAttribute("user", sessionUser);
@@ -109,7 +111,7 @@ public class AdministradorController {
     //*****************QUIENES SOMOS*****************
 
     @GetMapping("/quienes-somos")
-    public String quienesSomos(Model model, Authentication authentication) {
+    public String quienesSomos(Model model, Authentication authentication){
         User sessionUser = (User) authentication.getPrincipal();
         model.addAttribute("user", sessionUser);
         return "administradores/quienes-somos";
@@ -118,47 +120,31 @@ public class AdministradorController {
     //*****************CONTACTO*****************
 
     @GetMapping("/contacto")
-    public String contacto(Model model, Authentication authentication) {
+    public String contacto(Model model, Authentication authentication){
         User sessionUser = (User) authentication.getPrincipal();
         model.addAttribute("user", sessionUser);
         return "administradores/contacto";
     }
 
-    //*****************USUARIOS*****************
-
-    @GetMapping("/usuario/crear")
-    public String crearUsuario(Model model, Authentication authentication) {
-        User sessionUser = (User) authentication.getPrincipal();
-
-        Usuario usuario = new Usuario();
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("user", sessionUser);
-        return "administradores/nuevo-usuario";
+    //************* newAdmin ********************
+    @GetMapping("/newAdmin")
+    public String newAdmin(){
+        return "administradores/newAdmin";
     }
 
-    @PostMapping("/usuario/crear")
-    public String crearUsuario(Model model, Authentication authentication, @Valid Usuario usuario, BindingResult result) {
-        User sessionUser = (User) authentication.getPrincipal();
 
-        if (result.hasErrors()) {
-            model.addAttribute("usuario", usuario);
-            model.addAttribute("user", sessionUser);
-            return "administradores/nuevo-usuario";
-        }
-        usuarioService.save(usuario);
-        model.addAttribute("success", "El usuario ha sido creado correctamente.");
-        return "redirect:/administrador/index";
+    //*********Crear usuario***********
+    @PostMapping("/newUser")
+    public String newUser(String username, String password){  //Los nombre de los parametros deben ser iguales a la de los parametros "name" en el "newAdmin.html"
+        try{
+            // usuarioService.crearUsuario(username,password);
+            return "administradores/index";
+        } catch (IllegalStateException e){
+            //return "redirect:/administrador/newUser?error"; //NO ME DEJA USAR ESTA OPCION, NOSE PORQUE
+            return "administradores/newAdmin";
+        }//FUNCINALIDAD: Creamos y almacenamos un usuario en la BD
+
     }
 
-    @GetMapping("/usuarios/eliminar/{id}")
-    public String eliminarUsuario(Model model, @PathVariable Long id) {
-        long totalUsuarios = usuarioService.countUsuarios();
-        if (totalUsuarios > 1) {
-            usuarioService.delete(id);
-            model.addAttribute("success", "El usuario ha sido eliminado correctamente.");
-        } else {
-            model.addAttribute("error", "No es posible eliminar el único usuario en la base de datos.");
-        }
-        return "redirect:/administrador/index";
-    }
+
 }
