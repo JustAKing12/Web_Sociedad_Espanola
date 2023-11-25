@@ -115,7 +115,35 @@
         </h1>
       </div>
     </div>
+    <body>
 
+    <div class="container mt-2">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form th:action="@{/enviar-mensaje}" th:object="${mensaje}" method="post">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" th:field="*{nombre}">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" th:field="*{email}">
+            </div>
+            <div class="mb-3">
+              <label for="consulta" class="form-label">Consulta</label>
+              <textarea class="form-control" id="consulta" th:field="*{cuerpo}" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Agrega la referencia a Bootstrap JS y otros archivos si es necesario -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
     <!-- Footer de la Página (La parte de abajo) -->
     <footer class="mt-auto colorcitoFondo">
       <div class="container">
