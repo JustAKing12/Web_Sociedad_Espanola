@@ -14,6 +14,9 @@ public class EventoServiceImpl implements EventoService {
     @Autowired
     private EventoRepository eventoRepository;
 
+    @Autowired
+    private NotifyService notifyService;
+
     @Override
     @Transactional(readOnly = true)
     public Evento get(Long id) {
@@ -30,6 +33,7 @@ public class EventoServiceImpl implements EventoService {
     @Transactional
     public void save(Evento evento) {
         eventoRepository.save(evento);
+        evento.notifySubscribers(notifyService);
     }
 
     @Override

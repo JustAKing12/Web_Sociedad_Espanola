@@ -1,5 +1,7 @@
 package ar.edu.unnoba.Proyecto.model;
 
+import ar.edu.unnoba.Proyecto.service.EmailService;
+import ar.edu.unnoba.Proyecto.service.NotifyService;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -87,5 +89,13 @@ public class Evento {
 
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
+    }
+
+    public void notifySubscribers(NotifyService notifyService) {
+        if (subscriptores != null) {
+            for (Subscriptor subscriptor : subscriptores) {
+                notifyService.notify(subscriptor, this);
+            }
+        }
     }
 }
