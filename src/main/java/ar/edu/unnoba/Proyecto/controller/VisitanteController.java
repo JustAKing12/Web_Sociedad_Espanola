@@ -64,9 +64,9 @@ public class VisitanteController {
     @GetMapping("/evento/{id}")
     public String evento(@PathVariable Long id, Model model) {
         Evento evento = eventoService.get(id);
-        String username = evento.getUsuario().getUsername();
+        //String username = evento.getUsuario().getUsername();
         model.addAttribute("evento", evento);
-        model.addAttribute("username", username);
+       // model.addAttribute("username", username);
         return "visitantes/evento";
     }//FUNCIONALIDAD: Mostrar en detalle un Evento
 
@@ -93,7 +93,7 @@ public class VisitanteController {
         List<Evento> eventos = eventoService.getAll();
         Map<Evento, String> eventosConUsernames = new HashMap<>();
         for (Evento evento : eventos) {
-            eventosConUsernames.put(evento, evento.getUsuario().getUsername());
+        //    eventosConUsernames.put(evento, evento.getUsuario().getUsername());
         }
         model.addAttribute("eventos", eventosConUsernames);
     }

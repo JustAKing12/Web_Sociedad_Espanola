@@ -20,10 +20,11 @@ public class Evento {
     @Column(nullable = false)
     private String descripcion;
 
-    @ManyToOne(fetch = FetchType.LAZY) //los datos se cargan solo cuando se necesitan con LAZY
-    @JoinColumn(name = "usuario_id", nullable = false)
-    //Si se accede con frecuencia a los datos de Usuario, es recomendable EAGER. Aunque también existen otros criterios para decidir.
-    private Usuario usuario; //un usuario puede publicar muchas novedades, cada novedad es publicada por un solo usuario
+    //@ManyToOne(fetch = FetchType.LAZY) //los datos se cargan solo cuando se necesitan con LAZY
+    //@JoinColumn(name = "usuario_id", nullable = false)
+    // Si se accede con frecuencia a los datos de Usuario, es recomendable EAGER. Aunque también existen otros criterios para decidir.
+    @Column(name = "usuario_id", nullable = false)
+    private Long usuario; //un usuario puede publicar muchas novedades, cada novedad es publicada por un solo usuario
 
     @ManyToMany(mappedBy = "eventos")
     private Set<Subscriptor> subscriptores; //un evento puede tener muchos suscriptores, un suscriptor puede suscribirse a muchos eventos
@@ -33,10 +34,17 @@ public class Evento {
     private Date fecha = new Date(); //por cada instancia se crea una fecha que solo se tendrá dia/mes/anio
 
     @Lob //permite trabajar con objetos pesados (imagen)
-    @Column(nullable = false)
+    @Column//(nullable = true) //Tuve que hacerlo
     private byte[] imagen;
 
+
+//######## Constructores #############
     public Evento() { //JPA necesita constructor sin parametros
+    }
+
+    public Evento(String titulo, String descripcion) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
     }
 
     public Long getId() {
@@ -63,11 +71,11 @@ public class Evento {
         this.descripcion = descripcion;
     }
 
-    public Usuario getUsuario() {
+    public Long getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Long usuario) {
         this.usuario = usuario;
     }
 

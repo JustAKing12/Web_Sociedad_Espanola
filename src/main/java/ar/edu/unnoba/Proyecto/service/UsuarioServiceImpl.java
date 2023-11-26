@@ -45,6 +45,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioRepository.save(usuario);
     }
 
+    public Usuario buscarPorNombre(String nom){
+        return usuarioRepository.findByUsername(nom);
+    }
+
     @Override
     @Transactional(readOnly = true)//utilizar readOnly hace que se limite unicamente a leer, lo cual da seguridad y es mas eficiente
     public Usuario get(Long id) {

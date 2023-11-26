@@ -3,9 +3,12 @@ package ar.edu.unnoba.Proyecto.controller;
 import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.model.Usuario;
 import ar.edu.unnoba.Proyecto.service.EventoService;
+import ar.edu.unnoba.Proyecto.service.EventoServiceImpl;
 import ar.edu.unnoba.Proyecto.service.UsuarioService;
+import ar.edu.unnoba.Proyecto.service.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,10 +22,10 @@ import javax.validation.Valid;
 public class AdministradorController {
 
     @Autowired
-    private EventoService eventoService;
+    private EventoServiceImpl eventoService;
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioServiceImpl usuarioService;
 
     //*****************INDEX*****************
 
@@ -56,7 +59,7 @@ public class AdministradorController {
     }//FUNCIONALIDAD: elimina un evento por su id
 
     @GetMapping("/eventos/nuevo")
-    public String nuevoEvento(Model model, Authentication authentication) {
+    public String nuevoEvento(Model model, Authentication authentication) {//Creamos el evento con todos los datos necesarios
         User sessionUser = (User) authentication.getPrincipal();
 
         Evento evento = new Evento();
@@ -74,11 +77,46 @@ public class AdministradorController {
             model.addAttribute("user", sessionUser);
             return "administradores/nuevo-evento";
         }//Mantiene los datos que ingresó el usuario, aunque fuera error, para luego corregirlos al ingresar de nuevo.
-        evento.setUsuario((Usuario) usuarioService.loadUserByUsername(sessionUser.getUsername()));
+        //evento.setUsuario((Usuario) usuarioService.loadUserByUsername(sessionUser.getUsername()));
         eventoService.save(evento);
         model.addAttribute("success", "El evento ha sido creado correctamente.");
         return "redirect:/administrador/eventos";
     }//FUNCIONALIDAD: procesa el formulario de creación de un nuevo evento y lo guarda
+
+    //############ Prueaba #############
+
+    @GetMapping("eventos/new")
+    public String mostrarFormulario(){
+        return "administradores/nuevo-evento";
+    }
+
+    @PostMapping("eventos/crear")
+    public String crearEvento(Model model, String titulo, String descripcion, Authentication authentication){
+        User sessionUser = (User) authentication.getPrincipal();
+        Evento evento = new Evento(titulo, descripcion);
+        UserDetails userDetails = usuarioService.loadUserByUsername(sessionUser.getUsername());
+        Usuario usuario = usuarioService.buscarPorNombre(userDetails.getUsername());
+        evento.setUsuario(usuario.getId());
+
+        eventoService.save(evento);
+        model.addAttribute("success", "El evento ha sido creado correctamente.");
+        //return "redirect:/administrador/index";
+        return "administradores/index";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //*****************EVENTO (AL SELECCIONAR CLICKEANDO)*****************
 

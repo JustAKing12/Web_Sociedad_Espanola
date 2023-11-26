@@ -6,5 +6,37 @@
 </head>
 <body>
 
+    <h1>1,2,3 probandoo</h1>
+
+
+    <div class="container">
+
+
+        <!--  <img src="../../static/imagenes/logo.png" alt="Logo" />-->
+        <h1>Crear Evento</h1>
+
+
+        <form th:action="@{/administrador/eventos/crear}" method="post">
+            <label for="titulo"></label>
+            <input
+                    type="text"
+                    id="titulo"
+                    name="titulo"
+                    placeholder="Titulo del nuevo evento"
+                    required
+            />
+            <label for="descripcion"></label>
+            <input
+                    type="text"
+                    id="descripcion"
+                    name="descripcion"
+                    placeholder="Descripcion"
+                    required
+            />
+            <input type="submit" value="Crear nuevo evento"/>
+        </form>
+
+    </div>
+
 </body>
 </html>
