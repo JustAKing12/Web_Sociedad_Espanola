@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class Mensaje {
-
+//No se debe crear una tabla
     @NotBlank(message = "El nombre es obligatorio")
     @Size(min=2, max=30, message = "El nombre debe tener entre 2 y 30 caracteres")
     private String nombre;
@@ -17,7 +17,8 @@ public class Mensaje {
     @NotBlank (message = "La consulta es obligatoria")
     private String cuerpo;
 
-    // Los getters y setters de cada atributo
+    public Mensaje(){}
+
     public String getNombre() {
         return nombre;
     }

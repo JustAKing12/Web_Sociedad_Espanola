@@ -30,7 +30,6 @@ public class EventoServiceImpl implements EventoService {
     @Transactional
     public void save(Evento evento) {
         eventoRepository.save(evento);
-        //Se debe notificar
     }
 
     @Override

@@ -4,7 +4,47 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
+<style>
+    .custom-alert {
+        background-color: #5CFCA0; /* Fondo oscuro */
+        color: #1E8449; /* Texto blanco */
+        padding: 4px; /* Añadir espacio alrededor del texto */
+        border-radius: 2.5px; /* Esquinas redondeadas */
+    }
+</style>
 <body>
+
+    <div th:if="${success}" class="custom-alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong th:text="${success}">El evento ha sido eliminado correctamente.</strong>
+    </div>
+
+    <!-- Vista de los eventos con tarjetas -->
+    <div class="container">
+        <div class="row">
+            <!-- Iterar sobre cada evento en la lista de eventos -->
+            <div th:each="evento : ${eventos}" class="col-md-4 mb-4">
+                <!-- Card para cada evento -->
+                <div class="card event_card">
+                    <!-- Imagen del evento -->
+                    <img th:src="${evento.getImagen()}" class="card-img-top" alt="Event Image">
+                    <div class="card-body">
+                        <!-- Título del evento -->
+                        <h5 th:text="${evento.getTitulo()}" class="card-title"></h5>
+                        <!-- Descripción del evento -->
+                        <p th:text="${evento.getDescripcion()}" class="card-text"></p>
+                        <!-- Fecha del evento -->
+                        <p th:text="${evento.getFecha()}" class="card-text"></p>
+                        <!-- ID del evento -->
+                        <p th:text="${evento.getId()}" class="card-text"></p>
+                        <!-- Botón "Ver más" que enlaza a la página del evento -->
+                        <a th:href="@{'/administrador/evento/' + ${evento.getId()}}" class="btn btn-primary">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
