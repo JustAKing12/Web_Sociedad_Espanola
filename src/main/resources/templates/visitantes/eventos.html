@@ -234,66 +234,24 @@
 
     <!-- Vista de los eventos con tarjetas -->
     <div class="container">
-      <div class="row row-cols-1 row-cols-sm-3 g-3 events_container">
-        <!--cards -->
-        <div class="col">
+      <div class="row">
+        <!-- Iterar sobre cada evento en la lista de eventos -->
+        <div th:each="evento : ${eventos}" class="col-md-4 mb-4">
+          <!-- Card para cada evento -->
           <div class="card event_card">
-            <div class="container text-center img_container">
-              <img
-                src="../../static/imagenes/eventosImg/bailar tangos.jpg"
-                class="card-img-top img_card"
-                alt="españa"
-              />
-            </div>
-            <div class="card-body d-flex flex-column text-center">
-              <h5 class="card-title fw-bold">Noche de Tango</h5>
-              <p class="card-text">
-                Una noche imperdible para pasar en familia, la noche de tango a
-                cargo del profesor Elias Trejo, aclamado bailarín internacional.
-              </p>
-              <a href="#" class="btn btn-primary mt-auto">Ver mas</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card event_card">
-            <div class="container text-center img_container">
-              <img
-                src="../../static/imagenes/ImgEjemplo.jpg"
-                class="card-img-top img_card"
-                alt="españa"
-              />
-            </div>
-            <div class="card-body d-flex flex-column text-center">
-              <h5 class="card-title fw-bold">Cena Fin de Año</h5>
-              <p class="card-text">
-                Se conmemorara la cena de fin de año en la institución a partir
-                de las 20:00hs del día miércoles 29 de noviembre del presente
-                año.
-              </p>
-              <a href="#" class="btn btn-primary mt-auto">Ver mas</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card event_card">
-            <div class="container text-center img_container">
-              <img
-                src="../../static/imagenes/eventosImg/paella.jpg"
-                class="card-img-top img_card"
-                alt="españa"
-              />
-            </div>
-            <div class="card-body d-flex flex-column text-center">
-              <h5 class="card-title fw-bold">Paella Comunitaria</h5>
-              <p class="card-text">
-                Jueves 30 de noviembre del presente año se realizará una paella
-                comunitaria para que todos y todas puedan disfrutar de este
-                momento en familia.
-              </p>
-              <a href="#" class="btn btn-primary mt-auto">Ver mas</a>
+            <!-- Imagen del evento -->
+            <img th:src="${evento.getImagen()}" class="card-img-top" alt="Event Image">
+            <div class="card-body">
+              <!-- Título del evento -->
+              <h5 th:text="${evento.getTitulo()}" class="card-title"></h5>
+              <!-- Descripción del evento -->
+              <p th:text="${evento.getDescripcion()}" class="card-text"></p>
+              <!-- Fecha del evento -->
+              <p th:text="${evento.getFecha()}" class="card-text"></p>
+              <!-- ID del evento -->
+              <p th:text="${evento.getId()}" class="card-text"></p>
+              <!-- Botón "Ver más" que enlaza a la página del evento -->
+              <a th:href="@{'/visitante/evento/' + ${evento.getId()}}" class="btn btn-primary">Ver más</a>
             </div>
           </div>
         </div>

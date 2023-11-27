@@ -16,101 +16,22 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../static/estilos.css" />
+    <link rel="stylesheet" href="/estilos.css" />
     <title>Title</title>
   </head>
-  <body class="d-flex flex-column min-vh-100">
-    <!-- Header de la Página (La parte de arriba) -->
-    <header class="bg-warning text-white" style="--bs-bg-opacity: 0.7">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg">
-          <!-- Logotipo y título dentro del contenedor de botón -->
-          <a
-            class="navbar-brand btn btn-light btn-lg d-flex align-items-center p-2 rounded"
-            href="#"
-          >
-            <img
-              src="../imagenes/logo.png"
-              alt="Logo"
-              style="max-height: 50px"
-            />
-            <h1
-              class="h1 ms-2"
-              style="font-family: 'Playfair Display', serif; font-size: 25px"
-            >
-              Sociedad Española Junín
-            </h1>
-          </a>
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="btn btn-light btn-lg mx-2" href="/visitante/inicio"
-                >Inicio</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-light btn-lg mx-2" href="/visitante/eventos"
-                >Eventos</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="btn btn-light btn-lg mx-2"
-                href="/visitante/historia"
-                >¿Quiénes somos?</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-light btn-lg mx-2" href="/visitante/contacto"
-                >Contacto</a
-              >
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-    <!-- Relleno de ejemplo del body (el cuerpo de la pagina, lo del medio) -->
-    <div class="container content mt-2">
-      <h2>Contenido del Body</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-        lacus turpis, finibus vel libero id, dapibus porttitor dolor. In auctor
-        tellus diam, eu gravida orci condimentum vel. Proin fringilla laoreet
-        arcu. Fusce sollicitudin sem lacus, vel luctus risus vestibulum nec.
-        Nullam vel quam metus. Aliquam scelerisque tortor sem, sed bibendum enim
-        lobortis sed. Ut ut venenatis ligula, eu porta lacus. Nam egestas
-        sagittis imperdiet. Sed eget dui volutpat, ornare tortor et, pulvinar
-        mauris. Proin interdum mollis lacus non hendrerit. vitae tortor. Vivamus
-        nec mauris sed eros hendrerit ullamcorper non ac neque. Praesent finibus
-        risus eros, sed sodales urna laoreet et. Etiam iaculis in orci eu
-        porttitor. Ut tempor eleifend vestibulum. Phasellus commodo turpis
-        felis, a laoreet turpis dictum id. Curabitur a arcu et elit scelerisque
-        accumsan. Nullam vulputate orci nec diam imperdiet, vitae faucibus ex
-        commodo. Integer luctus sapien ut eros ullamcorper facilisis. vehicula
-        sit amet aliquet nec, varius sed sem. Vestibulum facilisis velit semper
-        orci aliquet sagittis at eget orci. Sed et sem non velit sagittis
-        lacinia. Etiam pulvinar, ipsum ut cursus blandit, risus nisl auctor
-        lacus, sit amet viverra mauris metus a dolor. Nunc quis imperdiet ipsum,
-        quis lobortis velit. Integer laoreet nunc erat, eu interdum nisi
-        vehicula eu. Proin tincidunt sem sollicitudin faucibus volutpat. Aliquam
-        lobortis erat ac maximus vulputate. Vestibulum nec nunc commodo,
-        eleifend purus sit amet, consectetur nibh. Pellentesque vel mauris
-        lacus. Vestibulum euismod vel eros at iaculis. Mauris fermentum, nulla
-        et commodo aliquam, orci est vestibulum ipsum, nec rutrum dolor justo id
-        sapien. Donec semper rhoncus fermentum. In ultrices, velit ut blandit
-        accumsan, Sed et sem non velit sagittis lacinia. Etiam pulvinar, ipsum
-        ut cursus blandit, risus nisl auctor lacus, sit amet viverra mauris
-        metus a dolor. Nunc quis imperdiet ipsum, quis lobortis velit. Integer
-        laoreet nunc erat, eu interdum nisi vehicula eu. Class aptent taciti
-        sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-        Proin tincidunt sem sollicitudin faucibus volutpat. Aliquam lobortis
-        erat ac maximus vulputate. Vestibulum nec nunc commodo, eleifend purus
-        sit amet, consectetur nibh. Pellentesque vel mauris lacus. Vestibulum
-        euismod vel eros at iaculis. Mauris fermentum, nulla et commodo aliquam,
-        orci est vestibulum ipsum, nec rutrum dolor justo id sapien. Donec
-        semper rhoncus fermentum.
-      </p>
-    </div>
+  <body>
+  <div class="container mt-4">
+    <!-- Muestra los detalles del evento -->
+    <h2 th:text="${evento.getTitulo()}"></h2>
+    <p th:text="${evento.getDescripcion()}"></p>
+    <p th:text="${evento.getFecha()}"></p>
+    <p th:text="${evento.getId()}"></p>
 
+    <!-- Botón para volver a la lista de eventos -->
+    <a th:href="@{/visitante/eventos}" class="btn btn-primary">Volver a la lista de eventos</a>
+  </div>
+  <!-- Puedes agregar scripts y otros elementos según tus necesidades -->
+  </body>
     <!-- Footer de la Página (La parte de abajo) -->
     <footer class="mt-auto bg-secondary-subtle">
       <div class="container">

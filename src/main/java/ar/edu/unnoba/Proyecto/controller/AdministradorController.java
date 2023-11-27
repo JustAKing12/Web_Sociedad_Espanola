@@ -90,7 +90,7 @@ public class AdministradorController {
 
     //############ Prueaba #############
 
-    @GetMapping("eventos/new")
+    @GetMapping("/eventos/new")
     public String mostrarFormulario(){
         return "administradores/nuevo-evento";
     }
