@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "usuario")
 public class Usuario implements UserDetails {
-
+//Cada vez que se crea un usuario el usuario carga username y password
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

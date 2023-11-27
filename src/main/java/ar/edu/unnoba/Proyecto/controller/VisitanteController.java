@@ -64,7 +64,9 @@ public class VisitanteController {
     @GetMapping("/evento/{id}")
     public String evento(@PathVariable Long id, Model model) {
         Evento evento = eventoService.get(id);
+        String username = evento.getUsuario().getUsername();
         model.addAttribute("evento", evento);
+        model.addAttribute("username", username);
         return "visitantes/evento";
     }//FUNCIONALIDAD: Mostrar en detalle un Evento
 
@@ -76,12 +78,12 @@ public class VisitanteController {
         return "visitantes/contacto";
     }//FUNCIONALIDAD: muestra la vista de contacto con su formulario
 
-    @PostMapping("/enviar-mensaje")
+    @PostMapping("/contacto")
     public String enviarMensaje(@ModelAttribute("mensaje") @Valid Mensaje mensaje, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "visitantes/contacto"; // Se devuelve la vista "visitantes/contacto" con los errores
         }
-        recibirMailService.recibir(mensaje);
+        //recibirMailService.recibir(mensaje);
         return "visitantes/contacto";
     }//FUNCIONALIDAD: Recibe el formulario de contacto y envía el correo electrónico
 
@@ -89,9 +91,12 @@ public class VisitanteController {
 
     static void extractEventos(Model model, EventoService eventoService) {
         List<Evento> eventos = eventoService.getAll();
-        model.addAttribute("eventos", eventos);
+        Map<Evento, String> eventosConUsernames = new HashMap<>();
+        for (Evento evento : eventos) {
+            eventosConUsernames.put(evento, evento.getUsuario().getUsername());
+        }
+        model.addAttribute("eventos", eventosConUsernames);
     }
-
 
     @GetMapping("/historia")
     public String historia(){
