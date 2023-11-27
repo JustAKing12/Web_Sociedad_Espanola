@@ -59,24 +59,22 @@ public class AdministradorController {
 
     @GetMapping("/eventos/nuevo")
     public String nuevoEvento(Model model, Authentication authentication) {
-        User sessionUser = (User) authentication.getPrincipal();
-        System.out.println("Iniciada sesión con usuario: " + sessionUser.getUsername());
-        Evento evento = new Evento();
-        model.addAttribute("evento", evento); //el usuario debe introducir: titulo, descripcion, imagen
-        model.addAttribute("user", sessionUser);
+        model.addAttribute("evento", new Evento()); //el usuario debe introducir: titulo, descripcion, imagen
         return "administradores/nuevo-evento";
     }//FUNCIONALIDAD: muestra el formulario para crear un nuevo evento
 
     @PostMapping("/eventos/nuevo")
-    public String crearEvento(Model model, Authentication authentication, @Valid Evento evento, BindingResult result) {
+    public String crearEvento(Model model, Authentication authentication, @ModelAttribute("evento") Evento evento, BindingResult result) {
         User sessionUser = (User) authentication.getPrincipal();
 
+        System.out.println("Datos recibidos:" + evento.getTitulo() + evento.getDescripcion());
+
+
         if (result.hasErrors()) {
-            model.addAttribute("evento", evento);
-            model.addAttribute("user", sessionUser);
-            return "administradores/nuevo-evento";
+            System.out.println("Hay " + result.getErrorCount() + " errores en la entrada");
         }//Mantiene los datos que ingresó el usuario, aunque fuera error, para luego corregirlos al ingresar de nuevo.
-        evento.setUsuario((Usuario) usuarioService.loadUserByUsername(sessionUser.getUsername()));
+
+        // evento.setUsuario((Usuario) usuarioService.loadUserByUsername(sessionUser.getUsername()));
         eventoService.save(evento);
         model.addAttribute("success", "El evento ha sido creado correctamente.");
         return "redirect:/administrador/eventos";

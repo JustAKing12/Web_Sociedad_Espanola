@@ -17,74 +17,98 @@
           href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
           rel="stylesheet"
   />
-  <link rel="stylesheet" href="../../static/estilos.css" />
+  <link rel="stylesheet" href="/estilos.css" />
   <title>Historia</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-<header class="bg-warning text-white" style="--bs-bg-opacity: 0.7">
+<header class="bg-light text-white sticky-top" style="--bs-bg-opacity: 0.7">
   <div class="container">
     <nav class="navbar navbar-expand-lg">
-      <!-- Logo  y título dentro del contenedor -->
+      <!-- Logotipo y título dentro del contenedor de botón -->
       <a
               class="navbar-brand btn btn-light btn-lg d-flex align-items-center p-2 rounded"
-              href="#"
+              style="border-color: #ff8000"
+              href="/visitante/inicio"
       >
         <img
-                src="../../static/imagenes/logo.png"
-                alt="Logo"
-                style="max-height: 35px"
+                src="/imagenes/logo.png"
+                alt="Logo de la Sociedad Española de Socorros Mutuos Junin"
+                style="max-width: 35px"
         />
         <h1
-                class="h1 ms-2 mt-2"
-                style="font-family: 'Playfair Display', serif; font-size: 20px"
+                class="h1 ms-2"
+                style="font-family: 'Playfair Display', serif; font-size: 25px"
         >
           Sociedad Española Junín
         </h1>
       </a>
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="btn btn-light btn-lg m-2" href="inicio.html">Inicio</a>
-          <!-- lo que dice "/" es la ruta home si le dejamos un # es lo mismo-->
+          <a
+                  class="btn btn-light btn-lg mx-2"
+                  style="border-color: #ff8000"
+                  href="/visitante/inicio"
+          >Inicio</a
+          >
+          <!--  lo que dice "inicio.html" es la ruta
+          que va a seguir el href, esa ruta debe estar explicita en el backend -->
         </li>
         <li class="nav-item">
-          <a class="btn btn-light btn-lg m-2" href="eventos.html"
+          <a
+                  class="btn btn-light btn-lg mx-2"
+                  style="border-color: #ff8000"
+                  href="/visitante/eventos"
           >Eventos</a
-          >
-          <!-- lo que dice "eventos.html" es la ruta
-                que va a seguir el href, esa ruta debe estar explicita en el backend -->
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-light btn-lg m-2" href="actividades.html"
-          >Actividades</a
-          >
-          <!-- lo que dice "eventos.html" es la ruta
-                que va a seguir el href, esa ruta debe estar explicita en el backend -->
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-danger btn-lg m-2 bg-danger" href="#"
-          >Historia</a
           >
           <!-- lo que dice "#" es la ruta home -->
         </li>
         <li class="nav-item">
-          <a class="btn btn-light btn-lg m-2" href="contacto.html"
+          <a
+                  class="btn btn-light btn-lg mx-2"
+                  style="border-color: #ff8000"
+                  href="/visitante/actividades"
+          >actividades</a
+          >
+          <!-- lo que dice "#" es la ruta home -->
+        </li>
+        <li class="nav-item">
+          <a
+                  class="btn btn-danger btn-lg mx-2"
+                  style="border-color: #ff8000"
+                  href="/visitante/historia"
+          >Historia</a
+          >
+          <!-- lo que dice "historia.html" es la ruta
+      que va a seguir el href, esa ruta debe estar explicita en el backend -->
+        </li>
+        <li class="nav-item">
+          <a
+                  class="btn btn-light btn-lg mx-2"
+                  style="border-color: #ff8000"
+                  href="/visitante/contacto"
           >Contacto</a
           >
           <!-- lo que dice "contacto.html" es la ruta
-                que va a seguir el href, esa ruta debe estar explicita en el backend -->
+          que va a seguir el href, esa ruta debe estar explicita en el backend -->
         </li>
       </ul>
     </nav>
   </div>
 </header>
+
+<!--Historia-->
 <div>
   <div class="w-100 mx-auto position-relative">
     <div
             class="position-absolute w-100 h-100 top-0 start-0"
             style="background-color: rgba(0, 0, 0, 0.5)"
     ></div>
-    <img src="../../static/imagenes/logo.png"  alt="page historia" style="max-width: 60px;">
+    <img
+            src="/imagenes/logo.png"
+            alt="page historia"
+            style="max-width: 60px"
+    />
     <h1
             class="position-absolute top-50 start-50 translate-middle text-center text-white"
     >
@@ -112,11 +136,14 @@
     españolas y argentinas. <br /><strong>Actividades deportivas:</strong>
     La Sociedad Española Junín tiene un equipo de fútbol y organiza torneos
     de fútbol y otros deportes.<br />
-
   </p>
-  <img src="../../static/imagenes/ImgEjemplo.jpg" class="img-fluid    img ejemplo " alt="Imagen quienes somos" style="max-width: 700px;">
+  <img
+          src="/imagenes/ImgEjemplo.jpg"
+          class="img-fluid img ejemplo"
+          alt="Imagen quienes somos"
+          style="max-width: 700px"
+  />
 </div>
-
 
 <div class="container content mt-1">
   <h2>Historia</h2>

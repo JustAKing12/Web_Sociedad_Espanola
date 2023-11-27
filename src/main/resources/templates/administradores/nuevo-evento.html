@@ -5,29 +5,26 @@
     <title>Nuevo Evento</title>
 </head>
 <body>
-    <form>
+    <form th:action="@{/administrador/eventos/nuevo}" method="post">
         <!-- nombre -->
         <div class="mb-3">
-            <label class="form-label" for="eventName">Nombre del Evento</label>
-            <input class="form-control" id="eventName" type="text" placeholder="Ingrese un título." />
+            <label class="form-label" for="titulo">Título del Evento</label>
+            <input class="form-control" id="titulo" type="text" placeholder="Ingrese un título." />
         </div>
         <!-- descripcion -->
         <div class="mb-3">
-            <label class="form-label" for="eventDescription">Descripción del Evento</label>
-            <textarea class="form-control" id="eventDescription" type="text" placeholder="Ingrese una descripción. " style="height: 8rem;"></textarea>
+            <label class="form-label" for="descripcion">Descripción del Evento</label>
+            <textarea class="form-control" id="descripcion" placeholder="Ingrese una descripción. " style="height: 8rem;"></textarea>
         </div>
         <!-- imagen -->
         <div class="mb-3">
-            <label class="form-label" for="eventImg">Imagen del Evento</label>
-            <input class="form-control" id="eventImg" type="file" accept="image/*" placeholder="Ingrese una imagen." />
+            <label class="form-label" for="imagen">Imagen del Evento</label>
+            <input class="form-control" id="imagen" type="file" accept="image/*" placeholder="Ingrese una imagen." />
         </div>
         <!-- boton de enviar -->
         <div class="d-grid">
-            <button class="btn btn-primary opacity-80 btn-lg mx-auto w-50" type="submit">Enviar</button>
+            <button class="btn btn-primary opacity-80 btn-lg mx-auto w-50" type="submit">Crear evento :)</button>
         </div>
     </form>
-    <button>crear</button>
-    <button>editar</button>
-    <button>eliminar</button>
 </body>
 </html>
