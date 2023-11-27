@@ -6,5 +6,18 @@
 </head>
 <body>
 
+    <div class="container mt-4">
+        <!-- Muestra los detalles del evento -->
+        <h2 th:text="${evento.getTitulo()}"></h2>
+        <p th:text="${evento.getDescripcion()}"></p>
+        <p th:text="${evento.getFecha()}"></p>
+        <p th:text="${evento.getId()}"></p>
+
+        <!-- Botón para volver a la lista de eventos -->
+        <a th:href="@{/administrador/eventos}" class="btn btn-primary">Volver a la lista de eventos</a>
+        <br/>
+        <a th:href="@{/administrador/eventos/eliminar/{id}(id=${evento.id})}">Eliminar</a>
+    </div>
+
 </body>
 </html>

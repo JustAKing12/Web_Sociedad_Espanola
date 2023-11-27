@@ -54,8 +54,8 @@ public class AdministradorController {
     @GetMapping("/eventos/eliminar/{id}")
     public String eliminarEvento(Model model, @PathVariable Long id) {
         eventoService.delete(id);
-        model.addAttribute("success", "El evento ha sido eliminado correctamente.");
-        return "redirect:/administrador/eventos";
+        //model.addAttribute("success", "El evento ha sido eliminado correctamente.");
+        return "redirect:/administrador/eventos?success";
     }//FUNCIONALIDAD: elimina un evento por su id
 
     @GetMapping("/eventos/nuevo")
@@ -83,9 +83,9 @@ public class AdministradorController {
         evento.setUsuario(usuario);
         evento.setIdUsuario(usuario.getId());
         eventoService.save(evento);
-        enviarMailService.enviar(evento);
-        model.addAttribute("success", "El evento ha sido creado correctamente.");
-        return "redirect:/administrador/eventos";
+        //enviarMailService.enviar(evento);
+        //model.addAttribute("success", "El evento ha sido creado correctamente.");
+        return "redirect:/administrador/index?success";
     }//FUNCIONALIDAD: procesa el formulario de creación de un nuevo evento y lo guarda
 
     //############ Prueaba #############
