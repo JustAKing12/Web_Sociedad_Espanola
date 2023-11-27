@@ -26,9 +26,9 @@ public class Evento {
     @Temporal(TemporalType.DATE)
     private Date fecha = new Date(); //por cada instancia se crea una fecha que solo se tendrá dia/mes/anio
 
-    /*@Lob //permite trabajar con objetos pesados (imagen)
+    @Lob //permite trabajar con objetos pesados (imagen)
     @Column(nullable = false)
-    private byte[] imagen;*/
+    private byte[] imagen;
 
     public Evento() { //JPA necesita constructor sin parametros
     }
@@ -69,11 +69,11 @@ public class Evento {
         return fecha;
     }
 
-    /*public byte[] getImagen() {
+    public byte[] getImagen() {
         return imagen;
     }
 
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
-    }*/
+    }
 }
