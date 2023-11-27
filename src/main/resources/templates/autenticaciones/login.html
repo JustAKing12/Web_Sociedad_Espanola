@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio de sesión</title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Open+Sans:wght@800&family=Roboto:ital,wght@1,700&display=swap');
+
+      body {
+        background-image: url("../../static/imagenes/fondo-login.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+
+      .login-container {
+        margin: 18vh auto auto;
+        width: 300px;
+        background-color: ghostwhite;
+        box-shadow: 15px 15px 15px 5px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+      }
+
+      img {
+        width: 100%;
+        height: 200px;
+      }
+
+      h1,
+      .custom-alert,
+      .alert {
+        text-align: center;
+        font-family: 'Comfortaa', sans-serif;
+      }
+
+      input {
+        margin: 0 10px 10px;
+        width: 93%;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        border: none;
+        box-shadow: 15px 15px 15px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      input[type="submit"] {
+        background-image: linear-gradient(
+          to left top,
+          #d0d20c,
+          #d6a800,
+          #d57d00,
+          #cc4f00,
+          #bc0a0a
+        );
+        color: whitesmoke;
+        cursor: pointer;
+      }
+
+      .custom-alert {
+        background-color: #ffbfaa; /* Fondo oscuro */
+        color: #e62e1b; /* Texto blanco */
+        padding: 4px; /* Añadir espacio alrededor del texto */
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="login-container">
+      <img src="../../static/imagenes/logo.png" alt="Logo" />
+      <h1>Iniciar sesión</h1>
+      
+      <div th:if="${param.error}" class="custom-alert text-center">
+        <strong>Usuario o contraseña invalidos</strong><br>
+      </div>
+
+      <div th:if="${param.logout}">
+        <div class="alert alert-info">Ha cerrado sesion exitosamente</div>
+      </div>
+      
+      <form th:action="@{/login}" method="post">
+        <label for="username"></label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Usuario"
+          required
+        />
+        <label for="password"></label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Contraseña"
+          required
+        />
+        <input type="submit" value="Iniciar sesión" />
+      </form>
+    </div>
+  </body>
+</html>
