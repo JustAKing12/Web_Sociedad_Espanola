@@ -17,17 +17,17 @@
 </head>
 <body>
 
-<h1>Bienvenido administrador</h1>
-<a href="/administrador/usuario/crear">Crear usuario</a>
-<!--Vamos a crear un html para hacer la carga de datos de un usuario para su posterior creacion-->
-<br>
-<a href="/administrador/eventos/nuevo">Nuevo evento</a>
-<br>
-<a href="/administrador/eventos">Eventos</a>
+    <h1>Bienvenido administrador</h1>
+    <a href="/administrador/usuario/crear">Crear usuario</a>
+    <!--Vamos a crear un html para hacer la carga de datos de un usuario para su posterior creacion-->
+    <br>
+    <a href="/administrador/eventos/nuevo">Nuevo evento</a>
+    <br>
+    <a href="/administrador/eventos">Eventos</a>
 
-<div th:if="${success}" class="custom-alert">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong th:text="${success}">El evento ha sido creado correctamente.</strong>
-</div>
+    <div th:if="${success}" class="custom-alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong th:text="${success}">El evento ha sido creado correctamente.</strong>
+    </div>
 </body>
 </html>
