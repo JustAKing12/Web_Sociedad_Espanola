@@ -17,6 +17,45 @@
         <a th:href="@{/administrador/eventos}" class="btn btn-primary">Volver a la lista de eventos</a>
         <br/>
         <a th:href="@{/administrador/eventos/eliminar/{id}(id=${evento.id})}">Eliminar</a>
+
+        <br/>
+        <a th:href="@{'/administrador/evento/' + ${evento.id} + '?mensaje=mensaje'}" class="btn btn-primary">Modificar</a>
+
+
+        <div th:if="${mensaje}" class="custom-alert">
+
+            <div class="container">
+                <h1>Modificar Evento</h1>
+
+                <form th:action="@{'/administrador/evento/' + ${evento.id}}" method="post">
+                    <label for="titulo"></label>
+                    <input
+                            type="text"
+                            id="titulo"
+                            name="titulo"
+                            placeholder="Titulo del nuevo evento"
+                            required
+                    />
+                    <label for="descripcion"></label>
+                    <input
+                            type="text"
+                            id="descripcion"
+                            name="descripcion"
+                            placeholder="Descripcion"
+                            required
+                    />
+                    <!--                    <label for="image"></label>-->
+                    <!--                    <input-->
+                    <!--                            type="file"-->
+                    <!--                            id="image"-->
+                    <!--                            name="imagen"-->
+                    <!--                            placeholder="imagen"-->
+                    <!--                            required-->
+                    <!--                    />-->
+                    <input type="submit" value="Modificar"/>
+                </form>
+            </div>
+        </div>
     </div>
 
 </body>

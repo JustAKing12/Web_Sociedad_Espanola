@@ -81,18 +81,24 @@ public class AdministradorController {
         eventoService.save(evento);
         //enviarMailService.enviar(evento);
         model.addAttribute("success", "El evento ha sido creado correctamente.");
-        return "redirect:/administrador/eventos";
+        return "redirect:/administrador/inicio";
     }//FUNCIONALIDAD: procesa el formulario de creación de un nuevo evento y lo guarda
 
     //*****************EVENTO (AL SELECCIONAR CLICKEANDO)*****************
 
     @GetMapping("/evento/{id}")
-    public String modificarEvento(Model model, Authentication authentication, @PathVariable Long id) {
+    public String modificarEvento(Model model, Authentication authentication, @PathVariable Long id,  @RequestParam(name = "mensaje", required = false) String mensaje) {
         User sessionUser = (User) authentication.getPrincipal();
 
         Evento evento = eventoService.get(id);
         model.addAttribute("evento", evento);
         model.addAttribute("user", sessionUser);
+
+        if (mensaje != null && !mensaje.isEmpty()) {
+            model.addAttribute("mensaje", mensaje);
+            return "administradores/evento";
+        }
+
         return "administradores/evento";
     }//FUNCIONALIDAD: muestra un evento específico con sus detalles y permite modificarlo
 
@@ -105,6 +111,9 @@ public class AdministradorController {
             model.addAttribute("user", sessionUser);
             return "administradores/evento";
         }//Mantiene los datos que ingresó el usuario, aunque fuera error, para luego corregirlos al ingresar de nuevo.
+
+        evento.setUsuario(usuarioService.buscarPorNombre(sessionUser.getUsername()));
+
         eventoService.save(evento);
         //enviarMailService.enviar(evento);
         model.addAttribute("success", "El evento ha sido modificado correctamente.");

@@ -91,12 +91,14 @@ public class VisitanteController {
 
     static void extractEventos(Model model, EventoService eventoService) {
         List<Evento> eventos = eventoService.getAll();
-        Map<Evento, String> eventosConUsernames = new HashMap<>();
-        for (Evento evento : eventos) {
-            eventosConUsernames.put(evento, evento.getUsuario().getUsername());
-        }
-        model.addAttribute("eventos", eventosConUsernames);
+        model.addAttribute("eventos", eventos);
+//        Map<Evento, String> eventosConUsernames = new HashMap<>();
+//        for (Evento evento : eventos) {
+//            eventosConUsernames.put(evento, evento.getUsuario().getUsername());
+//        }
+//        model.addAttribute("eventos", eventosConUsernames);
     }
+
 
     @GetMapping("/historia")
     public String historia(){
