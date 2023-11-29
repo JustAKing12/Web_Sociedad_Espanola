@@ -33,7 +33,7 @@
       <a th:href="@{/visitante/eventos}" class="btn btn-primary">Volver a la lista de eventos</a>
     </div>
 <!-- ***************************** -->
-    <a th:href="@{'/visitante/subscriptor/nuevo/' + ${evento.id}}" class="btn btn-primary">Suscribirse</a>
+    <a th:href="@{'/visitante/suscriptor/nuevo/' + ${evento.id}}" class="btn btn-primary">Suscribirse</a>
 
 
 
@@ -43,7 +43,7 @@
       <div class="container">
         <h1>Suscribirse</h1>
 
-        <form th:action="@{'/visitante/subscriptor/nuevo/' + ${evento.id}}" method="post">
+        <form th:action="@{'/visitante/suscriptor/nuevo/' + ${evento.id}}" method="post">
           <label for="email"></label>
           <input
                   type="text"

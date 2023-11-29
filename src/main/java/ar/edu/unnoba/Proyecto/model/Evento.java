@@ -2,6 +2,8 @@ package ar.edu.unnoba.Proyecto.model;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "evento")
@@ -15,6 +17,7 @@ public class Evento {
     @Column(nullable = false, unique = true)
     private String titulo;
 
+    @Lob
     @Column(nullable = false)
     private String descripcion;
 
@@ -30,6 +33,12 @@ public class Evento {
     @Lob //permite trabajar con objetos pesados (imagen)
     @Column
     private byte[] imagen;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "evento_suscriptor",
+            joinColumns = @JoinColumn(name = "evento_id"),
+            inverseJoinColumns = @JoinColumn(name = "suscriptor_id"))
+    private Set<Suscriptor> suscriptores = new HashSet<>();
 
     public Evento() { //JPA necesita constructor sin parametros
     }
@@ -76,5 +85,13 @@ public class Evento {
 
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
+    }
+
+    public void agregarSuscriptor(Suscriptor suscriptor) {
+        this.getSuscriptores().add(suscriptor);
+    }
+
+    public Set<Suscriptor> getSuscriptores() {
+        return suscriptores;
     }
 }

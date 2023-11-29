@@ -1,7 +1,7 @@
 package ar.edu.unnoba.Proyecto.service;
 
 import ar.edu.unnoba.Proyecto.model.Evento;
-import ar.edu.unnoba.Proyecto.model.Subscriptor;
+import ar.edu.unnoba.Proyecto.model.Suscriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -29,11 +29,11 @@ public class EnviarMailServiceImpl implements EnviarMailService{
         String texto = String.format("Hola, te informamos que se ha creado o modificado un nuevo evento: %s. \n\nDescripción: %s. \n\nFecha: %s. \n\nPublicado por: %s.",
                 evento.getTitulo(), evento.getDescripcion(), evento.getFecha(), evento.getUsuario().getUsername());
         mensaje.setText(texto);
-        List<Subscriptor> subscriptores = subscriptorService.getAll();
+        List<Suscriptor> subscriptores = subscriptorService.getAll();
         String[] destinatarios = new String[subscriptores.size()];
         int c = 0; // Variable para controlar el índice del array
-        for (Subscriptor subscriptor : subscriptores) {
-            destinatarios[c] = subscriptor.getEmail();
+        for (Suscriptor suscriptor : subscriptores) {
+            destinatarios[c] = suscriptor.getEmail();
             c++;
         }
         mensaje.setTo(destinatarios);
