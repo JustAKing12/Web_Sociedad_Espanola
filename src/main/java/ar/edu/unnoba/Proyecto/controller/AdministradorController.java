@@ -94,10 +94,10 @@ public class AdministradorController {
         model.addAttribute("evento", evento);
         model.addAttribute("user", sessionUser);
 
-        if (!mensaje.isEmpty()) {
+/*        if (!mensaje.isEmpty()) {
             model.addAttribute("mensaje", mensaje);
             return "administradores/evento";
-        }
+        }*/
 
         return "administradores/evento";
     }//FUNCIONALIDAD: muestra un evento específico con sus detalles y permite modificarlo

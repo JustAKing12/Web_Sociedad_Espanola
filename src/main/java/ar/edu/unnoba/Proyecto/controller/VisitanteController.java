@@ -2,24 +2,21 @@ package ar.edu.unnoba.Proyecto.controller;
 
 import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.model.Mensaje;
-import ar.edu.unnoba.Proyecto.model.Subscriptor;
-import ar.edu.unnoba.Proyecto.model.subscripcionEvento;
+import ar.edu.unnoba.Proyecto.model.Suscriptor;
+
 import ar.edu.unnoba.Proyecto.service.EventoService;
 import ar.edu.unnoba.Proyecto.service.RecibirMailService;
-import ar.edu.unnoba.Proyecto.service.SubsEventService;
+
 import ar.edu.unnoba.Proyecto.service.SubscriptorService;
+import ar.edu.unnoba.Proyecto.service.SubscriptorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/visitante")
@@ -29,13 +26,11 @@ public class VisitanteController {
     private EventoService eventoService;
 
     @Autowired
-    private SubscriptorService subscriptorService;
+    private SubscriptorServiceImpl subscriptorService;
 
     @Autowired
     private RecibirMailService recibirMailService;
 
-    @Autowired
-    private SubsEventService subsEventService;
 
     //*****************INICIO*****************
 
@@ -46,14 +41,14 @@ public class VisitanteController {
 
     @GetMapping("/inicio")
     public String inicio(Model model) {
-        model.addAttribute("subscriptor", new Subscriptor());
+        model.addAttribute("subscriptor", new Suscriptor());
         return "visitantes/inicio";
     }
 
     @PostMapping("/inicio")
-    public String inicio(@ModelAttribute Subscriptor subscriptor) {
-        if (subscriptor != null) {
-            subscriptorService.save(subscriptor);
+    public String inicio(@ModelAttribute Suscriptor suscriptor) {
+        if (suscriptor != null) {
+            subscriptorService.save(suscriptor);
         }
         return "redirect:/visitante/inicio";
     }
@@ -61,38 +56,43 @@ public class VisitanteController {
     //************* Suscripcion(Hago que el subscritor se suscriba a un evento en especifico, lo hago asi porque asi se pidio en POO, despues vemos que entregamos en el proyecto final) **********
     //POR FAVOR CHANO NO ME BORRES ESTO
 
-    @GetMapping("/subscriptor/nuevo/{id}")
-    public String nuevoSubscriptor(@PathVariable Long id, Model model) {
+    @GetMapping("/suscriptor/nuevo/{id}")
+    public String nuevoSuscriptor(@PathVariable Long id, Model model) {
         Evento evento = eventoService.get(id);
-        Subscriptor subscriptor = new Subscriptor();
+        Suscriptor suscriptor = new Suscriptor();
 
         model.addAttribute("evento", evento);
-        model.addAttribute("subscriptor", subscriptor);
+        model.addAttribute("suscriptor", suscriptor);
         model.addAttribute("nuevo", "nuevo");
         //String redirectUrl = String.format("redirect:/visitante/evento/%d", id);
-        String redirectUrl = String.format("redirect:/visitante/evento/%d?nuevo=nuevo", id);
 
-        return redirectUrl;
+        return String.format("redirect:/visitante/evento/%d?nuevo=nuevo", id);
     }
 
-    @PostMapping("/subscriptor/nuevo/{id}")
-    public String crearEvento(Model model, @Valid Subscriptor subscriptor, BindingResult result, @PathVariable Long id) {
+    @PostMapping("/suscriptor/nuevo/{id}")
+    public String crearSuscriptor(Model model, @Valid Suscriptor suscriptor, BindingResult result, @PathVariable Long id) {
 
         if (result.hasErrors()) {
-            model.addAttribute("evento", subscriptor);
-           // model.addAttribute("user", sessionUser);
+            model.addAttribute("evento", suscriptor);
             return "administradores/nuevo-evento";
         }//Mantiene los datos que ingresó el usuario si vuelve al mismo html
 
-        subscripcionEvento subEvent = new subscripcionEvento();
-        subEvent.setEvento(eventoService.get(id));
-        subEvent.setSubscriptor(subscriptor);
-        subscriptorService.save(subscriptor);
-        subsEventService.save(subEvent);
+        if (!subscriptorService.existsByEmail(suscriptor.getEmail())) {
+            subscriptorService.save(suscriptor);
+        }
 
+
+        Evento evento = (eventoService.get(id));
+        suscriptor = subscriptorService.get(suscriptor.getId());
+
+        evento.agregarSuscriptor(suscriptor);
+        suscriptor.agregarEvento(evento);
+
+        eventoService.save(evento);
+        subscriptorService.save(suscriptor);
 
         //enviarMailService.enviar(evento);
-        model.addAttribute("success", "El evento ha sido creado correctamente.");
+        model.addAttribute("success", "Se ha suscrito al evento correctamente.");
         return "redirect:/visitante/eventos";
     }
 //****************************************
