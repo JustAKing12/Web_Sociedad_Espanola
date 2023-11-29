@@ -16,27 +16,24 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/estilos.css" />
+    <link rel="stylesheet" href="/estilos.css"/>
     <title>Title</title>
   </head>
   <body>
   <div>
-
-    <div class="container mt-4">
+    <div class="card event_card">
+      <div class="card-body">
       <!-- Muestra los detalles del evento -->
       <h2 th:text="${evento.getTitulo()}"></h2>
-      <p th:text="${evento.getDescripcion()}"></p>
       <p th:text="${evento.getFecha()}"></p>
-      <p th:text="${evento.getId()}"></p>
-
+      <p th:text="${evento.getDescripcion()}"></p>
       <!-- Botón para volver a la lista de eventos -->
       <a th:href="@{/visitante/eventos}" class="btn btn-primary">Volver a la lista de eventos</a>
+      </div>
     </div>
 <!-- ***************************** -->
-    <a th:href="@{'/visitante/suscriptor/nuevo/' + ${evento.id}}" class="btn btn-primary">Suscribirse</a>
-
-
-
+    <div class="mx-3 mt-3 mb-3">
+    <a th:href="@{'/visitante/subscriptor/nuevo/' + ${evento.id}}" class="btn btn-primary">Suscribirse</a>
 
     <div th:if="${nuevo}" class="custom-alert">
 
@@ -65,11 +62,11 @@
       </div>
     </div>
   </div>
+</div>
 <!--************************************-->
-  <!-- Puedes agregar scripts y otros elementos según tus necesidades -->
   </body>
     <!-- Footer de la Página (La parte de abajo) -->
-    <footer class="mt-auto bg-secondary-subtle">
+    <footer class="mt-auto colorcitoFondo">
       <div class="container">
         <div class="d-flex justify-content-between align-items-center">
           <div class="fw-medium">
