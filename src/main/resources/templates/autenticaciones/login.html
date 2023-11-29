@@ -70,7 +70,7 @@
   
   <body>
     <div class="login-container">
-      <img src="/imagenes/logo.png" alt="Logo" />
+      <img th:src="@{/imagenes/logo.png}" alt="Logo" />
       <h1>Iniciar sesión</h1>
       
       <div th:if="${param.error}" class="custom-alert text-center">

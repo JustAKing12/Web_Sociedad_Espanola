@@ -30,11 +30,11 @@ public class AdministradorController {
 
     //*****************INDEX*****************
 
-    @GetMapping("/index")
+    @GetMapping("/inicio")
     public String index(Model model, Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();
         model.addAttribute("user", sessionUser); //Se añade usuario para mostrar su nombre.
-        return "administradores/index";
+        return "administradores/inicio";
     }
 
     //*****************EVENTOS*****************

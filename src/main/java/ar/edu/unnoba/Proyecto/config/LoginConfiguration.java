@@ -9,4 +9,5 @@ public class LoginConfiguration implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("/autenticaciones/login");
     }
+
 }

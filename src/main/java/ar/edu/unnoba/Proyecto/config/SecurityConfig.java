@@ -31,12 +31,13 @@ public class SecurityConfig {
         http
                 .userDetailsService(userDetailsService)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers("/imagenes/**").permitAll()
                         .requestMatchers("/visitante/**").permitAll()
-                        .requestMatchers("administrador/**").authenticated()
+                        .requestMatchers("/administrador/**").authenticated()
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
-                        .defaultSuccessUrl("/administrador/index", true)
+                        .defaultSuccessUrl("/administrador/inicio", true)
                         .permitAll())
                 .logout(logout -> logout
                         .logoutUrl("/salir") /* debe utilizarse con thymeleaf */
@@ -45,4 +46,6 @@ public class SecurityConfig {
                 );
         return http.build();
     }
+
+
 }
