@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es-ES">
   <!--<html xmlns:th="http://www.thymeleaf.org">-->
   <head>
     <meta charset="UTF-8" />
@@ -33,7 +33,7 @@
     </div>
 <!-- ***************************** -->
     <div class="mx-3 mt-3 mb-3">
-    <a th:href="@{'/visitante/subscriptor/nuevo/' + ${evento.id}}" class="btn btn-primary">Suscribirse</a>
+    <a th:href="@{'/visitante/suscriptor/nuevo/' + ${evento.id}}" class="btn btn-primary">Suscribirse</a>
 
     <div th:if="${nuevo}" class="custom-alert">
 
@@ -114,5 +114,4 @@
         </div>
       </div>
     </footer>
-  </body>
 </html>
