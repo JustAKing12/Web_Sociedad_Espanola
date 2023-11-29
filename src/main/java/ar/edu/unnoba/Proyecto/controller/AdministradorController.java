@@ -94,7 +94,7 @@ public class AdministradorController {
         model.addAttribute("evento", evento);
         model.addAttribute("user", sessionUser);
 
-        if (mensaje != null && !mensaje.isEmpty()) {
+        if (!mensaje.isEmpty()) {
             model.addAttribute("mensaje", mensaje);
             return "administradores/evento";
         }
