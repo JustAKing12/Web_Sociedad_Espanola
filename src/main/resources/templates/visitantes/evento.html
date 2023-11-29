@@ -20,16 +20,52 @@
     <title>Title</title>
   </head>
   <body>
-  <div class="container mt-4">
-    <!-- Muestra los detalles del evento -->
-    <h2 th:text="${evento.getTitulo()}"></h2>
-    <p th:text="${evento.getDescripcion()}"></p>
-    <p th:text="${evento.getFecha()}"></p>
-    <p th:text="${evento.getId()}"></p>
+  <div>
 
-    <!-- Botón para volver a la lista de eventos -->
-    <a th:href="@{/visitante/eventos}" class="btn btn-primary">Volver a la lista de eventos</a>
+    <div class="container mt-4">
+      <!-- Muestra los detalles del evento -->
+      <h2 th:text="${evento.getTitulo()}"></h2>
+      <p th:text="${evento.getDescripcion()}"></p>
+      <p th:text="${evento.getFecha()}"></p>
+      <p th:text="${evento.getId()}"></p>
+
+      <!-- Botón para volver a la lista de eventos -->
+      <a th:href="@{/visitante/eventos}" class="btn btn-primary">Volver a la lista de eventos</a>
+    </div>
+<!-- ***************************** -->
+    <a th:href="@{'/visitante/subscriptor/nuevo/' + ${evento.id}}" class="btn btn-primary">Suscribirse</a>
+
+
+
+
+    <div th:if="${nuevo}" class="custom-alert">
+
+      <div class="container">
+        <h1>Suscribirse</h1>
+
+        <form th:action="@{'/visitante/subscriptor/nuevo/' + ${evento.id}}" method="post">
+          <label for="email"></label>
+          <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder="email"
+                  required
+          />
+          <label for="nombre"></label>
+          <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="Nombre"
+                  required
+          />
+          <input type="submit" value="Suscribirse"/>
+        </form>
+      </div>
+    </div>
   </div>
+<!--************************************-->
   <!-- Puedes agregar scripts y otros elementos según tus necesidades -->
   </body>
     <!-- Footer de la Página (La parte de abajo) -->
