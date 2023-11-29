@@ -31,8 +31,7 @@ public class SecurityConfig {
         http
                 .userDetailsService(userDetailsService)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/imagenes/**").permitAll()
-                        .requestMatchers("/visitante/**").permitAll()
+                        .requestMatchers("/imagenes/**","/visitante/**").permitAll()
                         .requestMatchers("/administrador/**").authenticated()
                 )
                 .formLogin(formLogin -> formLogin
