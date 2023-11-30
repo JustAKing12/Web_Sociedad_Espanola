@@ -40,6 +40,7 @@ public class SubscriptorServiceImpl implements SubscriptorService {
     public boolean existsByEmail(String email) {
         return this.subscriptorRepository.existsByEmail(email);
     }
+
     public Suscriptor getByEmail(String email) {
         return this.subscriptorRepository.getByEmail(email);
     }

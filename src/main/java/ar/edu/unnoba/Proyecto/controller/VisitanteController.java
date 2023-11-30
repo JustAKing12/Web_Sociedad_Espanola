@@ -9,6 +9,7 @@ import ar.edu.unnoba.Proyecto.service.RecibirMailService;
 
 import ar.edu.unnoba.Proyecto.service.SubscriptorService;
 import ar.edu.unnoba.Proyecto.service.SubscriptorServiceImpl;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,23 +69,27 @@ public class VisitanteController {
 
         return String.format("redirect:/visitante/evento/%d?nuevo=nuevo", id);
     }
-
+    @Transactional
     @PostMapping("/suscriptor/nuevo/{id}")
     public String crearSuscriptor(Model model, @Valid Suscriptor suscriptor, BindingResult result, @PathVariable Long id) {
 
         if (result.hasErrors()) {
-            model.addAttribute("evento", suscriptor);
+            model.addAttribute("suscriptor", suscriptor);
             return "administradores/nuevo-evento";
         }//Mantiene los datos que ingresó el usuario si vuelve al mismo html
 
-        if (!subscriptorService.existsByEmail(suscriptor.getEmail())) {
+        String email = suscriptor.getEmail();
+
+        if (!subscriptorService.existsByEmail(email)) {
             subscriptorService.save(suscriptor);
             suscriptor = subscriptorService.get(suscriptor.getId());
+        } else {
+            suscriptor = subscriptorService.getByEmail(email);
         }
-        else{
-            suscriptor = subscriptorService.getByEmail(suscriptor.getEmail());
-        }
+
+
         Evento evento = (eventoService.get(id));
+
 
         evento.agregarSuscriptor(suscriptor);
         suscriptor.agregarEvento(evento);
