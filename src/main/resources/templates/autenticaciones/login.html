@@ -74,11 +74,11 @@
       <h1>Iniciar sesión</h1>
       
       <div th:if="${param.error}" class="custom-alert text-center">
-        <strong>Usuario o contraseña invalidos</strong><br>
+        <strong>Usuario o contraseña inválidos</strong><br>
       </div>
 
       <div th:if="${param.logout}">
-        <div class="alert alert-info">Ha cerrado sesion exitosamente</div>
+        <div class="alert alert-info">Ha cerrado sesión exitosamente</div>
       </div>
       
       <form th:action="@{/login}" method="post">
@@ -101,5 +101,6 @@
         <input type="submit" value="Iniciar sesión" />
       </form>
     </div>
+
   </body>
 </html>

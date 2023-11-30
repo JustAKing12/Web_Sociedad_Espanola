@@ -40,7 +40,7 @@ public class SecurityConfig {
                         .permitAll())
                 .logout(logout -> logout
                         .logoutUrl("/logout") /* debe utilizarse con thymeleaf */
-                        .logoutSuccessUrl("/login?salir")
+                        .logoutSuccessUrl("/login?logout")
                         .permitAll()
                 );
         return http.build();

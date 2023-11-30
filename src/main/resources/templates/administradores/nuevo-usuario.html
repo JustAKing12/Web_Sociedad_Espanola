@@ -4,6 +4,7 @@
   <head>
       <meta charset="UTF-8">
       <title>Title</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
       <style>
@@ -29,7 +30,7 @@
         </div>
 
 
-        <form th:action="@{/administrador/newUser}" method="post">
+        <form th:action="@{/administrador/usuario/crear}" method="post">
           <label for="username"></label>
           <input
                   type="text"
@@ -50,20 +51,26 @@
         </form>
 
 
-      <!-- th:if="${param.borrarUsuario}" class="#">-->
-        <h1>Borrar usuario</h1>
 
-        <form th:action="@{/administrador/deletUser}" method="post">
-          <label for="username"></label>
-          <input
-                  type="text"
-                  id="nomUsuario"
-                  name="nomUsuario"
-                  placeholder="Nombre del Usuario a borrar"
-                  required
-          />
-          <input type="submit" value="Borrar usuario"/>
-        </form>
+      <h1>Tabla de Usuarios</h1>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+          <th>Nombre de Usuario</th>
+          <th>Eliminar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="usuario : ${usuarios}" >
+          <td th:text="${usuario.getUsername()}"></td>
+          <td>
+            <a th:href="@{/administrador/usuarios/eliminar/{id}(id=${usuario.id})}" class="btn btn-danger">Eliminar</a>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+
     </div>
   </body>
 </html>

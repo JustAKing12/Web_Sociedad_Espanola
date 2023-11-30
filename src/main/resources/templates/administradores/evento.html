@@ -29,6 +29,7 @@
                             name="titulo"
                             placeholder="Titulo del nuevo evento"
                             required
+                            th:value="${evento.titulo}"
                     />
                     <label for="descripcion"></label>
                     <input
@@ -37,6 +38,7 @@
                             name="descripcion"
                             placeholder="Descripcion"
                             required
+                            th:value="${evento.descripcion}"
                     />
                     <!--                    <label for="image"></label>-->
                     <!--                    <input-->
