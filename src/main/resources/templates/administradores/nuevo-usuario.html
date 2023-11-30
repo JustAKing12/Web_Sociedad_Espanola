@@ -16,13 +16,69 @@
         }
       </style>
   </head>
-  <body>
-
+  <body class="d-flex flex-column min-vh-100">
+      <header class="bg-light text-white sticky-top" style="--bs-bg-opacity: 0.7">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg">
+            <!-- Logotipo y título dentro del contenedor de botón -->
+            <a
+                    class="navbar-brand btn btn-light btn-lg d-flex align-items-center p-2 rounded"
+                    style="border-color: #ff8000"
+                    href="../administrador/inicio"
+            >
+              <img
+                      th:src="@{/imagenes/logo.png}"
+                      alt="Logo de la Sociedad Española de Socorros Mutuos Junin"
+                      style="max-width: 35px"
+              />
+              <h1
+                      class="h1 ms-2"
+                      style="font-family: 'Playfair Display', serif; font-size: 25px"
+              >
+                Sociedad Española Junín
+              </h1>
+            </a>
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a
+                        class="btn btn-danger btn-lg mx-2"
+                        style="border-color: #ff8000"
+                        href="/administrador/inicio"
+                >Inicio</a>
+                <!--  lo que dice "inicio.html" es la ruta
+                  que va a seguir el href, esa ruta debe estar explicita en el backend -->
+              </li>
+              <li class="nav-item">
+                <a
+                        class="btn btn-light btn-lg mx-2"
+                        style="border-color: #ff8000"
+                        href="/administrador/eventos"
+                >Eventos</a>
+                <!-- lo que dice "#" es la ruta home -->
+              </li>
+              <li class="nav-item">
+                <a
+                        class="btn btn-light btn-lg mx-2"
+                        style="border-color: #ff8000"
+                        href="/administrador/actividades"
+                >Actividades</a>
+                <!-- lo que dice "#" es la ruta home -->
+              </li>
+              <li class="nav-item">
+                <form th:action="@{/logout}" method="post">
+                  <button type="submit" class="btn btn-danger mx-2">Cerrar Sesión</button>
+                </form>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
 
     <div class="container">
 
 
       <!--  <img src="../../static/imagenes/logo.png" alt="Logo" />-->
+        <br>
         <h1>Crear usuario administrador</h1>
 
         <div th:if="${param.error}" class="custom-alert text-center">
@@ -51,7 +107,7 @@
         </form>
 
 
-
+      <br>
       <h1>Tabla de Usuarios</h1>
       <table class="table table-bordered">
         <thead class="thead-dark">
