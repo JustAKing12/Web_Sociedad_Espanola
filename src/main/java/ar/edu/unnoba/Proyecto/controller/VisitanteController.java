@@ -79,11 +79,12 @@ public class VisitanteController {
 
         if (!subscriptorService.existsByEmail(suscriptor.getEmail())) {
             subscriptorService.save(suscriptor);
+            suscriptor = subscriptorService.get(suscriptor.getId());
         }
-
-
+        else{
+            suscriptor = subscriptorService.getByEmail(suscriptor.getEmail());
+        }
         Evento evento = (eventoService.get(id));
-        suscriptor = subscriptorService.get(suscriptor.getId());
 
         evento.agregarSuscriptor(suscriptor);
         suscriptor.agregarEvento(evento);
