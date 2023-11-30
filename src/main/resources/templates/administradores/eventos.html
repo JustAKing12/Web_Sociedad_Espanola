@@ -28,7 +28,7 @@
             <a
                     class="navbar-brand btn btn-light btn-lg d-flex align-items-center p-2 rounded"
                     style="border-color: #ff8000"
-                    href="../visitantes/inicio.html"
+                    href="../administrador/inicio"
             >
                 <img
                         th:src="@{/imagenes/logo.png}"
@@ -45,51 +45,33 @@
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a
-                            class="btn btn-light btn-lg mx-2"
+                            class="btn btn-danger btn-lg mx-2"
                             style="border-color: #ff8000"
-                            href="/visitante/inicio"
-                    >Inicio</a
-                    >
+                            href="/administrador/inicio"
+                    >Inicio</a>
                     <!--  lo que dice "inicio.html" es la ruta
                       que va a seguir el href, esa ruta debe estar explicita en el backend -->
                 </li>
                 <li class="nav-item">
                     <a
-                            class="btn btn-danger btn-lg mx-2"
+                            class="btn btn-light btn-lg mx-2"
                             style="border-color: #ff8000"
-                            href="/visitante/eventos"
-                    >Eventos</a
-                    >
+                            href="/administrador/eventos"
+                    >Eventos</a>
                     <!-- lo que dice "#" es la ruta home -->
                 </li>
                 <li class="nav-item">
                     <a
                             class="btn btn-light btn-lg mx-2"
                             style="border-color: #ff8000"
-                            href="/visitante/actividades"
-                    >Actividades</a
-                    >
+                            href="/administrador/actividades"
+                    >Actividades</a>
                     <!-- lo que dice "#" es la ruta home -->
                 </li>
                 <li class="nav-item">
-                    <a
-                            class="btn btn-light btn-lg mx-2"
-                            style="border-color: #ff8000"
-                            href="/visitante/historia"
-                    >Historia</a
-                    >
-                    <!-- lo que dice "historia.html" es la ruta
-                  que va a seguir el href, esa ruta debe estar explicita en el backend -->
-                </li>
-                <li class="nav-item">
-                    <a
-                            class="btn btn-light btn-lg mx-2"
-                            style="border-color: #ff8000"
-                            href="/visitante/contacto"
-                    >Contacto</a
-                    >
-                    <!-- lo que dice "contacto.html" es la ruta
-                      que va a seguir el href, esa ruta debe estar explicita en el backend -->
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" class="btn btn-danger mx-2">Cerrar Sesión</button>
+                    </form>
                 </li>
             </ul>
         </nav>
