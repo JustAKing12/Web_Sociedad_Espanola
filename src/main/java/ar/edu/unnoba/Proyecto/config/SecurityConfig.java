@@ -39,8 +39,8 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/administrador/inicio", true)
                         .permitAll())
                 .logout(logout -> logout
-                        .logoutUrl("/logout") /* debe utilizarse con thymeleaf */
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutUrl("/salir") /* debe utilizarse con thymeleaf */
+                        .logoutSuccessUrl("/login?salir")
                         .permitAll()
                 );
         return http.build();

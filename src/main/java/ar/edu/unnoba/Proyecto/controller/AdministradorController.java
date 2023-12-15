@@ -7,7 +7,6 @@ import ar.edu.unnoba.Proyecto.service.EventoService;
 import ar.edu.unnoba.Proyecto.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,10 +43,14 @@ public class AdministradorController {
     public String eventos(Model model, Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();
 
-        VisitanteController.extractEventos(model, eventoService);
+        model.addAttribute("eventosconcreadores", eventoService.extractEventos());
         model.addAttribute("user", sessionUser);
         return "administradores/eventos";
     }//FUNCIONALIDAD: muestra los eventos con los usuarios que los creó
+
+    //La idea es que en la vista eventos, el usuario pueda tener la opción de crear y eliminar eventos.
+    //Osea, se hace el diseño de eventos, apretas algo y redirige a eliminar (no es necesario vista)
+    //o a nuevo (es necesario vista)
 
     @GetMapping("/eventos/eliminar/{id}")
     public String eliminarEvento(@PathVariable Long id) {
@@ -84,18 +87,12 @@ public class AdministradorController {
     //*****************EVENTO (AL SELECCIONAR CLICKEANDO)*****************
 
     @GetMapping("/evento/{id}")
-    public String modificarEvento(Model model, Authentication authentication, @PathVariable Long id,  @RequestParam(name = "mensaje", required = false) String mensaje) {
+    public String modificarEvento(Model model, Authentication authentication, @PathVariable Long id) {
         User sessionUser = (User) authentication.getPrincipal();
 
         Evento evento = eventoService.get(id);
         model.addAttribute("evento", evento);
         model.addAttribute("user", sessionUser);
-
-       if (!mensaje.isEmpty()) {
-            model.addAttribute("mensaje", mensaje);
-            return "administradores/evento";
-        }
-
         return "administradores/evento";
     }//FUNCIONALIDAD: muestra un evento específico con sus detalles y permite modificarlo
 
@@ -142,7 +139,6 @@ public class AdministradorController {
         User sessionUser = (User) authentication.getPrincipal();
 
         Usuario usuario = new Usuario();
-        model.addAttribute("usuarios", usuarioService.getAll());
         model.addAttribute("usuario", usuario);
         model.addAttribute("user", sessionUser);
         return "administradores/nuevo-usuario";
@@ -159,11 +155,11 @@ public class AdministradorController {
         }
         usuarioService.save(usuario);
         model.addAttribute("success", "El usuario ha sido creado correctamente.");
-        return "redirect:/administrador/usuario/crear";
+        return "redirect:/administrador/index";
     }
 
     @GetMapping("/usuarios/eliminar/{id}")
-    public String eliminarUsuario(Model model, @PathVariable long id) {
+    public String eliminarUsuario(Model model, @PathVariable Long id) {
         long totalUsuarios = usuarioService.countUsuarios();
         if (totalUsuarios > 1) {
             usuarioService.delete(id);
@@ -171,6 +167,6 @@ public class AdministradorController {
         } else {
             model.addAttribute("error", "No es posible eliminar el único usuario en la base de datos.");
         }
-        return "redirect:/administrador/usuario/crear";
+        return "redirect:/administrador/index";
     }
 }

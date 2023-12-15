@@ -1,6 +1,6 @@
 package ar.edu.unnoba.Proyecto.service;
 
-import ar.edu.unnoba.Proyecto.model.Suscriptor;
+import ar.edu.unnoba.Proyecto.model.Subscriptor;
 import ar.edu.unnoba.Proyecto.repository.SubscriptorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,32 +16,24 @@ public class SubscriptorServiceImpl implements SubscriptorService {
 
     @Override
     @Transactional(readOnly = true)
-    public Suscriptor get(Long id) {
+    public Subscriptor get(Long id) {
         return subscriptorRepository.findById(id).orElse(null);
     }
     @Override
     @Transactional(readOnly = true)
-    public List<Suscriptor> getAll() {
+    public List<Subscriptor> getAll() {
         return subscriptorRepository.findAll();
     }
 
     @Override
     @Transactional
-    public void save(Suscriptor suscriptor) {
-        subscriptorRepository.save(suscriptor);
+    public void save(Subscriptor subscriptor) {
+        subscriptorRepository.save(subscriptor);
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
         subscriptorRepository.deleteById(id);
-    }
-
-    public boolean existsByEmail(String email) {
-        return this.subscriptorRepository.existsByEmail(email);
-    }
-
-    public Suscriptor getByEmail(String email) {
-        return this.subscriptorRepository.getByEmail(email);
     }
 }

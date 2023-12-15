@@ -5,8 +5,11 @@ import ar.edu.unnoba.Proyecto.repository.EventoRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EventoServiceImpl implements EventoService {
@@ -19,7 +22,8 @@ public class EventoServiceImpl implements EventoService {
     public Evento get(Long id) {
         return eventoRepository.findById(id).orElse(null);
     }               //Transaccional puede ser utilizado cuando requiere mas de una operacion en la bd
-                    //mas de una operacion no sea atomica
+
+    //mas de una operacion no sea atomica
     @Override
     @Transactional(readOnly = true)
     public List<Evento> getAll() {
@@ -36,5 +40,15 @@ public class EventoServiceImpl implements EventoService {
     @Transactional
     public void delete(Long id) {
         eventoRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public Map<Evento, String> extractEventos() {
+        List<Evento> eventos = getAll();
+        Map<Evento, String> eventosConUsernames = new HashMap<>();
+        for (Evento evento : eventos) {
+            eventosConUsernames.put(evento, evento.getUsuario().getUsername());
+        }
+        return eventosConUsernames;
     }
 }

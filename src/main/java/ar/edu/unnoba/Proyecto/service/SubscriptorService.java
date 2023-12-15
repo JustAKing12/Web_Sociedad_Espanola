@@ -1,12 +1,12 @@
 package ar.edu.unnoba.Proyecto.service;
 
-import ar.edu.unnoba.Proyecto.model.Suscriptor;
+import ar.edu.unnoba.Proyecto.model.Subscriptor;
 
 import java.util.List;
 
 public interface SubscriptorService {
-    Suscriptor get(Long id);
-    List<Suscriptor> getAll();
-    void save(Suscriptor suscriptor);
+    Subscriptor get(Long id);
+    List<Subscriptor> getAll();
+    void save(Subscriptor subscriptor);
     void delete(Long id);
 }
