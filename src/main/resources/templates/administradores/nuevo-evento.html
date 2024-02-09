@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto"
+    />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/estilos.css" />
+    <title>Nuevo evento</title>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+<header class="bg-light text-white sticky-top" style="--bs-bg-opacity: 0.7">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <!-- Logotipo y título dentro del contenedor de botón -->
+            <a
+                    class="navbar-brand btn btn-light btn-lg d-flex align-items-center p-2 rounded"
+                    style="border-color: #ff8000"
+                    href="../visitantes/inicio.html"
+            >
+                <img
+                        th:src="@{/imagenes/logo.png}"
+                        alt="Logo de la Sociedad Española de Socorros Mutuos Junin"
+                        style="max-width: 35px"
+                />
+                <h1
+                        class="h1 ms-2"
+                        style="font-family: 'Playfair Display', serif; font-size: 25px"
+                >
+                    Sociedad Española Junín
+                </h1>
+            </a>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a
+                            class="btn btn-danger btn-lg mx-2"
+                            style="border-color: #ff8000"
+                            href="/visitante/inicio"
+                    >Inicio</a
+                    >
+                    <!--  lo que dice "inicio.html" es la ruta
+                      que va a seguir el href, esa ruta debe estar explicita en el backend -->
+                </li>
+                <li class="nav-item">
+                    <a
+                            class="btn btn-light btn-lg mx-2"
+                            style="border-color: #ff8000"
+                            href="/visitante/eventos"
+                    >Eventos</a
+                    >
+                    <!-- lo que dice "#" es la ruta home -->
+                </li>
+                <li class="nav-item">
+                    <a
+                            class="btn btn-light btn-lg mx-2"
+                            style="border-color: #ff8000"
+                            href="/visitante/actividades"
+                    >actividades</a
+                    >
+                    <!-- lo que dice "#" es la ruta home -->
+                </li>
+                <li class="nav-item">
+                    <a
+                            class="btn btn-light btn-lg mx-2"
+                            style="border-color: #ff8000"
+                            href="/visitantes/historia"
+                    >Historia</a
+                    >
+                    <!-- lo que dice "historia.html" es la ruta
+                  que va a seguir el href, esa ruta debe estar explicita en el backend -->
+                </li>
+                <li class="nav-item">
+                    <a
+                            class="btn btn-light btn-lg mx-2"
+                            style="border-color: #ff8000"
+                            href="/visitantes/contacto"
+                    >Contacto</a
+                    >
+                    <!-- lo que dice "contacto.html" es la ruta
+                      que va a seguir el href, esa ruta debe estar explicita en el backend -->
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container" >
+
+
+    <!--  <img src="../../static/imagenes/logo.png" alt="Logo" />-->
+    <h1>Crear Evento</h1>
+
+
+    <form th:action="@{/administrador/eventos/nuevo}" method="post">
+        <div class="p-4">
+            <h4>Ingrese un Titulo</h4>
+        <label for="titulo"></label>
+        <input  class="p-2 w-25 "
+                type="text"
+                id="titulo"
+                name="titulo"
+                placeholder="Titulo del nuevo evento"
+                required
+        />
+        </div>
+        <div class="p-4 h-50" style="height: 100px;">
+            <h4>Ingrese una Descripción</h4>
+            <label for="descripcion"></label>
+            <input  class="p-2 w-75 h-100" style="height: 100px;"
+                    type="text"
+                    id="descripcion"
+                    name="descripcion"
+                    placeholder="Descripcion"
+                    required
+            />
+        </div>
+<!--        <div class="p-4">-->
+
+<!--            <label for="image"><h4>Agregar una foto</h4></label>-->
+<!--            <input-->
+<!--                    type="file"-->
+<!--                    id="image"-->
+<!--                    name="imagen"-->
+<!--                    placeholder="imagen"-->
+<!--                    required-->
+<!--            />-->
+<!--        </div>-->
+        <div class="p-4">
+            <input class="btn btn-danger btn-lg " type="submit" value="Crear nuevo evento"/>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

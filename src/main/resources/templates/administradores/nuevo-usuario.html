@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+
+
+      <style>
+        .custom-alert {
+          background-color: #ffbfaa; /* Fondo oscuro */
+          color: #e62e1b; /* Texto blanco */
+          padding: 4px; /* Añadir espacio alrededor del texto */
+          border-radius: 2.5px; /* Esquinas redondeadas */
+        }
+      </style>
+  </head>
+  <body>
+
+
+    <div class="container">
+
+
+      <!--  <img src="../../static/imagenes/logo.png" alt="Logo" />-->
+        <h1>Crear usuario administrador</h1>
+
+        <div th:if="${param.error}" class="custom-alert text-center">
+          <strong>Nombre de usuario ya existente</strong><br>
+        </div>
+
+
+        <form th:action="@{/administrador/newUser}" method="post">
+          <label for="username"></label>
+          <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="Usuario"
+                  required
+          />
+          <label for="password"></label>
+          <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Contraseña"
+                  required
+          />
+          <input type="submit" value="Crear usuario "/>
+        </form>
+
+
+      <!-- th:if="${param.borrarUsuario}" class="#">-->
+        <h1>Borrar usuario</h1>
+
+        <form th:action="@{/administrador/deletUser}" method="post">
+          <label for="username"></label>
+          <input
+                  type="text"
+                  id="nomUsuario"
+                  name="nomUsuario"
+                  placeholder="Nombre del Usuario a borrar"
+                  required
+          />
+          <input type="submit" value="Borrar usuario"/>
+        </form>
+    </div>
+  </body>
+</html>
