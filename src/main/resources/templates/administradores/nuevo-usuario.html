@@ -55,7 +55,7 @@
 
 
   </div>
-  <form th:action="@{/administrador/newUser}" method="post">
+  <form th:action="@{/administrador/usuario/crear}" method="post">
     <div class="p-2 g-col-6 ">
       <label for="username" ></label>
       <input
@@ -82,22 +82,15 @@
     </div>
   </form>
 
-
-
   <!-- th:if="${param.borrarUsuario}" class="#">-->
   <h1>Borrar usuario</h1>
 
-  <form th:action="@{/administrador/deletUser}" method="post">
-    <label for="username"></label>
-    <input
-            type="text"
-            id="nomUsuario"
-            name="nomUsuario"
-            placeholder="Nombre del Usuario a borrar"
-            required
-    />
+  <form th:action="@{/administrador/usuarios/eliminar}" method="post">
+    <label for="nomUsuario">Nombre del Usuario a borrar:</label>
+    <input type="text" id="nomUsuario" name="nomUsuario" placeholder="Nombre del Usuario" required/>
     <input type="submit" value="Borrar usuario"/>
   </form>
+
 </div>
 </body>
 <footer class="container pt-5 pb-5 mt-5">

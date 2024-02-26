@@ -155,18 +155,23 @@ public class AdministradorController {
         }
         usuarioService.save(usuario);
         model.addAttribute("success", "El usuario ha sido creado correctamente.");
-        return "redirect:/administrador/index";
+        return "redirect:/administrador/inicio";
     }
 
-    @GetMapping("/usuarios/eliminar/{id}")
-    public String eliminarUsuario(Model model, @PathVariable Long id) {
-        long totalUsuarios = usuarioService.countUsuarios();
-        if (totalUsuarios > 1) {
-            usuarioService.delete(id);
-            model.addAttribute("success", "El usuario ha sido eliminado correctamente.");
+    @PostMapping("/usuarios/eliminar")
+    public String eliminarUsuario(Model model, @RequestParam("nomUsuario") String nomUsuario) {
+        Usuario usuario = usuarioService.buscarPorNombre(nomUsuario); //consigo el usuario a traves de su nombre
+        if (usuario != null) {
+            long totalUsuarios = usuarioService.countUsuarios();
+            if (totalUsuarios > 1) {
+                usuarioService.delete(usuario.getId()); //obtengo el id del usuario y lo borro de la db
+                model.addAttribute("success", "El usuario fue borrado correctamente.");
+            } else {
+                model.addAttribute("error", "Error, no se puede borrar al unico usuario de la base de datos.");
+            }
         } else {
-            model.addAttribute("error", "No es posible eliminar el único usuario en la base de datos.");
+            model.addAttribute("error", "Error, no se encontro un usuario con ese nombre.");
         }
-        return "redirect:/administrador/index";
+        return "redirect:/administrador/inicio";
     }
 }

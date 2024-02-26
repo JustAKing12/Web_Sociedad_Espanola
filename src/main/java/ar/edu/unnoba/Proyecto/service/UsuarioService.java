@@ -13,7 +13,7 @@ public interface UsuarioService extends UserDetailsService {
     void save(Usuario usuario);
     void delete(Long id);
     long countUsuarios();
-    Usuario buscarPorNombre(String nombre);
+    Usuario buscarPorNombre(String username);
 
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 }
