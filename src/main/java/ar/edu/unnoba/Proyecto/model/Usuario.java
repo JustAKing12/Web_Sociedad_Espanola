@@ -1,16 +1,12 @@
 package ar.edu.unnoba.Proyecto.model;
 
-import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+package ar.edu.unnoba.Proyecto.model;
 
-import java.util.Collection;
-import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario implements UserDetails {
+public class Usuario {
 //Cada vez que se crea un usuario el usuario carga username y password
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,46 +33,19 @@ public class Usuario implements UserDetails {
         this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
     public String getUsername() {
         return username;
     }
 
-    @Override
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ADMIN"));
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
