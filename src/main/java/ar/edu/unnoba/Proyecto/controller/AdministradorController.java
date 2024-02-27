@@ -120,7 +120,7 @@ public class AdministradorController {
     public String quienesSomos(Model model, Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();
         model.addAttribute("user", sessionUser);
-        return "administradores/quienes-somos";
+        return "historia";
     }
 
     //*****************CONTACTO*****************
