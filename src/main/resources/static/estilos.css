@@ -155,6 +155,10 @@ input:focus, textarea:focus {
     animation: 20s waves linear infinite forwards;
 }
 
+.btn-danger{
+    background-color: #F00822;
+}
+
 @keyframes waves {
     to {
         background-position: 1600px 130%, 3150px 130%, 5300px 130%;
