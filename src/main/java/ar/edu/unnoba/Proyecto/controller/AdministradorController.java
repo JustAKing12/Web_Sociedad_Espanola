@@ -77,7 +77,7 @@ public class AdministradorController {
             model.addAttribute("user", sessionUser);
             return "administradores/nuevo-evento";
         }//Mantiene los datos que ingresó el usuario si vuelve al mismo html
-        evento.setUsuario(usuarioService.buscarPorNombre(sessionUser.getUsername()));
+        evento.setUsuario(usuarioService.findByUserName(sessionUser.getUsername()));
         eventoService.save(evento);
         //enviarMailService.enviar(evento);
         model.addAttribute("success", "El evento ha sido creado correctamente.");
@@ -106,7 +106,7 @@ public class AdministradorController {
             return "administradores/evento";
         }//Mantiene los datos que ingresó el usuario, aunque fuera error, para luego corregirlos al ingresar de nuevo.
 
-        evento.setUsuario(usuarioService.buscarPorNombre(sessionUser.getUsername()));
+        evento.setUsuario(usuarioService.findByUserName(sessionUser.getUsername()));
 
         eventoService.save(evento);
         //enviarMailService.enviar(evento);
@@ -160,7 +160,7 @@ public class AdministradorController {
 
     @PostMapping("/usuarios/eliminar")
     public String eliminarUsuario(Model model, @RequestParam("nomUsuario") String nomUsuario) {
-        Usuario usuario = usuarioService.buscarPorNombre(nomUsuario); //consigo el usuario a traves de su nombre
+        Usuario usuario = usuarioService.findByUserName(nomUsuario); //consigo el usuario a traves de su nombre
         if (usuario != null) {
             long totalUsuarios = usuarioService.countUsuarios();
             if (totalUsuarios > 1) {
