@@ -56,22 +56,24 @@
                         <div class="card-body">
                             <p class="lead"> Tu privacidad es importante para nosotros. <strong>Tus datos están protegidos.</strong></p>
 
-                            <form th:action="@{/contacto}" th:object="${mensaje}" method="post">
+                            <form action="https://formsubmit.co/lfmartinez9403@gmail.com" method="POST">
                                 <div class="mb-3">
                                     <label for="nombre" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Escriba texto aquí..." required>
+                                    <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Escriba texto aquí..." name="name" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Correo Electrónico</label>
-                                    <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Escriba texto aquí..." required>
+                                    <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Escriba texto aquí..." name="email" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="cuerpo" class="form-label">Tu mensaje</label>
-                                    <textarea class="form-control" id="cuerpo" th:field="*{cuerpo}" placeholder="Escriba texto aquí..." required></textarea>
+                                    <textarea class="form-control" id="cuerpo" th:field="*{cuerpo}" placeholder="Escriba texto aquí..." name="cuerpo" required></textarea>
                                 </div>
                                 <div class="mb-3 text-center">
                                     <button type="submit" class="btn btn-lg rounded-0 btn-pseudoclase">Enviar</button>
                                 </div>
+                                <input type="hidden" name="_next" value="http://localhost:8080/visitante/contacto">
+                                <input type="hidden" name="_captcha" value="false">
                             </form>
                         </div>
                     </div>

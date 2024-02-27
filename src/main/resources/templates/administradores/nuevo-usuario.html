@@ -53,48 +53,67 @@
 
 
   <!--  <img src="../../static/imagenes/logo.png" alt="Logo" />-->
+  <div th:if="${crear == 1}">
   <h1  class="p-5" >Crear usuario administrador</h1>
 
   <div th:if="${param.error}" class="custom-alert text-center">
     <strong>Nombre de usuario ya existente</strong><br>
-
-
   </div>
-  <form th:action="@{/administrador/usuario/crear}" method="post">
-    <div class="p-2 g-col-6 ">
-      <label for="username" ></label>
-      <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Usuario"
-              required
 
-      />
-    </div>
-    <div class="p-2 g-col-6">
-      <label for="password"></label>
-      <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Contraseña"
-              required
-      />
-    </div>
-    <div class="p-2 g-col-6">
-      <input type="submit" value="Crear usuario "/>
-    </div>
-  </form>
+
+    <form th:action="@{/administrador/usuario/crear}" method="post">
+      <div class="p-2 g-col-6 ">
+        <label for="username" ></label>
+        <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Usuario"
+                required
+
+        />
+      </div>
+      <div class="p-2 g-col-6">
+        <label for="password"></label>
+        <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Contraseña"
+                required
+        />
+      </div>
+      <div class="p-2 g-col-6">
+        <input type="submit" value="Crear usuario "/>
+      </div>
+    </form>
+  </div>
 
   <!-- th:if="${param.borrarUsuario}" class="#">-->
-  <h1>Borrar usuario</h1>
+  <div th:if="${borrar == 1}">
+    <h1 class="p-5" >Borrar usuario</h1>
+    <h3 class="p-3 text-center">Lista de usuarios administradores</h3>
 
-  <form th:action="@{/administrador/usuarios/eliminar}" method="post">
-    <label for="nomUsuario">Nombre del Usuario a borrar:</label>
-    <input type="text" id="nomUsuario" name="nomUsuario" placeholder="Nombre del Usuario" required/>
-    <input type="submit" value="Borrar usuario"/>
-  </form>
+    <div class="container">
+      <div class="row">
+        <!-- "th:each": Itera sobre cada usuario en la lista de usuarios -->
+        <div th:each="usuario : ${usuarios}" class="col-md-4 mb-4">
+          <div class="card event_card">
+            <div class="card-body">
+              <h5 th:text="${usuario.getUsername()}" class="card-title"></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <form th:action="@{/administrador/usuarios/eliminar}" method="post">
+      <label for="nomUsuario">Nombre del Usuario a borrar:</label>
+      <input type="text" id="nomUsuario" name="nomUsuario" placeholder="Nombre del Usuario" required/>
+      <input type="submit" value="Borrar usuario"/>
+    </form>
+  </div>
 
 </div>
 <div class="box" style="transform: rotate(180deg)">
@@ -112,3 +131,4 @@
 <script src="../../static/script.js"></script>
 </body>
 </html>
+

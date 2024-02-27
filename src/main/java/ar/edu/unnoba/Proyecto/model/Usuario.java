@@ -1,6 +1,5 @@
 package ar.edu.unnoba.Proyecto.model;
 
-package ar.edu.unnoba.Proyecto.model;
 
 import jakarta.persistence.*;
 
@@ -49,3 +48,4 @@ public class Usuario {
         this.password = password;
     }
 }
+

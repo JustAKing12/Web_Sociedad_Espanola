@@ -141,6 +141,7 @@ public class AdministradorController {
         Usuario usuario = new Usuario();
         model.addAttribute("usuario", usuario);
         model.addAttribute("user", sessionUser);
+        model.addAttribute("crear", 1);
         return "administradores/nuevo-usuario";
     }
 
@@ -156,6 +157,16 @@ public class AdministradorController {
         usuarioService.save(usuario);
         model.addAttribute("success", "El usuario ha sido creado correctamente.");
         return "redirect:/administrador/inicio";
+    }
+
+    @GetMapping("/usuario/eliminar")
+    public String eliminarUsuario(Model model, Authentication authentication){
+        User sessionUser = (User) authentication.getPrincipal();
+
+        model.addAttribute("usuarios", usuarioService.getAll());
+        model.addAttribute("user", sessionUser);
+        model.addAttribute("borrar", 1);
+        return "administradores/nuevo-usuario";
     }
 
     @PostMapping("/usuarios/eliminar")
@@ -175,3 +186,4 @@ public class AdministradorController {
         return "redirect:/administrador/inicio";
     }
 }
+
