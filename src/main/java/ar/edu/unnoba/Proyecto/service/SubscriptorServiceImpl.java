@@ -27,8 +27,8 @@ public class SubscriptorServiceImpl implements SubscriptorService {
 
     @Override
     @Transactional
-    public void save(Subscriptor subscriptor) {
-        subscriptorRepository.save(subscriptor);
+    public void save(Subscriptor suscriptor) {
+        subscriptorRepository.save(suscriptor);
     }
 
     @Override
@@ -36,4 +36,12 @@ public class SubscriptorServiceImpl implements SubscriptorService {
     public void delete(Long id) {
         subscriptorRepository.deleteById(id);
     }
+
+//    public boolean existsByEmail(String email) {
+//        return this.subscriptorRepository.existsByEmail(email);
+//    }
+//
+//    public Subscriptor getByEmail(String email) {
+//        return this.subscriptorRepository.getByEmail(email);
+//    }
 }

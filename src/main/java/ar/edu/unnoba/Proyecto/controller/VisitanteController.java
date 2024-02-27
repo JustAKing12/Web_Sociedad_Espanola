@@ -45,7 +45,7 @@ public class VisitanteController {
 
     @GetMapping("/eventos")
     public String eventos(Model model) {
-        model.addAttribute("eventosconcreadores", eventoService.extractEventos());
+        model.addAttribute("eventos", eventoService.getAll());//eventoService.extractEventos());
         model.addAttribute("subscriptor", new Subscriptor());
         return "visitantes/eventos";
     }//FUNCIONALIDAD: Listado de todas los eventos
