@@ -1,7 +1,5 @@
 package ar.edu.unnoba.Proyecto.model;
 
-package ar.edu.unnoba.Proyecto.model;
-
 import jakarta.persistence.*;
 
 @Entity
