@@ -23,10 +23,12 @@
           <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
           <link rel="stylesheet" href="../../static/estilos.css">
     </head>
-    <body>
-        <div class="container pt-5 pb-5 d-flex justify-content-center">
+    <body style="background: linear-gradient(90deg, rgba(255,49,49,1) 15%, rgba(254,255,35,1) 50%, rgba(255,51,51,1) 75%);">
+        <div class="container pt-3 pb-3 d-flex justify-content-center">
             <div class="card">
-                <img class="img-fluid" src="../../static/imagenes/eventosImg/logo.svg" alt="Sociedad Española">
+                <div class="ratio ratio-1x1" style="display: flex; justify-content: center; align-items: center;">
+                    <img class="img-fluid mx-auto" src="../../static/imagenes/eventosImg/logo.svg" alt="Sociedad Española">
+                </div>
                 <div class="card-body">
                      <h1 class="card-title text-center">Iniciar sesión</h1>
                     <div th:if="${param.error}" class="alert alert-danger text-center">
@@ -37,16 +39,16 @@
                     </div>
 
                     <form th:action="@{/login}" method="post">
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label for="username" class="form-label">Usuario</label>
                             <input type="text" class="form-control" id="username" name="username" placeholder="Escriba texto aquí..." required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label for="password" class="form-label">Contraseña</label>
                             <input type="password" class="form-control" id="password" name="password" placeholder="Escriba texto aquí..." required>
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-lg mt-3 rounded-0 btn-pseudoclase" type="submit" role="button">Entrar</button>
+                            <button class="btn btn-lg mt-2 rounded-0 btn-pseudoclase" type="submit" role="button">Entrar</button>
                         </div>
                     </form>
                 </div>
