@@ -1,5 +1,6 @@
 package ar.edu.unnoba.Proyecto.controller;
 
+import ar.edu.unnoba.Proyecto.exceptionHandler.EventoNotFoundException;
 import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.model.Usuario;
 import ar.edu.unnoba.Proyecto.service.EnviarMailService;
@@ -88,6 +89,11 @@ public class AdministradorController {
 
     @GetMapping("/evento/{id}")
     public String modificarEvento(Model model, Authentication authentication, @PathVariable Long id) {
+
+        if ((id >= eventoService.getAll().size()) || (id < 0)) {
+            throw new EventoNotFoundException("Evento no encontrado con id: " + id);
+        }
+
         User sessionUser = (User) authentication.getPrincipal();
 
         Evento evento = eventoService.get(id);
@@ -186,4 +192,3 @@ public class AdministradorController {
         return "redirect:/administrador/inicio";
     }
 }
-
