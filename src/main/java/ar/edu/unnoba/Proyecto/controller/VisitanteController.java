@@ -1,5 +1,6 @@
 package ar.edu.unnoba.Proyecto.controller;
 
+import ar.edu.unnoba.Proyecto.exceptionHandler.EventoNotFoundException;
 import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.model.Mensaje;
 import ar.edu.unnoba.Proyecto.model.Subscriptor;
@@ -62,6 +63,11 @@ public class VisitanteController {
 
     @GetMapping("/evento/{id}")
     public String evento(@PathVariable Long id, Model model) {
+
+        if ((id >= eventoService.getAll().size()) || (id < 0)) {
+            throw new EventoNotFoundException("Evento no encontrado con id: " + id);
+        }
+
         Evento evento = eventoService.get(id);
         String username = evento.getUsuario().getUsername();
         model.addAttribute("evento", evento);
