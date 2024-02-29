@@ -8,6 +8,7 @@ import ar.edu.unnoba.Proyecto.service.EventoService;
 import ar.edu.unnoba.Proyecto.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,7 +45,7 @@ public class AdministradorController {
     public String eventos(Model model, Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();
 
-        model.addAttribute("eventosconcreadores", eventoService.extractEventos());
+        model.addAttribute("eventosconcreadores", eventoService.getAll());
         model.addAttribute("user", sessionUser);
         return "administradores/eventos";
     }//FUNCIONALIDAD: muestra los eventos con los usuarios que los creó
@@ -54,7 +55,8 @@ public class AdministradorController {
     //o a nuevo (es necesario vista)
 
     @GetMapping("/eventos/eliminar/{id}")
-    public String eliminarEvento(@PathVariable Long id) {
+    public String eliminarEvento(Model model, @PathVariable Long id) {
+
         eventoService.delete(id);
         return "redirect:/administrador/eventos";
     }//FUNCIONALIDAD: elimina un evento por su id
@@ -99,6 +101,7 @@ public class AdministradorController {
         Evento evento = eventoService.get(id);
         model.addAttribute("evento", evento);
         model.addAttribute("user", sessionUser);
+        model.addAttribute("mensaje", "los eventos se modificaran");
         return "administradores/evento";
     }//FUNCIONALIDAD: muestra un evento específico con sus detalles y permite modificarlo
 

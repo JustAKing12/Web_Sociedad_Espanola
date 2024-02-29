@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

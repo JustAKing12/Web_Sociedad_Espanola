@@ -33,7 +33,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav text-center ms-auto">
-                    <a class="nav-link" aria-current="page" href="/visitante/inicio">Inicio</a>
+                    <a class="nav-link" aria-current="page" href="/administrador/inicio">Inicio</a>
                     <a class="nav-link" href="/visitante/eventos">Eventos</a>
                     <a class="nav-link" href="/visitante/actividades">Actividades</a>
                     <a class="nav-link" href="/visitante/historia">Historia</a>
@@ -49,16 +49,16 @@
         <div class="box-inner"></div>
     </div>
 
-    <div th:if="${success}" class="custom-alert">
+    <!--<div th:if="${success}" class="custom-alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong th:text="${success}">El evento ha sido eliminado correctamente.</strong>
-    </div>
+        <strong>El evento ha sido eliminado correctamente.</strong>
+    </div>-->
 
     <!-- Vista de los eventos con tarjetas -->
     <div class="container">
         <div class="row">
             <!-- Iterar sobre cada evento en la lista de eventos -->
-            <div th:each="evento : ${eventos}" class="col-md-4 mb-4">
+            <div th:each="evento : ${eventosconcreadores}" class="col-md-4 mb-4">
                 <!-- Card para cada evento -->
                 <div class="card event_card">
                     <!-- Imagen del evento -->
@@ -72,8 +72,10 @@
                         <p th:text="${evento.getFecha()}" class="card-text"></p>
                         <!-- ID del evento -->
                         <p th:text="${evento.getId()}" class="card-text"></p>
+                        <a th:href="@{'/administrador/evento/' + ${evento.getId()}}" class="btn btn-primary">Modificar</a>
+                        <a th:href="@{'/administrador/eventos/eliminar/' + ${evento.getId()}}" class="btn btn-primary">Eliminar</a>
                         <!-- Botón "Ver más" que enlaza a la página del evento -->
-                        <a th:href="@{'/administrador/evento/' + ${evento.getId()}}" class="btn btn-primary">Ver más</a>
+                        <!--<a th:href="@{'/administrador/evento/' + ${evento.getId()}}" class="btn btn-primary">Ver más</a>-->
                     </div>
                 </div>
             </div>

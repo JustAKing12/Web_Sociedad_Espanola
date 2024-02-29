@@ -5,12 +5,15 @@ import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.model.Mensaje;
 import ar.edu.unnoba.Proyecto.model.Subscriptor;
 import ar.edu.unnoba.Proyecto.service.EventoService;
+import ar.edu.unnoba.Proyecto.service.EventoServiceImpl;
 import ar.edu.unnoba.Proyecto.service.RecibirMailServiceImpl;
 import ar.edu.unnoba.Proyecto.service.SubscriptorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/visitante")
@@ -96,7 +99,8 @@ public class VisitanteController {
     }
 
     @GetMapping("/actividades")
-    public String actividades(){
+    public String actividades(Model model){
+        model.addAttribute("eventos", eventoService.getAll());
         return "visitantes/actividades";
     }
 }

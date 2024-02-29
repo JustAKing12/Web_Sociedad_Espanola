@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Subscriptor {
 //Cada vez que se crea un subcriptor el usuario carga email, nombre.
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)

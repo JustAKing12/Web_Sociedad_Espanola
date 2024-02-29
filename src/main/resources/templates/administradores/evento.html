@@ -33,7 +33,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav text-center ms-auto">
-                    <a class="nav-link" aria-current="page" href="/visitante/inicio">Inicio</a>
+                    <a class="nav-link" aria-current="page" href="/administrador/inicio">Inicio</a>
                     <a class="nav-link" href="/administradores/evento">Eventos</a>
                     <a class="nav-link" href="/visitante/actividades">Actividades</a>
                     <a class="nav-link" href="/visitante/historia">Historia</a>
@@ -50,20 +50,23 @@
     </div>
 
 <div class="container mt-4">
+        <!-- Botón para volver a la lista de eventos -->
+        <a th:href="@{/administrador/eventos}" class="btn btn-primary">Volver a la lista de eventos</a>
+        <br/>
+
         <!-- Muestra los detalles del evento -->
         <h2 th:text="${evento.getTitulo()}"></h2>
         <p th:text="${evento.getDescripcion()}"></p>
         <p th:text="${evento.getFecha()}"></p>
-        <p th:text="${evento.getId()}"></p>
+        <!--<p th:text="${evento.getId()}"></p>-->
 
-        <!-- Botón para volver a la lista de eventos -->
-        <a th:href="@{/administrador/eventos}" class="btn btn-primary">Volver a la lista de eventos</a>
-        <br/>
-        <a th:href="@{/administrador/eventos/eliminar/{id}(id=${evento.id})}">Eliminar</a>
+        <!--<a th:href="@{/administrador/eventos/eliminar/{id}(id=${evento.id})}">Eliminar</a>-->
 
         <br/>
-        <a th:href="@{'/administrador/evento/' + ${evento.id} + '?mensaje=mensaje'}" class="btn btn-primary">Modificar</a>
+        <!--<a th:href="@{'/administrador/evento/' + ${evento.id} + '?mensaje=mensaje'}" class="btn btn-primary">Modificar</a>-->
 
+        <br/>
+        <!--<a th:href="@{'/administrador/evento/suscriptores/' + ${evento.id}}" class="btn btn-primary">Suscriptores</a>-->
 
         <div th:if="${mensaje}" class="custom-alert">
 
@@ -99,6 +102,16 @@
                 </form>
             </div>
         </div>
+
+        <div th:if="${subscriptores}" class="custom-alert">
+            <ul>
+                <li th:each="Subs : ${subscriptores}">
+                    <h2 th:text="${Subs.getNombre}"></h2>
+                    <h2 th:text="${Subs.getEmail}"></h2>
+                </li>
+            </ul>
+        </div>
+
     </div>
     <div class="box" style="transform: rotate(180deg)">
         <div class="box-inner"></div>
