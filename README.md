@@ -3,10 +3,6 @@
 ## Descripción
 Este proyecto web es parte de una iniciativa académica que involucra las materias de Análisis y Diseño de Sistemas II, Práctica Profesional y Sistemas, y Programación Orientada a Objetos. El objetivo principal es diseñar e implementar un sitio web para la Sociedad Española de Junín con fines educativos y de práctica profesional.
 
-## Equipo de Desarrollo
-- Leonardo Marcelo Giorgio Lorenzatti https://github.com/JustAKing12
-- Valentino Badano https://github.com/ValentinoBadano
-
 ## Tecnologías Utilizadas
 - Lenguajes de Programación: Java, HTML, CSS, JavaScript
 - Framework: Spring Boot
