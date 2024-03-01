@@ -32,6 +32,13 @@ public class AdministradorController {
 
     //*****************INDEX*****************
 
+    @GetMapping("/usuario")
+    public String getUsuarioInfo(Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String username = userDetails.getUsername();
+        return username;
+    }
+
     @GetMapping("/inicio")
     public String index(Model model, Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();

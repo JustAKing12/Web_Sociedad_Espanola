@@ -50,7 +50,8 @@
     <div style="background-color: rgb(229,229,229)" class="container-fluid">
         <div class="container">
             <br>
-            <h1 class="text-center">Bienvenido Administrador</h1>
+            <!-- ver th:each and th:text for the admin username -->
+            <h1 class="text-center">Bienvenido <span th:text="${#authentication.getName()}"></span></h1>
             <br>
             <div class="row">
                 <div class="col-md-4 text-center">
@@ -61,7 +62,7 @@
                             <img src="../../static/imagenes/usuarios.svg" alt width="80.2" height="80.2">
                         </div>
                         <a class="btn btn-danger mt-3" href="/administrador/usuario/crear">Crear Usuario</a>
-                        <a class="btn btn-danger mt-3" href="/administrador/usuario/eliminar">Eliminar Usuario</a>
+                        <a class="btn btn-danger mt-3" href="/administrador/usuario/eliminar">Modificar/Eliminar Usuario</a>
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
@@ -84,8 +85,7 @@
                             <img src="../../static/imagenes/actividades.svg" alt width="80.2" height="80.2">
                         </div>
                         <a class="btn btn-danger mt-3" href="">Nueva Actividad</a>
-                        <a class="btn btn-danger mt-3">Modificar Actividad </a>
-                        <a class="btn btn-danger mt-1">Eliminar Actividad </a>
+                        <a class="btn btn-danger mt-3">Modificar/Eliminar Actividad </a>
                     </div>
                 </div>
             </div>
