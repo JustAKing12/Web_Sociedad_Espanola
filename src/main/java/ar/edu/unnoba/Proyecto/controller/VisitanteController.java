@@ -4,10 +4,7 @@ import ar.edu.unnoba.Proyecto.exceptionHandler.EventoNotFoundException;
 import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.model.Mensaje;
 import ar.edu.unnoba.Proyecto.model.Subscriptor;
-import ar.edu.unnoba.Proyecto.service.EventoService;
-import ar.edu.unnoba.Proyecto.service.EventoServiceImpl;
-import ar.edu.unnoba.Proyecto.service.RecibirMailServiceImpl;
-import ar.edu.unnoba.Proyecto.service.SubscriptorService;
+import ar.edu.unnoba.Proyecto.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +24,9 @@ public class VisitanteController {
 
     @Autowired
     private RecibirMailServiceImpl recibirMailService;
+
+    @Autowired
+    private ActividadService actividadService;
 
     //*****************INICIO*****************
 
@@ -100,7 +100,7 @@ public class VisitanteController {
 
     @GetMapping("/actividades")
     public String actividades(Model model){
-        model.addAttribute("eventos", eventoService.getAll());
+        model.addAttribute("actividades", actividadService.getAll());
         return "visitantes/actividades";
     }
 }

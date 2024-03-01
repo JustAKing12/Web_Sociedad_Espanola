@@ -72,16 +72,16 @@
                     </div>
 
                     <div class="d-grid card-eventos gap-5 pb-5 pt-5">
-                        <div th:each="evento : ${eventos}">
+                        <div th:each="actividad : ${actividades}">
                             <div class="card">
-                                <img th:src="${evento.getImagen()}" class="card-img-top" alt>
                                 <div class="card-body">
-                                    <h5 th:text="${evento.getTitulo()}" class="card-title"></h5>
-                                    <p th:text="${evento.getDescripcion()}" class="card-text"></p>
-                                    <blockquote class="blockquote mb-0">
-                                        <div class="blockquote-footer"><span th:text="${evento.getUsuario()}"></span> | <span th:text="${evento.getFecha()}"></span></div>
-                                    </blockquote>
-                                    <a th:href="@{'/visitante/evento/' + ${evento.getId()}}" class="btn rounded-0 btn-pseudoclase">Leer más</a>
+
+                                    <h5 th:text="${actividad.getTitulo()}" class="card-title"></h5>
+                                    <!-- Descripción del evento -->
+                                    <p th:text="${actividad.getDescripcion()}" class="card-text"></p>
+                                    <!-- Fecha del evento -->
+                                    <p th:text="${actividad.getHorario()}" class="card-text"></p>
+<!--                                    <a th:href="@{'/visitante/evento/' + ${evento.getId()}}" class="btn rounded-0 btn-pseudoclase">Leer más</a>-->
                                 </div>
                             </div>
                         </div>
