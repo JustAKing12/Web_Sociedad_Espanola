@@ -5,11 +5,16 @@ import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.model.Mensaje;
 import ar.edu.unnoba.Proyecto.model.Subscriptor;
 import ar.edu.unnoba.Proyecto.service.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -31,7 +36,7 @@ public class VisitanteController {
     //*****************INICIO*****************
 
     @GetMapping("")
-    public String redireccion(){
+    public String redireccion() {
         return "redirect:/visitante/inicio";
     }
 
@@ -67,10 +72,6 @@ public class VisitanteController {
     @GetMapping("/evento/{id}")
     public String evento(@PathVariable Long id, Model model) {
 
-        if ((id >= eventoService.getAll().size()) || (id < 0)) {
-            throw new EventoNotFoundException("Evento no encontrado con id: " + id);
-        }
-
         Evento evento = eventoService.get(id);
         String username = evento.getUsuario().getUsername();
         model.addAttribute("evento", evento);
@@ -94,12 +95,12 @@ public class VisitanteController {
     }//FUNCIONALIDAD: Recibe el formulario de contacto y envía el correo electrónico
 
     @GetMapping("/historia")
-    public String historia(){
+    public String historia() {
         return "visitantes/historia";
     }
 
     @GetMapping("/actividades")
-    public String actividades(Model model){
+    public String actividades(Model model) {
         model.addAttribute("actividades", actividadService.getAll());
         return "visitantes/actividades";
     }

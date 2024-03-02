@@ -55,7 +55,7 @@
     <h1>Crear Evento</h1>
 
 
-    <form th:action="@{/administrador/eventos/nuevo}" method="post">
+    <form th:action="@{/administrador/eventos/nuevo}" method="post" enctype="multipart/form-data">
         <div class="p-4">
             <h4>Ingrese un Titulo</h4>
         <label for="titulo"></label>
@@ -78,17 +78,17 @@
                     required
             />
         </div>
-<!--        <div class="p-4">-->
+        <div class="p-4">
 
-<!--            <label for="image"><h4>Agregar una foto</h4></label>-->
-<!--            <input-->
-<!--                    type="file"-->
-<!--                    id="image"-->
-<!--                    name="imagen"-->
-<!--                    placeholder="imagen"-->
-<!--                    required-->
-<!--            />-->
-<!--        </div>-->
+            <label for="image"><h4>Agregar una foto</h4></label>
+            <input
+                    type="file"
+                    id="image"
+                    name="imagen"
+                    placeholder="imagen"
+                    required
+            />
+        </div>
         <div class="p-4">
             <input class="btn btn-danger btn-lg " type="submit" value="Crear nuevo evento"/>
         </div>

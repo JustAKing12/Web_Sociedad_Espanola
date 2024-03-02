@@ -38,7 +38,9 @@
                     <a class="nav-link" href="/administrador/actividades">Actividades</a>
                     <a class="nav-link" href="/administrador/historia">Historia</a>
                     <a class="nav-link" href="/administrador/contacto">Contacto</a>
-                    <a class="nav-link" href="#">Cerrar sesión</a>
+                    <form th:action="@{/logout}" method="post">
+                        <a class="nav-link" href="/logout">Cerrar sesión</a>
+                    </form>
                 </div>
             </div>
         </div>

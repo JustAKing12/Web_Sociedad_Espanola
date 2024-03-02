@@ -1,6 +1,10 @@
 package ar.edu.unnoba.Proyecto.model;
 
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Date;
 
 @Entity
@@ -29,7 +33,8 @@ public class Evento {
 
     @Lob //permite trabajar con objetos pesados (imagen)
     @Column
-    private byte[] imagen;
+
+    private Blob imagen;
 
     public Evento() { //JPA necesita constructor sin parametros
     }
@@ -70,11 +75,13 @@ public class Evento {
         return fecha;
     }
 
-    public byte[] getImagen() {
+    public Blob getImagen() {
         return imagen;
     }
 
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
+    public void setImagen(MultipartFile file) throws IOException, SQLException {
+        byte[] bytes = file.getBytes();
+        Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
+        this.imagen = blob;
     }
 }
