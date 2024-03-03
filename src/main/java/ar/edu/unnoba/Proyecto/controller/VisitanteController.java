@@ -73,6 +73,7 @@ public class VisitanteController {
     public String evento(@PathVariable Long id, Model model) {
 
         Evento evento = eventoService.get(id);
+        /* ver esto despues */
         /* String username = evento.getUsuario().getUsername(); */
         model.addAttribute("evento", evento);
         /* model.addAttribute("username", username); */
