@@ -44,12 +44,13 @@
             </nav>
         </header>
 
-        <section class="container">
-            <h2 th:text="${evento.getTitulo()}"></h2>
-            <blockquote class="blockquote mb-0">
+        <section class="container bg-white mt-5">
+            <h2 th:text="'Titulo: ' + ${evento.getTitulo()}"></h2>
+            <!--<blockquote class="blockquote mb-0">
                 <div class="blockquote-footer"><span th:text="${evento.getUsuario().getUsername()}"></span> | <span th:text="${evento.getFecha()}"></span></div>
-            </blockquote>
-            <p class="lead" th:text="${evento.getDescripcion()}"></p>
+            </blockquote> -->
+            <p class="lead" th:text="'Descripcion: ' + ${evento.getDescripcion()}"></p>
+            <img class="mb-3" height="300px" width="300px"  th:src="@{${'/display?id=' + evento.getId()}}" alt="">
         </section>
 
         <footer class="container pt-5 pb-5 mt-5">
