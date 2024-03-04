@@ -100,7 +100,7 @@
                     <div class="d-grid card-eventos gap-5 pb-5 pt-5">
                         <div th:each="evento : ${eventos}">
                             <div class="card">
-                                <img height="250px"  th:src="@{${'/display?id=' + evento.getId()}}" alt="">
+                                <img class="img-fluid" th:src="@{${'/display?id=' + evento.getId()}}" alt="">
                                 <div class="card-body">
                                     <h5 th:text="${evento.getTitulo()}" class="card-title"></h5>
                                     <p th:text="${evento.getDescripcion()}" class="card-text"></p>
