@@ -64,7 +64,6 @@ public class AdministradorController {
 
     @GetMapping("/eventos/eliminar/{id}")
     public String eliminarEvento(@PathVariable Long id) {
-
         eventoService.delete(id);
         return "redirect:/administrador/eventos";
     }//FUNCIONALIDAD: elimina un evento por su id
@@ -87,6 +86,7 @@ public class AdministradorController {
             model.addAttribute("evento", evento);
             model.addAttribute("user", sessionUser);
             return "administradores/nuevo-evento";
+
         }//Mantiene los datos que ingresó el usuario si vuelve al mismo html
         evento.setUsuario(usuarioService.findByUserName(sessionUser.getUsername()));
         eventoService.save(evento);
@@ -100,9 +100,9 @@ public class AdministradorController {
     @GetMapping("/evento/{id}")
     public String modificarEvento(Model model, Authentication authentication, @PathVariable Long id) {
 
-        if ((id >= eventoService.getAll().size()) || (id < 0)) {
+        /* if ((id >= eventoService.getAll().size()) || (id < 0)) {
             throw new EventoNotFoundException("Evento no encontrado con id: " + id);
-        }
+        } */
 
         User sessionUser = (User) authentication.getPrincipal();
 
@@ -121,7 +121,8 @@ public class AdministradorController {
             model.addAttribute("evento", evento);
             model.addAttribute("user", sessionUser);
             return "administradores/evento";
-        }//Mantiene los datos que ingresó el usuario, aunque fuera error, para luego corregirlos al ingresar de nuevo.
+            //Mantiene los datos que ingresó el usuario, aunque fuera error, para luego corregirlos al ingresar de nuevo.
+        }
 
         evento.setUsuario(usuarioService.findByUserName(sessionUser.getUsername()));
 
