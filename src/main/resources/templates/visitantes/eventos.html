@@ -102,12 +102,12 @@
                             <div class="card">
                                 <img class="img-fluid" th:src="@{${'/display?id=' + evento.getId()}}" alt="">
                                 <div class="card-body">
-                                    <h5 th:text="${evento.getTitulo()}" class="card-title"></h5>
-                                    <p th:text="${evento.getDescripcion()}" class="card-text"></p>
+                                    <h5 th:text="${evento.titulo}" class="card-title"></h5>
+                                    <p th:text="${#strings.length(evento.descripcion) &gt; 100} ? ${#strings.substring(evento.descripcion, 0, 100) + '...'} : ${evento.descripcion}" class="card-text"></p>
                                     <blockquote class="blockquote pt-1">
-                                        <div class="blockquote-footer"><span th:text="${evento.getUsuario().getUsername()}"></span> | <span th:text="${evento.getFecha()}"></span></div>
+                                        <div class="blockquote-footer"><span th:text="${evento.usuario.username}"></span> | <span th:text="${evento.fecha}"></span></div>
                                     </blockquote>
-                                    <a th:href="@{'/visitante/evento/' + ${evento.getId()}}" class="btn rounded-0 btn-pseudoclase">Leer más</a>
+                                    <a th:href="@{'/visitante/evento/' + ${evento.id}}" class="btn rounded-0 btn-pseudoclase">Leer más</a>
                                 </div>
                             </div>
                         </div>
