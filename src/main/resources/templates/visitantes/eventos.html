@@ -97,7 +97,8 @@
                             <img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt>
                         </a>
                         <span class="fs-5 text-white">Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
-                        <a th:href="@{'/visitante/eventos?page=' + ${currentPage + 1}}">
+                        <a th:if="${currentPage < totalPages - 1}"
+                           th:href="@{'/visitante/eventos?page=' + ${currentPage + 1}}">
                             <img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt>
                         </a>
                     </div>
@@ -126,7 +127,8 @@
                             <img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt>
                         </a>
                         <span class="fs-5 text-white">Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
-                        <a th:href="@{'/visitante/eventos?page=' + ${currentPage + 1}}">
+                        <a th:if="${currentPage < totalPages - 1}"
+                           th:href="@{'/visitante/eventos?page=' + ${currentPage + 1}}">
                             <img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt>
                         </a>
                     </div>
