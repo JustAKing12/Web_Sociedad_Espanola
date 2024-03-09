@@ -56,47 +56,50 @@
 
   <!--  <img src="../../static/imagenes/logo.png" alt="Logo" />-->
   <div th:if="${crear == 1}">
-  <h1  class="p-5" >Crear usuario administrador</h1>
+    <h1  class="p-5" >Crear usuario administrador</h1>
 
-  <div th:if="${param.error}" class="custom-alert text-center">
-    <strong>Nombre de usuario ya existente</strong><br>
-  </div>
+    <div th:if="${param.error}" class="custom-alert text-center">
+      <strong>Nombre de usuario ya existente</strong><br>
+    </div>
 
 
     <form th:action="@{/administrador/usuario/crear}" method="post">
       <div class="p-2 g-col-6 ">
         <label for="username" ></label>
         <input class="shadow-lg p-3  bg-body-tertiary rounded"
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Usuario"
-                required
+               type="text"
+               id="username"
+               name="username"
+               placeholder="Usuario"
+               required
 
         />
       </div>
       <div class="p-2 g-col-6">
         <label for="password"></label>
         <input class="shadow-lg p-3  bg-body-tertiary rounded"
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Contraseña"
-                required
+               type="password"
+               id="password"
+               name="password"
+               placeholder="Contraseña"
+               required
         />
       </div>
       <div class="p-2 g-col-6">
         <input class="shadow-lg p-3  bg-body-tertiary rounded"
-                type="submit" value="Crear usuario "/>
+               type="submit" value="Crear usuario "/>
       </div>
     </form>
   </div>
 </div>
-  <div class="box">
-    <div class="box-inner"></div>
-  </div>
+<div class="box">
+  <div class="box-inner"></div>
+</div>
+<div class="box" style="transform: rotate(180deg)">
+  <div class="box-inner"></div>
+</div>
 <div class="container">
-<!-- th:if="${param.borrarUsuario}" class="#">-->
+  <!-- th:if="${param.borrarUsuario}" class="#">-->
   <div th:if="${borrar == 1}">
     <h1 class="p-5" >Borrar usuario</h1>
     <h3 class="p-3 text-center">Lista de usuarios administradores</h3>
