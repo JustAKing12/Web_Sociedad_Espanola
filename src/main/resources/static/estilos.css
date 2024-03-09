@@ -28,6 +28,8 @@ body {
     color: #f00822;
     border: 2px solid #f00822;
     transition: 0.3s ease;
+    height: 50px;
+    width: 100px;
 }
 
 .btn-pseudoclase:hover {
@@ -158,6 +160,22 @@ input:focus, textarea:focus {
 
 .btn-danger{
     background-color: #F00822;
+}
+
+.alert{
+    margin: 8px;
+    padding: 8px;
+}
+.alert-danger{
+    margin: 8px;
+    padding: 8px;
+}
+
+@media (min-width: 768px) {
+    .alert-danger {
+        margin: 4px;
+        padding: 4px;
+    }
 }
 
 @keyframes waves {
