@@ -29,7 +29,6 @@ body {
     border: 2px solid #f00822;
     transition: 0.3s ease;
     height: 50px;
-    width: 100px;
 }
 
 .btn-pseudoclase:hover {
