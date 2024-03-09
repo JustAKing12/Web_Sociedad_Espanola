@@ -1,38 +1,37 @@
 package ar.edu.unnoba.Proyecto.controller;
 
+import ar.edu.unnoba.Proyecto.exceptionHandler.EventoNotFoundException;
 import ar.edu.unnoba.Proyecto.model.Evento;
+import ar.edu.unnoba.Proyecto.model.Mensaje;
 import ar.edu.unnoba.Proyecto.model.Subscriptor;
-import ar.edu.unnoba.Proyecto.service.ActividadService;
-import ar.edu.unnoba.Proyecto.service.EventoService;
-import ar.edu.unnoba.Proyecto.service.SubscriptorService;
+import ar.edu.unnoba.Proyecto.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/visitante")
 public class VisitanteController {
 
-    private final EventoService eventoService;
-
-    private final SubscriptorService subscriptorService;
-
-    private final ActividadService actividadService;
+    @Autowired
+    private EventoService eventoService;
 
     @Autowired
-    private VisitanteController(EventoService eventoService, SubscriptorService subscriptorService, ActividadService actividadService) {
-        this.eventoService = eventoService;
-        this.subscriptorService = subscriptorService;
-        this.actividadService = actividadService;
-    }
+    private SubscriptorService subscriptorService;
+
+    @Autowired
+    private RecibirMailServiceImpl recibirMailService;
+
+    @Autowired
+    private ActividadService actividadService;
 
     //*****************INICIO*****************
 
     @GetMapping("")
-    public String redireccion() {
+    public String redireccion(){
         return "redirect:/visitante/inicio";
     }
 
@@ -49,22 +48,17 @@ public class VisitanteController {
     */
 
     @GetMapping("/eventos")
-    public String eventos(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
-        // valores predeterminados de prueba: pagina 0 de tamaño 3
-        // se puede cambiar yendo a visitante/eventos?page=0&size=10
-        PageRequest pageRequest = PageRequest.of(page, size);
-        Page<Evento> eventoPage = eventoService.getPage(pageRequest);
-
-        model.addAttribute("eventos", eventoPage);
-        model.addAttribute("sub", new Subscriptor());
-        model.addAttribute("currentPage", page); // info de la pag actual para cambiar de pagina
-        model.addAttribute("totalPages", eventoPage.getTotalPages()); // cant total de paginas
+    public String eventos(Model model) {
+        model.addAttribute("eventos", eventoService.getAll());//eventoService.extractEventos());
+        model.addAttribute("subscriptor", new Subscriptor());
         return "visitantes/eventos";
     }//FUNCIONALIDAD: Listado de todas los eventos
 
     @PostMapping("/eventos")
-    public String eventos(@ModelAttribute("sub") Subscriptor subscriptor) {
-        subscriptorService.save(subscriptor);
+    public String eventos(@ModelAttribute Subscriptor subscriptor) {
+        if (subscriptor != null) {
+            subscriptorService.save(subscriptor);
+        }
         return "redirect:/visitante/eventos";
     }
 
@@ -73,11 +67,14 @@ public class VisitanteController {
     @GetMapping("/evento/{id}")
     public String evento(@PathVariable Long id, Model model) {
 
+        if ((id >= eventoService.getAll().size()) || (id < 0)) {
+            throw new EventoNotFoundException("Evento no encontrado con id: " + id);
+        }
+
         Evento evento = eventoService.get(id);
-        /* ver esto despues */
-        /* String username = evento.getUsuario().getUsername(); */
+        String username = evento.getUsuario().getUsername();
         model.addAttribute("evento", evento);
-        /* model.addAttribute("username", username); */
+        model.addAttribute("username", username);
 
         return "visitantes/evento";
     }//FUNCIONALIDAD: Mostrar en detalle un Evento
@@ -85,23 +82,25 @@ public class VisitanteController {
     //*****************CONTACTO*****************
 
     @GetMapping("/contacto")
-    public String mostrarFormulario() {
+    public String mostrarFormulario(Model model) {
+        model.addAttribute("mensaje", new Mensaje());
         return "visitantes/contacto";
     }//FUNCIONALIDAD: muestra la vista de contacto con su formulario
 
     @PostMapping("/contacto")
-    public String recibirMensaje() {
+    public String enviarMensaje(@ModelAttribute("mensaje") Mensaje mensaje) {
+        recibirMailService.recibir(mensaje);
         return "redirect:/visitante/inicio";
-    }
+    }//FUNCIONALIDAD: Recibe el formulario de contacto y envía el correo electrónico
 
     @GetMapping("/historia")
-    public String historia() {
+    public String historia(){
         return "visitantes/historia";
     }
 
     @GetMapping("/actividades")
-    public String actividades(Model model) {
+    public String actividades(Model model){
         model.addAttribute("actividades", actividadService.getAll());
-        return "visitantes/inicio";
+        return "visitantes/actividades";
     }
 }

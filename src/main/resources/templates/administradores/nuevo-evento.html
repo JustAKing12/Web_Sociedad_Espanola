@@ -14,7 +14,7 @@
     <meta name="geo.region" content="AR">
     <meta name="geo.placename" content="Junín">
     <meta name="geo.position" content="-34.5930526;-60.9462904">
-    <link rel="shortcut icon" href="../../static/imagenes/eventosImg/logo.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../../static/imagenes/logo.png" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sociedad Española Junín | Crear Evento</title>
@@ -38,9 +38,7 @@
                     <a class="nav-link" href="/administrador/actividades">Actividades</a>
                     <a class="nav-link" href="/administrador/historia">Historia</a>
                     <a class="nav-link" href="/administrador/contacto">Contacto</a>
-                    <form action="#" th:action="@{/logout}" method="POST">
-                        <button type="submit" class="nav-link">Logout</button>
-                    </form>
+                    <a class="nav-link" href="#">Cerrar sesión</a>
                 </div>
             </div>
         </div>
@@ -57,7 +55,7 @@
     <h1>Crear Evento</h1>
 
 
-    <form th:action="@{/administrador/eventos/nuevo}" method="post" enctype="multipart/form-data">
+    <form th:action="@{/administrador/eventos/nuevo}" method="post">
         <div class="p-4">
             <h4>Ingrese un Titulo</h4>
         <label for="titulo"></label>
@@ -80,21 +78,19 @@
                     required
             />
         </div>
-        <div class="p-4">
+<!--        <div class="p-4">-->
 
-            <label for="image"><h4>Agregar una foto</h4></label>
-            <input
-                    type="file"
-                    id="image"
-                    name="imagen"
-                    placeholder="imagen"
-                    required
-            />
-        </div>
+<!--            <label for="image"><h4>Agregar una foto</h4></label>-->
+<!--            <input-->
+<!--                    type="file"-->
+<!--                    id="image"-->
+<!--                    name="imagen"-->
+<!--                    placeholder="imagen"-->
+<!--                    required-->
+<!--            />-->
+<!--        </div>-->
         <div class="p-4">
-            <input class="btn rounded-0 btn-pseudoclase" type="submit" value="Crear nuevo evento"/>
-            <a th:href="@{'/administrador/inicio'}" class="btn rounded-0 btn-pseudoclase">
-                <img src="../../static/imagenes/izquierda.svg" width="20" height="17" alt> Regresar</a>
+            <input class="btn btn-danger btn-lg " type="submit" value="Crear nuevo evento"/>
         </div>
     </form>
 

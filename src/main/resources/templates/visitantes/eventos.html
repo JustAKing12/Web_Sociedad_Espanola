@@ -14,7 +14,7 @@
         <meta name="geo.region" content="AR">
         <meta name="geo.placename" content="Junín">
         <meta name="geo.position" content="-34.5930526;-60.9462904">
-        <link rel="shortcut icon" href="../../static/imagenes/eventosImg/logo.svg" type="image/x-icon">
+        <link rel="shortcut icon" href="../../static/imagenes/logo.png" type="image/x-icon">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Sociedad Española Junín | Eventos</title>
@@ -52,7 +52,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form th:action="@{/visitante/eventos}" th:object="${sub}" method="post">
+                        <form th:action="@{/contacto}" th:object="${subscriptor}" method="post">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Escriba texto aquí..." required>
@@ -83,7 +83,7 @@
             </div>
         </section>
 
-        <section class="pt-2 pb-2" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000">
+        <section class="pt-5 pb-5" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000">
 
             <div class="box">
                 <div class="box-inner"></div>
@@ -91,46 +91,32 @@
 
             <div style="background-color: #d2b300">
                 <div class="container">
-                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-3" style="padding-bottom: 10px">
-                        <a th:if="${currentPage > 0}"
-                           th:href="@{'/visitante/eventos?page=' + ${currentPage - 1}}">
-                            <img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt>
-                        </a>
-                        <span class="fs-5 text-white">Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
-                        <a th:if="${currentPage < totalPages - 1}"
-                           th:href="@{'/visitante/eventos?page=' + ${currentPage + 1}}">
-                            <img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt>
-                        </a>
+                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-5">
+                        <a href="#"><img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt></a>
+                        <span class="fs-5 text-white">Página 1 de X</span>
+                        <a href="#"><img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt></a>
                     </div>
 
-                    <div class="d-grid card-eventos gap-4 pb-3 pt-3">
+                    <div class="d-grid card-eventos gap-5 pb-5 pt-5">
                         <div th:each="evento : ${eventos}">
                             <div class="card">
-                                <div class="ratio ratio-16x9">
-                                    <img class="card-img top" th:src="@{${'/display?id=' + evento.getId()}}" alt="">
-                                </div>
+                                <img th:src="${evento.getImagen()}" class="card-img-top" alt>
                                 <div class="card-body">
-                                    <h5 th:text="${evento.titulo}" class="card-title"></h5>
-                                    <p th:text="${#strings.length(evento.descripcion) &gt; 100} ? ${#strings.substring(evento.descripcion, 0, 100) + '...'} : ${evento.descripcion}" class="card-text"></p>
-                                    <blockquote class="blockquote pt-1">
-                                        <div class="blockquote-footer"><span th:text="${evento.usuario.username}"></span> | <span th:text="${evento.fecha}"></span></div>
-                                    </blockquote>
-                                    <a th:href="@{'/visitante/evento/' + ${evento.id}}" class="btn rounded-0 btn-pseudoclase">Leer más</a>
+                                    <h5 th:text="${evento.getTitulo()}" class="card-title"></h5>
+                                    <p th:text="${evento.getDescripcion()}" class="card-text"></p>
+<!--                                    <blockquote class="blockquote mb-0">-->
+<!--                                        <div class="blockquote-footer"><span th:text="${evento.getUsuario()}"></span> | <span th:text="${evento.getFecha()}"></span></div>-->
+<!--                                    </blockquote>-->
+                                    <a th:href="@{'/visitante/evento/' + ${evento.getId()}}" class="btn rounded-0 btn-pseudoclase">Leer más</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-3" style="padding-bottom: 10px">
-                        <a th:if="${currentPage > 0}"
-                           th:href="@{'/visitante/eventos?page=' + ${currentPage - 1}}">
-                            <img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt>
-                        </a>
-                        <span class="fs-5 text-white">Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
-                        <a th:if="${currentPage < totalPages - 1}"
-                           th:href="@{'/visitante/eventos?page=' + ${currentPage + 1}}">
-                            <img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt>
-                        </a>
+                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pb-5">
+                        <a href="#"><img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt></a>
+                        <span class="fs-5 text-white">Página 1 de X</span>
+                        <a href="#"><img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt></a>
                     </div>
                 </div>
             </div>
@@ -140,7 +126,7 @@
             </div>
         </section>
 
-        <footer class="container pt-3 pb-3 mt-5">
+        <footer class="container pt-5 pb-5 mt-5">
             <div class="text-center"><img class="img-fluid" src="../../static/imagenes/logo-largo.png" alt="Sociedad Española"></div>
             <div class="d-grid grid-footer gap-5 pt-5">
                 <div class="text-center mx-auto">

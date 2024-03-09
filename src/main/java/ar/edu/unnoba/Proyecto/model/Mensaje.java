@@ -1,14 +1,23 @@
 package ar.edu.unnoba.Proyecto.model;
 
-public class Mensaje {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
+public class Mensaje {
+//No se debe crear una tabla
+    //@NotBlank(message = "El nombre es obligatorio")
+    //@Size(min=2, max=30, message = "El nombre debe tener entre 2 y 30 caracteres")
     private String nombre;
 
+    //@NotBlank (message = "El correo electrónico es obligatorio")
+    //@Email(message = "El correo electrónico debe ser válido")
     private String email;
 
-    private String mensaje;
+    //@NotBlank (message = "La consulta es obligatoria")
+    private String cuerpo;
 
-    public Mensaje() {}
+    public Mensaje(){}
 
     public String getNombre() {
         return nombre;
@@ -26,11 +35,11 @@ public class Mensaje {
         this.email = email;
     }
 
-    public String getMensaje() {
-        return mensaje;
+    public String getCuerpo() {
+        return cuerpo;
     }
 
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
+    public void setCuerpo(String cuerpo) {
+        this.cuerpo = cuerpo;
     }
 }
