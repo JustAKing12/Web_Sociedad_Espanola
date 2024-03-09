@@ -14,7 +14,7 @@
         <meta name="geo.region" content="AR">
         <meta name="geo.placename" content="Junín">
         <meta name="geo.position" content="-34.5930526;-60.9462904">
-        <link rel="shortcut icon" href="../../static/imagenes/logo.png" type="image/x-icon">
+        <link rel="shortcut icon" href="../../static/imagenes/eventosImg/logo.svg" type="image/x-icon">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Sociedad Española Junín | Evento</title>
@@ -44,6 +44,12 @@
             </nav>
         </header>
 
+        <div class="box">
+            <div class="box-inner"></div>
+        </div>
+
+
+
         <section class="container mt-5">
             <h1 th:text="${evento.getTitulo()}"></h1>
             <div class="border-bottom border-4 w-25 mt-3 mb-3" style="border-color: #f00822 !important;"></div>
@@ -53,6 +59,16 @@
             <img class="mb-3 w-100 h-50" th:src="@{${'/display?id=' + evento.getId()}}" alt>
             <p class="lead" th:text="${evento.getDescripcion()}"></p>
         </section>
+
+        <div style=" padding-bottom: 10px; padding-left: 120px ">
+            <a th:href="@{'/visitante/eventos'}" class="btn rounded-0 btn-pseudoclase">
+                <img src="../../static/imagenes/izquierda.svg" width="20" height="17" alt>  Regresar
+            </a>
+        </div>
+
+        <div class="box" style="transform: rotate(180deg)">
+            <div class="box-inner"></div>
+        </div>
 
         <footer class="container pt-5 pb-5 mt-5">
             <div class="text-center"><img class="img-fluid" src="../../static/imagenes/logo-largo.png" alt="Sociedad Española"></div>

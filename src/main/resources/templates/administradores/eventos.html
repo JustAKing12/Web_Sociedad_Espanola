@@ -14,7 +14,7 @@
     <meta name="geo.region" content="AR">
     <meta name="geo.placename" content="Junín">
     <meta name="geo.position" content="-34.5930526;-60.9462904">
-    <link rel="shortcut icon" href="../../static/imagenes/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../static/imagenes/eventosImg/logo.svg" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sociedad Española Junín | Eventos</title>
@@ -38,7 +38,9 @@
                     <a class="nav-link" href="/administrador/actividades">Actividades</a>
                     <a class="nav-link" href="/administrador/historia">Historia</a>
                     <a class="nav-link" href="/administrador/contacto">Contacto</a>
-                    <a class="nav-link" href="#">Cerrar sesión</a>
+                    <form action="#" th:action="@{/logout}" method="POST">
+                        <button type="submit" class="nav-link">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -53,9 +55,20 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>El evento ha sido eliminado correctamente.</strong>
     </div>-->
-
+<div style="background-color: #d2b300">
+    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-3" style="padding-bottom: 10px">
+        <a th:if="${currentPage > 0}"
+           th:href="@{'/visitante/eventos?page=' + ${currentPage - 1}}">
+            <img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt>
+        </a>
+        <span class="fs-5 text-white">Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
+        <a th:if="${currentPage < totalPages - 1}"
+           th:href="@{'/visitante/eventos?page=' + ${currentPage + 1}}">
+            <img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt>
+        </a>
+    </div>
     <!-- Vista de los eventos con tarjetas -->
-    <div class="container">
+    <div class="container" >
         <div class="row">
             <!-- Iterar sobre cada evento en la lista de eventos -->
             <div th:each="evento : ${eventosconcreadores}" class="col-md-4 mb-4">
@@ -72,8 +85,8 @@
                         <p th:text="${evento.getFecha()}" class="card-text"></p>
                         <!-- ID del evento -->
                         <p th:text="${evento.getId()}" class="card-text"></p>
-                        <a th:href="@{'/administrador/evento/' + ${evento.getId()}}" class="btn btn-primary">Modificar</a>
-                        <a th:href="@{'/administrador/eventos/eliminar/' + ${evento.getId()}}" class="btn btn-primary">Eliminar</a>
+                        <a th:href="@{'/administrador/evento/' + ${evento.getId()}}" class="btn rounded-0 btn-pseudoclase">Modificar</a>
+                        <a th:href="@{'/administrador/eventos/eliminar/' + ${evento.getId()}}" class="btn rounded-0 btn-pseudoclase">Eliminar</a>
                         <!-- Botón "Ver más" que enlaza a la página del evento -->
                         <!--<a th:href="@{'/administrador/evento/' + ${evento.getId()}}" class="btn btn-primary">Ver más</a>-->
                     </div>
@@ -81,6 +94,20 @@
             </div>
         </div>
     </div>
+
+    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-3" style="padding-bottom: 10px">
+        <a th:if="${currentPage > 0}"
+           th:href="@{'/visitante/eventos?page=' + ${currentPage - 1}}">
+            <img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt>
+        </a>
+        <span class="fs-5 text-white">Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
+        <a th:if="${currentPage < totalPages - 1}"
+           th:href="@{'/visitante/eventos?page=' + ${currentPage + 1}}">
+            <img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt>
+        </a>
+    </div>
+</div>
+
     <div class="box" style="transform: rotate(180deg)">
         <div class="box-inner"></div>
     </div>

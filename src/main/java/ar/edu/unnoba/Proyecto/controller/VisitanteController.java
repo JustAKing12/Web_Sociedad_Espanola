@@ -6,6 +6,8 @@ import ar.edu.unnoba.Proyecto.service.ActividadService;
 import ar.edu.unnoba.Proyecto.service.EventoService;
 import ar.edu.unnoba.Proyecto.service.SubscriptorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -47,9 +49,16 @@ public class VisitanteController {
     */
 
     @GetMapping("/eventos")
-    public String eventos(Model model) {
-        model.addAttribute("eventos", eventoService.getAll());//eventoService.extractEventos());
+    public String eventos(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
+        // valores predeterminados de prueba: pagina 0 de tamaño 3
+        // se puede cambiar yendo a visitante/eventos?page=0&size=10
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<Evento> eventoPage = eventoService.getPage(pageRequest);
+
+        model.addAttribute("eventos", eventoPage);
         model.addAttribute("sub", new Subscriptor());
+        model.addAttribute("currentPage", page); // info de la pag actual para cambiar de pagina
+        model.addAttribute("totalPages", eventoPage.getTotalPages()); // cant total de paginas
         return "visitantes/eventos";
     }//FUNCIONALIDAD: Listado de todas los eventos
 

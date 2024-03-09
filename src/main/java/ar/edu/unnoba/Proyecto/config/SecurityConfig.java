@@ -43,7 +43,10 @@ public class SecurityConfig implements WebMvcConfigurer {
                                 .defaultSuccessUrl("/administrador/inicio", true)
                                 .permitAll()
                 )
-                .logout(logout -> logout.permitAll()
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
+                        .permitAll()
                 )
                 .exceptionHandling(configurer ->
                         configurer.accessDeniedPage("/access-denied")
