@@ -50,21 +50,7 @@
     </div>
 
     <div class="container mt-4">
-        <!-- Botón para volver a la lista de eventos -->
-        <a th:href="@{/administrador/eventos}" class="btn btn-primary m-2">Volver a la lista de eventos</a>
-        <br/>
-
-        <!-- Muestra los detalles del evento -->
-        <div class="card mt-3 mb-2 m-2">
-            <div class="card-body">
-                <h2 class="card-title mb-3" th:text="${evento.getTitulo()}"></h2>
-                <hr class="my-4">
-                <p class="card-text lead" th:text="${evento.getDescripcion()}"></p>
-                <p class="card-text"><small class="text-muted" th:text="${evento.getFecha()}"></small></p>
-            </div>
-        </div>
-
-
+        <!-- Muestra los detalles del evento a modificar -->
         <div th:if="${mensaje}" class="custom-alert">
             <div class="container">
                 <h1>Modificar Evento</h1>
@@ -73,25 +59,25 @@
                     <div class="form-group">
                         <label for="titulo">Titulo:</label>
                         <input
-                                type="text"
-                                class="form-control"
-                                id="titulo"
-                                name="titulo"
-                                th:value="${evento.titulo}"
-                                placeholder="Titulo del nuevo evento"
-                                required
+                            type="text"
+                            class="form-control"
+                            id="titulo"
+                            name="titulo"
+                            th:value="${evento.titulo}"
+                            placeholder="Titulo del nuevo evento"
+                            required
                         />
                     </div>
 
                     <div class="form-group">
                         <label for="descripcion">Descripcion:</label>
                         <textarea
-                                class="form-control"
-                                id="descripcion"
-                                name="descripcion"
-                                placeholder="Descripcion"
-                                rows="3"
-                                required
+                            class="form-control"
+                            id="descripcion"
+                            name="descripcion"
+                            placeholder="Descripcion"
+                            rows="3"
+                            required
                         >[[${evento.descripcion}]]</textarea>
                     </div>
                     <div class="form-group">
@@ -101,14 +87,14 @@
                             id="image"
                             name="imagen"
                             class="form-control-file mt-2"
-                            required />
+                            required/>
                     </div>
-
-                    <input type="submit" class="btn btn-primary mt-2 mb-2" value="Modificar"/>
+                    <!-- Botón para volver a la lista de eventos -->
+                    <button type="submit" class="btn btn-lg rounded-0 btn-pseudoclase mt-2 mb-2" value="Modificar">Guardar</button>
+                    <button th:href="@{/administrador/eventos}" class="btn btn-lg rounded-0 btn-pseudoclase m-2">Volver a la lista de eventos</button>
                 </form>
             </div>
         </div>
-
 
         <div th:if="${subscriptores}" class="custom-alert">
             <ul>
