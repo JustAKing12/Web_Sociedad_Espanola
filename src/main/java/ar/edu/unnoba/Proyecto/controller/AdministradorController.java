@@ -178,7 +178,7 @@ public class AdministradorController {
         model.addAttribute("actividad", actividad);
         model.addAttribute("user", sessionUser);
         model.addAttribute("mensaje", "las actividades se modificaran");
-        return "administradores/Actividad";
+        return "administradores/actividad";
     }//FUNCIONALIDAD: muestra una actividad específica con sus detalles y permite modificarla
 
     @PostMapping("/actividad/{id}")

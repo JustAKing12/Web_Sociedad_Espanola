@@ -1,128 +1,106 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-  <meta name="fragment" content="!">
-  <meta content="es-ar" http-equiv="content-language">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="description" content="Actividades de la Sociedad Española de Junín">
-  <meta name="keywords" content="actividad, actividades, actividades sociedad española, actividades de la sociedad española">
-  <meta name="language" content="Spanish">
-  <meta name="telephone" content="+5492364533342">
-  <meta name="whatsapp" content="+5492364533342">
-  <meta name="author" content="Juan Ignacio Caprioli, Valentino Badano, Lucas Lisandro Coria, Leonardo Giorgio Marcelo Lorenzatti, Luis Francisco Martinez, José Matías Fernández, Eduardo Emiliano Rios, Joaquin Rios, Ignacio Pringles">
-  <meta name="application-name" content="Sociedad Española de Socorros Mutuos">
-  <meta name="geo.region" content="AR">
-  <meta name="geo.placename" content="Junín">
-  <meta name="geo.position" content="-34.5930526;-60.9462904">
-  <link rel="shortcut icon" href="../../static/imagenes/eventosImg/logo.svg" type="image/x-icon">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sociedad Española Junín | Actividades</title>
+    <head>
+        <meta name="fragment" content="!">
+        <meta content="es-ar" http-equiv="content-language">
+        <meta name="robots" content="index,follow,max-image-preview:large">
+        <meta name="description" content="Actividades de la Sociedad Española de Junín">
+        <meta name="keywords" content="actividad, actividades, actividades sociedad española, actividades de la sociedad española">
+        <meta name="language" content="Spanish">
+        <meta name="telephone" content="+5492364533342">
+        <meta name="whatsapp" content="+5492364533342">
+        <meta name="author" content="Juan Ignacio Caprioli, Valentino Badano, Lucas Lisandro Coria, Leonardo Giorgio Marcelo Lorenzatti, Luis Francisco Martinez, José Matías Fernández, Eduardo Emiliano Rios, Joaquin Rios, Ignacio Pringles">
+        <meta name="application-name" content="Sociedad Española de Socorros Mutuos">
+        <meta name="geo.region" content="AR">
+        <meta name="geo.placename" content="Junín">
+        <meta name="geo.position" content="-34.5930526;-60.9462904">
+        <link rel="shortcut icon" href="../../static/imagenes/eventosImg/logo.svg" type="image/x-icon">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sociedad Española Junín | Actividades</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../static/estilos.css">
-</head>
-<body>
-<header class="position-sticky top-0 z-1">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a href="#"><img src="../../static/imagenes/logo-largo.png" alt="Sociedad Española" height="40.8" width="230" ></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav text-center ms-auto">
-          <a class="nav-link" href="/administrador/inicio">Inicio</a>
-          <a class="nav-link" href="/administrador/eventos">Eventos</a>
-          <a class="nav-link" aria-current="page" href="/administrador/actividades">Actividades</a>
-          <form action="#" th:action="@{/logout}" method="POST">
-            <button type="submit" class="nav-link">Logout</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </nav>
-</header>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../static/estilos.css">
+    </head>
+    <body class="overflow-x-hidden">
+        <header class="position-sticky top-0 z-1">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a href="#"><img src="../../static/imagenes/logo-largo.png" alt="Sociedad Española" height="40.8" width="230" ></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav text-center ms-auto">
+                            <a class="nav-link" href="/administrador/inicio">Inicio</a>
+                            <a class="nav-link" href="/administrador/eventos">Eventos</a>
+                            <a class="nav-link" aria-current="page" href="/administrador/actividades">Actividades</a>
+                            <form action="#" th:action="@{/logout}" method="POST">
+                                <button type="submit" class="nav-link">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
-<section class="pb-5 pt-5 mt-5 mb-5 overflow-x-hidden">
-  <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center gap-5">
-    <h2 class="text-center mb-0" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="1000">Descubre Nuestros Próximas Actividades</h2>
+        <section class="pb-5 pt-5 mt-5 mb-5 row">
+            <nav class="mx-auto col-9 col-md-6" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000">
+                <form class="d-flex" role="search">
+                    <input class="form-control rounded-start pt-0 pb-0 ps-1 pe-1 searcher" type="search" placeholder="Escriba texto aquí..." aria-label="Search">
+                    <button class="rounded-end btn rounded-0 btn-pseudoclase" type="submit">Buscar</button>
+                </form>
+            </nav>
+        </section>
 
-    <nav data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1000">
-      <form class="d-flex" role="search">
-        <input class="form-control rounded-start pt-0 pb-0 ps-1 pe-1 searcher" type="search" placeholder="Escriba texto aquí..." aria-label="Search">
-        <button class="rounded-end btn rounded-0 btn-pseudoclase" type="submit">Buscar</button>
-      </form>
-    </nav>
-  </div>
-</section>
+        <section class="pt-5 pb-5" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000">
 
-<section class="pt-5 pb-5" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000">
-
-  <div class="box">
-    <div class="box-inner"></div>
-  </div>
-
-  <div style="background-color: #d2b300">
-    <div class="container">
-      <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-5">
-        <a href="#"><img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt></a>
-        <span class="fs-5 text-white">Página 1 de X</span>
-        <a href="#"><img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt></a>
-      </div>
-
-      <div class="d-grid card-eventos gap-5 pb-5 pt-5">
-        <div th:each="actividad : ${actividades}">
-          <div class="card">
-            <div class="card-body">
-              <h5 th:text="${actividad.getTitulo()}" class="card-title"></h5>
-              <p th:text="${actividad.getDescripcion()}" class="card-text"></p>
-              <p th:text="${actividad.getHorario()}" class="card-text"></p>
-              <a th:href="@{'/administrador/actividad/' + ${actividad.getId()}}" class="btn btn-primary">Modificar</a>
-              <a th:href="@{'/administrador/actividades/eliminar/' + ${actividad.getId()}}" class="btn btn-primary">Eliminar</a>
-
-<!--              <a th:href="@{'/visitante/evento/' + ${evento.getId()}}" class="btn rounded-0 btn-pseudoclase">Leer más</a>-->
+            <div class="box">
+                <div class="box-inner"></div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="d-flex flex-row align-items-center justify-content-center gap-3 pb-5">
-        <a href="#"><img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt></a>
-        <span class="fs-5 text-white">Página 1 de X</span>
-        <a href="#"><img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt></a>
-      </div>
-    </div>
-  </div>
+            <div style="background-color: #d2b300">
+                <div class="container">
+                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-5">
+                        <a href="#"><img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt></a>
+                        <span class="fs-5 text-white">Página 1 de X</span>
+                        <a href="#"><img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt></a>
+                    </div>
 
-  <div class="box" style="transform: rotate(180deg)">
-    <div class="box-inner"></div>
-  </div>
-</section>
+                    <div class="d-grid card-eventos gap-5 pb-5 pt-5">
+                        <div th:each="actividad : ${actividades}">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 th:text="${actividad.getTitulo()}" class="card-title"></h5>
+                                    <p th:text="${actividad.getDescripcion()}" class="card-text"></p>
+                                    <p th:text="${actividad.getHorario()}" class="card-text"></p>
+                                    <a th:href="@{'/administrador/actividad/' + ${actividad.getId()}}" class="btn btn-primary">Modificar</a>
+                                    <a th:href="@{'/administrador/actividades/eliminar/' + ${actividad.getId()}}" class="btn btn-primary">Eliminar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-<footer class="container pt-5 pb-5 mt-5">
-  <div class="text-center"><img class="img-fluid" src="../../static/imagenes/logo-largo.png" alt="Sociedad Española"></div>
-  <div class="d-grid grid-footer gap-5 pt-5">
-    <div class="text-center mx-auto">
-      <div class="d-flex align-items-center">
-        <img src="../../static/imagenes/ubicacion.svg" alt width="40.2" height="40.2">
-        <span class="fs-1 ps-3">¿Dónde estamos?</span>
-      </div>
-      <div><a href="https://maps.app.goo.gl/xjwUxZG8DANdN8AR7" class="text-decoration-none text-black fs-4 subrayado">Narbondo 32, Junín, Buenos Aires</a></div>
-    </div>
-    <div class="text-center">
-      <div class="d-flex align-items-center justify-content-center">
-        <img src="../../static/imagenes/llamar.svg" alt width="40.2" height="40.2">
-        <span class="fs-1 ps-3">Nuestro contacto</span>
-      </div>
-      <div><a href="tel:542364533342" class="text-decoration-none text-black fs-4 subrayado" role="button">+54 9 236 453-3342</a></div>
-    </div>
-  </div>
-</footer>
+                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pb-5">
+                        <a href="#"><img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt></a>
+                        <span class="fs-5 text-white">Página 1 de X</span>
+                        <a href="#"><img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt></a>
+                    </div>
+                </div>
+            </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="../../static/script.js"></script>
-</body>
+            <div class="box" style="transform: rotate(180deg)">
+                <div class="box-inner"></div>
+            </div>
+        </section>
+
+        <footer class="container pt-5 pb-5 mt-5">
+            <div class="text-center"><img class="img-fluid" src="../../static/imagenes/logo-largo.png" alt="Sociedad Española"></div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="../../static/script.js"></script>
+    </body>
 </html>
