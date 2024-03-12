@@ -13,8 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.sql.SQLException;
 
 @Controller
 @RequestMapping("/administrador")
@@ -110,21 +113,38 @@ public class AdministradorController {
     }//FUNCIONALIDAD: muestra un evento específico con sus detalles y permite modificarlo
 
     @PostMapping("/evento/{id}")
-    public String modificarEvento(Model model, Authentication authentication, @Valid @ModelAttribute("evento") Evento evento, BindingResult bindingResult) {
+    //FUNCIONALIDAD: procesa el formulario de modificación de un evento y guarda los cambios
+    public String modificarEvento(Model model, Authentication authentication, @Valid Evento evento, BindingResult result, @RequestParam("imagen") MultipartFile imagen) {
         User sessionUser = (User) authentication.getPrincipal();
 
-        if (bindingResult.hasErrors()) {
+        // guarda el evento existente
+        Evento eventoExistente = eventoService.get(evento.getId());
+
+        // Verifica si se cargo una nueva imagen
+        if (!imagen.isEmpty()) {
+            try {
+                // Actualizar la imagen del evento
+                eventoExistente.setImagen(imagen);
+            } catch (IOException | SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (result.hasErrors()) {
+            model.addAttribute("evento", eventoExistente);
+            model.addAttribute("user", sessionUser);
             return "administradores/evento";
         }
 
-        evento.setUsuario(usuarioService.findByUserName(sessionUser.getUsername()));
+        eventoExistente.setUsuario(usuarioService.findByUserName(sessionUser.getUsername()));
+        eventoExistente.setTitulo(evento.getTitulo());
+        eventoExistente.setDescripcion(evento.getDescripcion());
 
-        eventoService.save(evento);
+        eventoService.save(eventoExistente);
         //enviarMailService.enviar(evento);
         model.addAttribute("success", "El evento ha sido modificado correctamente.");
         return "redirect:/administrador/eventos";
-    }//FUNCIONALIDAD: procesa el formulario de modificación de un evento y guarda los cambios
-
+    }
 
     //*****************ACTIVIDAD*****************
 
