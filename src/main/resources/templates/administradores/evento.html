@@ -54,7 +54,7 @@
         <div th:if="${mensaje}" class="custom-alert">
             <div class="container">
                 <h1>Modificar Evento</h1>
-                <form th:action="@{'/administrador/evento/' + ${evento.id}}" method="post" class="mt-2">
+                <form th:action="@{'/administrador/evento/' + ${evento.id}}" method="post" class="mt-2" enctype="multipart/form-data">
 
                     <div class="form-group p-3">
                         <label for="titulo">Titulo:</label>
@@ -75,8 +75,8 @@
                             class="form-control"
                             id="descripcion"
                             name="descripcion"
-                            placeholder="Descripcion"
                             rows="3"
+                            th:field="${evento.descripcion}"
                             required
                         ></textarea>
                     </div>
@@ -87,6 +87,7 @@
                             id="image"
                             name="imagen"
                             class="form-control-file mt-2"
+                            th:field="${evento.imagen}"
                             required/>
                     </div>
                     <!-- Botón para volver a la lista de eventos -->
