@@ -75,8 +75,8 @@
                 <h2 class="text-center mb-0" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="1000">Descubre Nuestros Próximos Eventos</h2>
 
                 <nav data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1000">
-                    <form class="d-flex" role="search">
-                        <input class="form-control rounded-start pt-0 pb-0 ps-1 pe-1 searcher" type="search" placeholder="Escriba texto aquí..." aria-label="Search">
+                    <form class="d-flex" role="search" th:action="@{/visitante/eventos}" method="get">
+                        <input class="form-control rounded-start pt-0 pb-0 ps-1 pe-1 searcher" type="search" placeholder="Escriba texto aquí..." aria-label="Search" name="title">
                         <button class="rounded-end btn rounded-0 btn-pseudoclase" type="submit">Buscar</button>
                     </form>
                 </nav>

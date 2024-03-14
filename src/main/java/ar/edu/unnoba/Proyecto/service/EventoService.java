@@ -2,6 +2,7 @@ package ar.edu.unnoba.Proyecto.service;
 
 import ar.edu.unnoba.Proyecto.model.Evento;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface EventoService {
     void delete(Long id);
 
     Page<Evento> getPage(Pageable pageable);
+
+    Page<Evento> findByTitleContainingIgnoreCase(String title, PageRequest pageRequest);
 }

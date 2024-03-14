@@ -50,11 +50,19 @@ public class VisitanteController {
     */
 
     @GetMapping("/eventos")
-    public String eventos(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "9") int size) {
-        // valores predeterminados de prueba: pagina 0 de tamaño 3
-        // se puede cambiar yendo a visitante/eventos?page=0&size=10
+    public String eventos(Model model,
+                          @RequestParam(defaultValue = "0") int page,
+                          @RequestParam(defaultValue = "9") int size,
+                          @RequestParam(required = false, defaultValue = "") String title) {
+
         PageRequest pageRequest = PageRequest.of(page, size);
-        Page<Evento> eventoPage = eventoService.getPage(pageRequest);
+        Page<Evento> eventoPage;
+
+        if (title != null && !title.isEmpty()) {
+            eventoPage = eventoService.findByTitleContainingIgnoreCase(title, pageRequest);
+        } else {
+            eventoPage = eventoService.getPage(pageRequest);
+        }
 
         model.addAttribute("eventos", eventoPage);
         model.addAttribute("sub", new Subscriptor());
