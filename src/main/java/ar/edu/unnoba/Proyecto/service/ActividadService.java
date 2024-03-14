@@ -13,4 +13,6 @@ public interface ActividadService {
     void delete(Long id);
 
     Page<Actividad> getPage(Pageable pageable);
+
+    Page<Actividad> getPageWithTitleFilter(int page, int size, String title);
 }

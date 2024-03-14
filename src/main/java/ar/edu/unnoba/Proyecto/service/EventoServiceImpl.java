@@ -8,9 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class EventoServiceImpl implements EventoService {
@@ -47,8 +45,18 @@ public class EventoServiceImpl implements EventoService {
         return eventoRepository.findAll(pageable);
     }
 
-    @Override
-    public Page<Evento> findByTitleContainingIgnoreCase(String title, PageRequest pageRequest) {
+
+    private Page<Evento> findByTitleContainingIgnoreCase(String title, PageRequest pageRequest) {
         return eventoRepository.findEventoByTituloContainingIgnoreCase(title, pageRequest);
+    }
+
+    @Override
+    public Page<Evento> getPageWithTitleFilter(int page, int size, String title) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        if (title != null && !title.isEmpty()) {
+            return findByTitleContainingIgnoreCase(title, pageRequest);
+        } else {
+            return getPage(pageRequest);
+        }
     }
 }

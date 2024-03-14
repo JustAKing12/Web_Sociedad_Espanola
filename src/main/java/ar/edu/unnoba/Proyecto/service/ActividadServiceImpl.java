@@ -4,6 +4,7 @@ import ar.edu.unnoba.Proyecto.model.Actividad;
 import ar.edu.unnoba.Proyecto.repository.ActividadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,19 @@ public class ActividadServiceImpl implements ActividadService {
     @Override
     public Page<Actividad> getPage(Pageable pageable) {
         return actividadRepository.findAll(pageable);
+    }
+
+    private Page<Actividad> findByTitleContainingIgnoreCase(String title, PageRequest pageRequest) {
+        return actividadRepository.findActividadByTituloContainingIgnoreCase(title, pageRequest);
+    }
+
+    @Override
+    public Page<Actividad> getPageWithTitleFilter(int page, int size, String title) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        if (title != null && !title.isEmpty()) {
+            return findByTitleContainingIgnoreCase(title, pageRequest);
+        } else {
+            return getPage(pageRequest);
+        }
     }
 }

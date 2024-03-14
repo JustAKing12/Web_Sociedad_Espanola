@@ -3,10 +3,12 @@ package ar.edu.unnoba.Proyecto.controller;
 import ar.edu.unnoba.Proyecto.model.Actividad;
 import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.model.Usuario;
-import ar.edu.unnoba.Proyecto.service.*;
+import ar.edu.unnoba.Proyecto.service.ActividadService;
+import ar.edu.unnoba.Proyecto.service.EnviarMailService;
+import ar.edu.unnoba.Proyecto.service.EventoService;
+import ar.edu.unnoba.Proyecto.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -52,13 +54,17 @@ public class AdministradorController {
     //*****************EVENTOS*****************
 
     @GetMapping("/eventos")
-    public String eventos(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "9") int size) {
-        PageRequest pageRequest = PageRequest.of(page, size);
-        Page<Evento> eventoPage = eventoService.getPage(pageRequest);
+    public String eventos(Model model,
+                          @RequestParam(defaultValue = "0") int page,
+                          @RequestParam(defaultValue = "9") int size,
+                          @RequestParam(required = false, defaultValue = "") String title) {
+
+        Page<Evento> eventoPage = eventoService.getPageWithTitleFilter(page, size, title);
 
         model.addAttribute("eventos", eventoPage);
         model.addAttribute("currentPage", page); // info de la pag actual para cambiar de pagina
         model.addAttribute("totalPages", eventoPage.getTotalPages()); // cant total de paginas
+        model.addAttribute("searchText", title);
         return "administradores/eventos";
     }//FUNCIONALIDAD: muestra los eventos con los usuarios que los creó
 
@@ -114,7 +120,7 @@ public class AdministradorController {
 
     @PostMapping("/evento/{id}")
     //FUNCIONALIDAD: procesa el formulario de modificación de un evento y guarda los cambios
-    public String modificarEvento(Model model, Authentication authentication, @Valid Evento evento, BindingResult result, @RequestParam("imagen") MultipartFile imagen) {
+    public String modificarEvento(Model model, Authentication authentication, @Valid @ModelAttribute("evento") Evento evento, BindingResult result, @RequestParam("imagen") MultipartFile imagen) {
         User sessionUser = (User) authentication.getPrincipal();
 
         // guarda el evento existente
@@ -149,11 +155,20 @@ public class AdministradorController {
     //*****************ACTIVIDAD*****************
 
     @GetMapping("/actividades")
-    public String actividades(Model model, Authentication authentication) {
+    public String actividades(Model model,
+                              @RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "9") int size,
+                              @RequestParam(required = false, defaultValue = "") String title,
+                              Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();
 
-        model.addAttribute("actividades", actividadService.getAll());
+        Page<Actividad> actividadPage = actividadService.getPageWithTitleFilter(page, size, title);
+
+        model.addAttribute("actividades", actividadPage);
+        model.addAttribute("currentPage", page); // info de la pag actual para cambiar de pagina
+        model.addAttribute("totalPages", actividadPage.getTotalPages()); // cant total de paginas
         model.addAttribute("user", sessionUser);
+        model.addAttribute("searchText", title);
         return "administradores/actividades";
     }//FUNCIONALIDAD: muestra las actividades
 

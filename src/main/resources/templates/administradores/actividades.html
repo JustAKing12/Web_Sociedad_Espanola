@@ -47,8 +47,9 @@
 
         <section class="pb-5 pt-5 mt-5 mb-5 row">
             <nav class="mx-auto col-9 col-md-6" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000">
-                <form class="d-flex" role="search">
-                    <input class="form-control rounded-start pt-0 pb-0 ps-1 pe-1 searcher" type="search" placeholder="Escriba texto aquí..." aria-label="Search">
+                <p class="lead mb-0" th:if="${searchText != null && searchText != ''}" th:text="'Usted ha buscado: ' + ${searchText}"></p>
+                <form class="d-flex" role="search" th:action="@{/administrador/actividades}" method="get">
+                    <input class="form-control rounded-start pt-0 pb-0 ps-1 pe-1 searcher" type="search" placeholder="Escriba texto aquí..." aria-label="Search" name="title">
                     <button class="rounded-end btn rounded-0 btn-pseudoclase" type="submit">Buscar</button>
                 </form>
             </nav>
@@ -62,10 +63,16 @@
 
             <div style="background-color: #d2b300">
                 <div class="container">
-                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-5">
-                        <a href="#"><img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt></a>
-                        <span class="fs-5 text-white">Página 1 de X</span>
-                        <a href="#"><img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt></a>
+                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-3">
+                        <a th:if="${currentPage > 0}"
+                           th:href="@{'/administrador/actividades?page=' + ${currentPage - 1}}">
+                            <img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt>
+                        </a>
+                        <span class="fs-5 text-white">Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
+                        <a th:if="${currentPage < totalPages - 1}"
+                           th:href="@{'/administrador/actividades?page=' + ${currentPage + 1}}">
+                            <img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt>
+                        </a>
                     </div>
 
                     <div class="d-grid card-eventos gap-5 pb-5 pt-5">
@@ -82,10 +89,16 @@
                         </div>
                     </div>
 
-                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pb-5">
-                        <a href="#"><img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt></a>
-                        <span class="fs-5 text-white">Página 1 de X</span>
-                        <a href="#"><img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt></a>
+                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-3">
+                        <a th:if="${currentPage > 0}"
+                           th:href="@{'/administrador/actividades?page=' + ${currentPage - 1}}">
+                            <img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt>
+                        </a>
+                        <span class="fs-5 text-white">Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
+                        <a th:if="${currentPage < totalPages - 1}"
+                           th:href="@{'/administrador/actividades?page=' + ${currentPage + 1}}">
+                            <img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface ActividadRepository extends JpaRepository<Actividad, Long> {
 
     Page<Actividad> findAll(Pageable pageable);
+
+    Page<Actividad> findActividadByTituloContainingIgnoreCase(String title, Pageable pageable);
 }

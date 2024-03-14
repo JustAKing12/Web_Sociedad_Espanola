@@ -8,7 +8,6 @@ import ar.edu.unnoba.Proyecto.service.EventoService;
 import ar.edu.unnoba.Proyecto.service.SubscriptorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -55,19 +54,13 @@ public class VisitanteController {
                           @RequestParam(defaultValue = "9") int size,
                           @RequestParam(required = false, defaultValue = "") String title) {
 
-        PageRequest pageRequest = PageRequest.of(page, size);
-        Page<Evento> eventoPage;
-
-        if (title != null && !title.isEmpty()) {
-            eventoPage = eventoService.findByTitleContainingIgnoreCase(title, pageRequest);
-        } else {
-            eventoPage = eventoService.getPage(pageRequest);
-        }
+        Page<Evento> eventoPage = eventoService.getPageWithTitleFilter(page, size, title);
 
         model.addAttribute("eventos", eventoPage);
         model.addAttribute("sub", new Subscriptor());
-        model.addAttribute("currentPage", page); // info de la pag actual para cambiar de pagina
-        model.addAttribute("totalPages", eventoPage.getTotalPages()); // cant total de paginas
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", eventoPage.getTotalPages());
+        model.addAttribute("searchText", title);
         return "visitantes/eventos";
     }//FUNCIONALIDAD: Listado de todas los eventos
 /* PROBAR LO DE ARRIBA
@@ -116,13 +109,17 @@ public class VisitanteController {
     }
 
     @GetMapping("/actividades")
-    public String actividades(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "9") int size) {
-        PageRequest pageRequest = PageRequest.of(page, size);
-        Page<Actividad> actividadPage = actividadService.getPage(pageRequest);
+    public String actividades(Model model,
+                              @RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "9") int size,
+                              @RequestParam(required = false, defaultValue = "") String title) {
+
+        Page<Actividad> actividadPage = actividadService.getPageWithTitleFilter(page, size, title);
 
         model.addAttribute("actividades", actividadPage);
         model.addAttribute("currentPage", page); // info de la pag actual para cambiar de pagina
         model.addAttribute("totalPages", actividadPage.getTotalPages()); // cant total de paginas
+        model.addAttribute("searchText", title);
         return "visitantes/actividades";
     }
 }
