@@ -4,6 +4,7 @@ import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +45,10 @@ public class EventoServiceImpl implements EventoService {
     @Override
     public Page<Evento> getPage(Pageable pageable) {
         return eventoRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Evento> findByTitleContainingIgnoreCase(String title, PageRequest pageRequest) {
+        return eventoRepository.findEventoByTituloContainingIgnoreCase(title, pageRequest);
     }
 }

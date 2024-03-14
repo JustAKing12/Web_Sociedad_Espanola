@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface EventoRepository extends JpaRepository<Evento, Long> {
 
     Page<Evento> findAll(Pageable pageable);
+    Page<Evento> findEventoByTituloContainingIgnoreCase(String title, Pageable pageable);
 }
