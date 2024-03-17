@@ -49,7 +49,7 @@
     <div class="box-inner"></div>
 </div>
 
-<div class="container mt-4">
+<div class="container mt-4 p-3">
     <!-- Botón para volver a la lista de eventos -->
     <a th:href="@{/administrador/actividades}" class="btn btn-primary">Volver a la lista de actividades</a>
     <br/>
@@ -68,35 +68,45 @@
     <!--<a th:href="@{'/administrador/evento/suscriptores/' + ${evento.id}}" class="btn btn-primary">Suscriptores</a>-->
 
     <div th:if="${mensaje}" class="custom-alert">
-
+        <h1>Modificar Actividad</h1>
         <div class="container">
-            <h1>Modificar Actividad</h1>
 
-            <form th:action="@{'/administrador/actividad/' + ${actividad.id}}" method="post">
+            <div class="p-3">
+                <form th:action="@{'/administrador/actividad/' + ${actividad.id}}" method="post">
                 <label for="titulo"></label>
-                <input
-                        type="text"
-                        id="titulo"
-                        name="titulo"
-                        placeholder="Titulo de la nueva actividad"
+                <input class="shadow  bg-body-tertiary rounded p-3"
+                       type="text"
+                       id="titulo"
+                       name="titulo"
+                       placeholder="Titulo de la nueva actividad"
                 />
+                </form>
+            </div>
+            <div class="p-3">
                 <label for="descripcion"></label>
-                <input
+                <input class="shadow  bg-body-tertiary rounded p-3"
                         type="text"
                         id="descripcion"
                         name="descripcion"
                         placeholder="Descripcion"
                 />
+
+            </div>
+            <div class="p-3">
                 <label for="horario"></label>
-                <input
+                <input  class="shadow  bg-body-tertiary rounded p-3"
                         type="text"
                         id="horario"
                         name="horario"
                         placeholder="Horario/s de atencion"
                 />
+            </div>
 
-                <input type="submit" value="Modificar"/>
-            </form>
+                <div class="p-3">
+                    <input  class="shadow  bg-body-tertiary rounded p-2"type="submit" value="Modificar"/>
+                </div>
+
+
         </div>
     </div>
 
