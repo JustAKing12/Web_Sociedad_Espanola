@@ -81,28 +81,17 @@
                     <div class="d-grid card-eventos gap-5 pb-5 pt-5">
                         <div th:each="actividad : ${actividades}">
                             <div class="card">
+                                <div class="ratio ratio-16x9">
+                                    <img class="card-img top" th:src="@{${'/display/actividad?id=' + actividad.getId()}}" alt="">
+                                </div>
                                 <div class="card-body">
                                     <h5 th:text="${actividad.getTitulo()}" class="card-title"></h5>
-                                    <p th:text="${actividad.getDescripcion()}" class="card-text"></p>
                                     <p th:text="${actividad.getHorario()}" class="card-text"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!--<div class="d-grid card-eventos gap-4 pb-3 pt-3">
-                        <div th:each="actividad : ${actividades}">
-                            <div class="card">
-                                <div class="ratio ratio-16x9">
-                                    <img class="card-img top" th:src="@{${'/display/actividad?id=' + actividad.getId()}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h5 th:text="${actividad.titulo}" class="card-title"></h5>
-                                    <p th:text="${actividad.horario}" class="card-text"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
 
                     <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-3">
                         <a th:if="${currentPage > 0}"
