@@ -1,8 +1,11 @@
 package ar.edu.unnoba.Proyecto.model;
 
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.logging.Handler;
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 
 @Entity
 @Table(name = "actividad")
@@ -16,10 +19,11 @@ public class Actividad{
     private String titulo;
 
     @Column(nullable = false)
-    private String descripcion;
-
-    @Column(nullable = false)
     private String horario;
+
+    @Lob
+    @Column
+    private Blob image;
 
     public Actividad(){}
 
@@ -40,20 +44,20 @@ public class Actividad{
         this.titulo = titulo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getHorario(){
         return horario;
     }
 
     public void setHorario(String horario){
         this.horario = horario;
+    }
+
+    public Blob getImage(){return image;}
+
+    public void setImage(MultipartFile file)throws IOException, SQLException {
+        byte[] bytes = file.getBytes();
+        Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
+        this.image = blob;
     }
 
 }

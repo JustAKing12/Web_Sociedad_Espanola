@@ -78,9 +78,11 @@
                     <div class="d-grid card-eventos gap-5 pb-5 pt-5">
                         <div th:each="actividad : ${actividades}">
                             <div class="card">
+                                <div class="ratio ratio-16x9">
+                                    <img class="card-img top" th:src="@{${'/display/actividad?id=' + actividad.getId()}}" alt="">
+                                </div>
                                 <div class="card-body">
                                     <h5 th:text="${actividad.getTitulo()}" class="card-title"></h5>
-                                    <p th:text="${actividad.getDescripcion()}" class="card-text"></p>
                                     <p th:text="${actividad.getHorario()}" class="card-text"></p>
                                     <a th:href="@{'/administrador/actividad/' + ${actividad.getId()}}" class="btn btn-primary">Modificar</a>
                                     <a th:href="@{'/administrador/actividades/eliminar/' + ${actividad.getId()}}" class="btn btn-primary">Eliminar</a>

@@ -82,10 +82,11 @@
                         <div th:each="actividad : ${actividades}">
                             <div class="card">
                                 <div class="ratio ratio-16x9">
-                                    <img class="card-img top" th:src="@{${'/display?id=' + actividad.getId()}}" alt="">
+                                    <img class="card-img top" th:src="@{${'/display/actividad?id=' + actividad.getId()}}" alt="">
                                 </div>
                                 <div class="card-body">
                                     <h5 th:text="${actividad.titulo}" class="card-title"></h5>
+                                    <p th:text="${actividad.horario}" class="card-text"></p>
                                 </div>
                             </div>
                         </div>

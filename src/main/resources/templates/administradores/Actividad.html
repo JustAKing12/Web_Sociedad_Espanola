@@ -56,7 +56,6 @@
 
     <!-- Muestra los detalles de la actividad -->
     <h2 th:text="'Titulo: ' + ${actividad.getTitulo()}"></h2>
-    <p th:text="'Descripcion: ' + ${actividad.getDescripcion()}"></p>
     <p th:text="'Horario/s de atencion: ' + ${actividad.getHorario()}"></p>
 
     <!--<a th:href="@{/administrador/eventos/eliminar/{id}(id=${evento.id})}">Eliminar</a>-->
@@ -80,13 +79,7 @@
                         name="titulo"
                         placeholder="Titulo de la nueva actividad"
                 />
-                <label for="descripcion"></label>
-                <input
-                        type="text"
-                        id="descripcion"
-                        name="descripcion"
-                        placeholder="Descripcion"
-                />
+
                 <label for="horario"></label>
                 <input
                         type="text"
