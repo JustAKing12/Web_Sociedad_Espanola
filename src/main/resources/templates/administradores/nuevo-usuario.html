@@ -33,11 +33,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav text-center ms-auto">
-          <a class="nav-link" aria-current="page" href="/visitante/inicio">Inicio</a>
-          <a class="nav-link" href="/visitante/eventos">Eventos</a>
-          <a class="nav-link" href="/visitante/actividades">Actividades</a>
-          <a class="nav-link" href="/visitante/historia">Historia</a>
-          <a class="nav-link" href="/visitante/contacto">Contacto</a>
+          <a class="nav-link" aria-current="page" href="/administrador/inicio">Inicio</a>
+          <a class="nav-link" href="/administrador/eventos">Eventos</a>
+          <a class="nav-link" href="/administrador/actividades">Actividades</a>
           <form action="#" th:action="@{/logout}" method="POST">
             <button type="submit" class="nav-link">Logout</button>
           </form>
@@ -92,12 +90,8 @@
     </form>
   </div>
 </div>
-<div class="box">
-  <div class="box-inner"></div>
-</div>
-<div class="box" style="transform: rotate(180deg)">
-  <div class="box-inner"></div>
-</div>
+
+
 <div class="container">
   <!-- th:if="${param.borrarUsuario}" class="#">-->
   <div th:if="${borrar == 1}">
@@ -113,6 +107,7 @@
               <h5 th:text="${usuario.getUsername()}" class="card-title"></h5>
             </div>
           </div>
+          <a th:href="@{'/administrador/usuario/' + ${usuario.getId()}}" class="btn rounded-0 btn-pseudoclase">Modificar</a>
         </div>
       </div>
     </div>
@@ -125,6 +120,50 @@
     </form>
   </div>
 
+</div>
+
+
+<div class="container">
+
+
+
+  <div th:if="${modificar == 1}">
+    <h1  class="p-5" >Modificar usuario administrador</h1>
+
+    <div th:if="${param.error}" class="custom-alert text-center">
+      <strong>Nombre de usuario ya existente</strong><br>
+    </div>
+
+
+    <form th:action="@{'/administrador/usuario/' + ${usuario.id}}" method="post">
+      <div class="p-2 g-col-6 ">
+        <label for="username" ></label>
+        <input class="shadow-lg p-3  bg-body-tertiary rounded"
+               type="text"
+               id="username"
+               name="username"
+               th:value="${usuario.getUsername()}"
+               placeholder="Usuario"
+               required
+
+        />
+      </div>
+      <div class="p-2 g-col-6">
+        <label for="password"></label>
+        <input class="shadow-lg p-3  bg-body-tertiary rounded"
+               type="password"
+               id="password"
+               name="password"
+               placeholder="Contraseña"
+               required
+        />
+      </div>
+      <div class="p-2 g-col-6">
+        <input class="shadow-lg p-3  bg-body-tertiary rounded"
+               type="submit" value="Modificar usuario "/>
+      </div>
+    </form>
+  </div>
 </div>
 
 <div class="box" style="transform: rotate(180deg)">

@@ -3,14 +3,14 @@ package ar.edu.unnoba.Proyecto.controller;
 import ar.edu.unnoba.Proyecto.model.Actividad;
 import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.model.Subscriptor;
-import ar.edu.unnoba.Proyecto.service.ActividadService;
-import ar.edu.unnoba.Proyecto.service.EventoService;
-import ar.edu.unnoba.Proyecto.service.SubscriptorService;
+import ar.edu.unnoba.Proyecto.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/visitante")
@@ -21,6 +21,7 @@ public class VisitanteController {
     private final SubscriptorService subscriptorService;
 
     private final ActividadService actividadService;
+
 
     @Autowired
     private VisitanteController(EventoService eventoService, SubscriptorService subscriptorService, ActividadService actividadService) {
@@ -63,14 +64,14 @@ public class VisitanteController {
         model.addAttribute("searchText", title);
         return "visitantes/eventos";
     }//FUNCIONALIDAD: Listado de todas los eventos
-/* PROBAR LO DE ARRIBA
-    @GetMapping("/eventos")
-    public String eventos(Model model, @PageableDefault(size = 9) Pageable pageable) {
-        model.addAttribute("eventos", eventoService.getAll());//eventoService.extractEventos());
-        model.addAttribute("sub", new Subscriptor());
-        return "visitantes/eventos";
-    }//FUNCIONALIDAD: Listado de todas los eventos
-*/
+    /* PROBAR LO DE ARRIBA
+        @GetMapping("/eventos")
+        public String eventos(Model model, @PageableDefault(size = 9) Pageable pageable) {
+            model.addAttribute("eventos", eventoService.getAll());//eventoService.extractEventos());
+            model.addAttribute("sub", new Subscriptor());
+            return "visitantes/eventos";
+        }//FUNCIONALIDAD: Listado de todas los eventos
+    */
     @PostMapping("/eventos")
     public String eventos(@ModelAttribute("sub") Subscriptor subscriptor) {
         subscriptorService.save(subscriptor);
@@ -83,7 +84,7 @@ public class VisitanteController {
     public String evento(@PathVariable Long id, Model model) {
 
         Evento evento = eventoService.get(id);
-        /* ver esto despues */
+        /* ver esto despues, Yo: quiere que veamos porque pasamos el nombre(revisar la vista como es que manejamos esa etiqueta enviada) */
         /* String username = evento.getUsuario().getUsername(); */
         model.addAttribute("evento", evento);
         /* model.addAttribute("username", username); */
@@ -98,15 +99,27 @@ public class VisitanteController {
         return "visitantes/contacto";
     }//FUNCIONALIDAD: muestra la vista de contacto con su formulario
 
+//    @PostMapping("/contacto")
+//    public String enviarMensaje(@ModelAttribute("mensaje") Mensaje mensaje) {
+//        recibirMailService.recibir(mensaje);
+//        return "redirect:/visitante/inicio";
+   // }//FUNCIONALIDAD: Recibe el formulario de contacto y envía el correo electrónico
+
     @PostMapping("/contacto")
     public String recibirMensaje() {
         return "redirect:/visitante/inicio";
     }
 
     @GetMapping("/historia")
-    public String historia() {
+    public String historia(){
         return "visitantes/historia";
     }
+
+//    @GetMapping("/actividades")
+//    public String actividades(Model model){
+//        model.addAttribute("actividades", actividadService.getAll());
+//        return "visitantes/actividades";
+//    } //Lo mismo que arriva el chano hizo algo, probar que onda
 
     @GetMapping("/actividades")
     public String actividades(Model model,

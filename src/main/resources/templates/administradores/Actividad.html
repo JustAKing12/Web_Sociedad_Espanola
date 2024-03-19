@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="fragment" content="!">
     <meta content="es-ar" http-equiv="content-language">
@@ -63,7 +63,7 @@
         <div class="container">
             <h1>Modificar Actividad</h1>
             <div class="p-3">
-                <form th:action="@{'/administrador/actividad/' + ${actividad.id}}" method="post">
+                <form th:action="@{'/administrador/actividad/' + ${actividad.id}}" method="post" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="titulo"></label>
@@ -76,7 +76,7 @@
                         />
                     </div>
 
-                    </div>
+
                     <div class="form-group">
                         <label for="horario"></label>
                         <input  class="shadow  bg-body-tertiary rounded p-3"
@@ -87,6 +87,20 @@
                                 placeholder="Horario/s de atencion"
                         />
                     </div>
+
+                    <div class="form-group">
+                        <h2 for="image" class="form-label label-h">Imagen:</h2>
+                        <div class="p-3">
+                            <input type="hidden" th:if="${actividad.image}" th:value="${actividad.image}" name="imagen" />
+                            <div>
+                                <!-- Imagen -->
+                                <img th:src="@{'/display?id=' + ${actividad.id}}" class="img-fluid mb-3" alt="Imagen del evento" style="max-width: 35%; height: auto;"/>
+                            </div>
+                            <input class="p-3 form-control-file" type="file" id="image" name="image" th:field="${actividad.image}" />
+
+                        </div>
+                    </div>
+
                     <div class="d-flex">
                         <button type="submit" class="btn btn-lg rounded-0 btn-pseudoclase mt-2 mb-2" value="Modificar">Guardar</button>
                         <a th:href="@{/administrador/actividades}" class="btn btn-lg rounded-0 btn-pseudoclase m-2">Volver a la lista de actividades</a>
