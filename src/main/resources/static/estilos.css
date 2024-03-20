@@ -110,6 +110,18 @@ input:focus, textarea:focus {
     opacity: 0.5;
 }
 
+.card-eventos a, .paginado a {
+    transition: transform 1s;
+}
+
+.card-eventos a:hover {
+    transform: scale(1.1);
+}
+
+.paginado a:hover {
+    transform: scale(1.3);
+}
+
 @media (min-width: 768px) {
     .grid-footer, .card-eventos, .card-inicio, .card-inicio2 {
         grid-template-columns: 1fr 1fr;
