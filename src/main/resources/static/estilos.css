@@ -113,12 +113,14 @@ input:focus, textarea:focus {
 @media (min-width: 768px) {
     .grid-footer, .card-eventos, .card-inicio, .card-inicio2 {
         grid-template-columns: 1fr 1fr;
+        grid-template-rows: unset;
     }
 }
 
 @media (min-width: 1200px) {
     .card-eventos, .card-inicio2 {
         grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: unset;
     }
 }
 

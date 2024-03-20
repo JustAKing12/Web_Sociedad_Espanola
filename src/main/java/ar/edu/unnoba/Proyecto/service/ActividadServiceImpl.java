@@ -51,6 +51,7 @@ public class ActividadServiceImpl implements ActividadService {
 
     @Override
     public Page<Actividad> getPageWithTitleFilter(int page, int size, String title) {
+
         PageRequest pageRequest = PageRequest.of(page, size);
         if (title != null && !title.isEmpty()) {
             return findByTitleContainingIgnoreCase(title, pageRequest);

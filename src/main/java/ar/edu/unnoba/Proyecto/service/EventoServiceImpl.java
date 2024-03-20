@@ -52,6 +52,7 @@ public class EventoServiceImpl implements EventoService {
 
     @Override
     public Page<Evento> getPageWithTitleFilter(int page, int size, String title) {
+
         PageRequest pageRequest = PageRequest.of(page, size);
         if (title != null && !title.isEmpty()) {
             return findByTitleContainingIgnoreCase(title, pageRequest);
