@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+          <meta name="fragment" content="!">
+          <meta content="es-ar" http-equiv="content-language">
+          <meta name="robots" content="index,follow,max-image-preview:large">
+          <meta name="description" content="La Sociedad Española de Socorros Mutuos de Junín es una institución sin fines de lucro en Junín, Provincia de Buenos Aires. Brinda apoyo mutuo y servicios médicos, culturales y sociales a sus miembros. Su edificio en Mendoza 530 es emblemático y ha sido testigo de muchas historias compartidas entre socios. ¡Un faro de solidaridad!">
+          <meta name="keywords" content="sociedad española, sociedad española socorros mutuos, mutualismo, ayuda mutua, cultura, junín, edificio emblemático, comunidad, solidaridad">
+          <meta name="language" content="Spanish">
+          <meta name="telephone" content="+5492364533342">
+          <meta name="whatsapp" content="+5492364533342">
+          <meta name="author" content="Juan Ignacio Caprioli, Valentino Badano, Lucas Lisandro Coria, Leonardo Giorgio Marcelo Lorenzatti, Luis Francisco Martinez, José Matías Fernández, Eduardo Emiliano Rios, Joaquin Rios, Ignacio Pringles">
+          <meta name="application-name" content="Sociedad Española de Socorros Mutuos">
+          <meta name="geo.region" content="AR">
+          <meta name="geo.placename" content="Junín">
+          <meta name="geo.position" content="-34.5930526;-60.9462904">
+          <link rel="shortcut icon" href="../../static/imagenes/eventosImg/logo.svg" type="image/x-icon">
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Sociedad Española Junín | Login</title>
+
+          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+          <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+          <link rel="stylesheet" href="../../static/estilos.css">
+    </head>
+    <body style="background: linear-gradient(90deg, rgba(255,49,49,1) 15%, rgba(254,255,35,1) 50%, rgba(255,51,51,1) 75%);">
+        <div class="container pt-3 pb-3 d-flex justify-content-center">
+            <div class="card">
+                <div class="ratio ratio-1x1" style="display: flex; justify-content: center; align-items: center;">
+                    <img class="img-fluid mx-auto" src="../../static/imagenes/eventosImg/logo.svg" alt="Sociedad Española">
+                </div>
+                <div class="card-body">
+                     <h1 class="card-title text-center">Iniciar sesión</h1>
+                    <div th:if="${param.error}" class="alert alert-danger text-center">
+                        <p class="lead">Usuario o contraseña inválidos.</p>
+                    </div>
+
+                    <form th:action="@{/login}" method="post">
+                        <div class="mb-2">
+                            <label for="username" class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Escriba texto aquí..." required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Escriba texto aquí..." required>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-lg mt-2 rounded-0 btn-pseudoclase" type="submit" role="button">Entrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="../../static/script/script.js"></script>
+    </body>
+</html>
