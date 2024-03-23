@@ -65,7 +65,7 @@
             <div class="p-3">
                 <form th:action="@{'/administrador/actividad/' + ${actividad.id}}" method="post" enctype="multipart/form-data">
 
-                    <div class="form-group">
+                    <div class="form-group p-3">
                         <label for="titulo"></label>
                         <input class="shadow  bg-body-tertiary rounded p-3"
                                type="text"
@@ -77,7 +77,7 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group p-3">
                         <label for="horario"></label>
                         <input  class="shadow  bg-body-tertiary rounded p-3"
                                 type="text"
@@ -88,7 +88,7 @@
                         />
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group p-3">
                         <h2 for="image" class="form-label label-h">Imagen:</h2>
                         <div class="p-3">
                             <input type="hidden" th:if="${actividad.image}" th:value="${actividad.image}" name="imagen" />
