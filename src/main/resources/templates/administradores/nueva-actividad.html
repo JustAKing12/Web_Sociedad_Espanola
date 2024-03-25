@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta name="fragment" content="!">
     <meta content="es-ar" http-equiv="content-language">
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../../static/imagenes/eventosImg/logo.svg" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sociedad Española Junín | Crear Evento</title>
+    <title>Sociedad Española Junín | Evento</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav text-center ms-auto">
                     <a class="nav-link" aria-current="page" href="/administrador/inicio">Inicio</a>
-                    <a class="nav-link" href="/administrador/eventos">Eventos</a>
+                    <a class="nav-link" href="/administrador/evento">Eventos</a>
                     <a class="nav-link" href="/administrador/actividades">Actividades</a>
                     <form action="#" th:action="@{/logout}" method="POST">
                         <button type="submit" class="nav-link">Logout</button>
@@ -44,64 +44,80 @@
         </div>
     </nav>
 </header>
+
 <div class="box">
     <div class="box-inner"></div>
 </div>
 
-<div class="container" >
+<div class="container mt-4 p-3">
+    <!-- Botón para volver a la lista de eventos -->
+    <a th:href="@{/administrador/actividades}" class="btn btn-primary">Volver a la lista de actividades</a>
+    <br/>
 
+    <!-- Muestra los detalles de la actividad -->
+    <h2 th:text="'Titulo: ' + ${actividad.getTitulo()}"></h2>
+    <p th:text="'Descripcion: ' + ${actividad.getDescripcion()}"></p>
+    <p th:text="'Horario/s de atencion: ' + ${actividad.getHorario()}"></p>
 
-    <!--  <img src="../../static/imagenes/logo.png" alt="Logo" />-->
-    <div class="p-3">
-        <h1>Crear Actividad</h1>
-    </div>
+    <!--<a th:href="@{/administrador/eventos/eliminar/{id}(id=${evento.id})}">Eliminar</a>-->
 
+    <br/>
+    <!--<a th:href="@{'/administrador/evento/' + ${evento.id} + '?mensaje=mensaje'}" class="btn btn-primary">Modificar</a>-->
 
-    <form th:action="@{/administrador/actividades/nuevo}" method="post" enctype="multipart/form-data">
-        <div class="p-4">
-            <h2>Ingrese un Titulo</h2>
+    <br/>
+    <!--<a th:href="@{'/administrador/evento/suscriptores/' + ${evento.id}}" class="btn btn-primary">Suscriptores</a>-->
+
+    <div th:if="${mensaje}" class="custom-alert">
+        <h1>Modificar Actividad</h1>
+        <div class="container">
+
             <div class="p-3">
+                <form th:action="@{'/administrador/actividad/' + ${actividad.id}}" method="post">
                 <label for="titulo"></label>
-                <input  class="p-3 w-25 shadow  bg-body-tertiary rounded"
-                        type="text"
-                        id="titulo"
-                        name="titulo"
-                        placeholder="Titulo de la nueva actividad"
-                        required
+                <input class="shadow  bg-body-tertiary rounded p-3"
+                       type="text"
+                       id="titulo"
+                       name="titulo"
+                       placeholder="Titulo de la nueva actividad"
                 />
+                </form>
             </div>
-        </div>
-        <div class="p-4 h-50" style="height: 100px;">
-            <h2>Ingrese horarios y días de atención </h2>
+            <div class="p-3">
+                <label for="descripcion"></label>
+                <input class="shadow  bg-body-tertiary rounded p-3"
+                        type="text"
+                        id="descripcion"
+                        name="descripcion"
+                        placeholder="Descripcion"
+                />
+
+            </div>
             <div class="p-3">
                 <label for="horario"></label>
-                <input  class="p-3 w-75 h-100 shadow  bg-body-tertiary rounded" style="height: 100px;"
+                <input  class="shadow  bg-body-tertiary rounded p-3"
                         type="text"
                         id="horario"
                         name="horario"
                         placeholder="Horario/s de atencion"
-                        required
                 />
             </div>
-        </div>
-        <div class="p-4">
 
-            <label for="image"><h2>Agregar una foto</h2></label>
-            <div class="p-3">
-                <input class="p-3"
-                       type="file"
-                       id="image"
-                       name="image"
-                       placeholder="image"
-                       required
-                />
-            </div>
-        </div>
+                <div class="p-3">
+                    <input  class="shadow  bg-body-tertiary rounded p-2"type="submit" value="Modificar"/>
+                </div>
 
-        <div class="p-4">
-            <input class="btn btn-danger btn-lg " type="submit" value="Crear nueva actividad"/>
+
         </div>
-    </form>
+    </div>
+
+    <div th:if="${subscriptores}" class="custom-alert">
+        <ul>
+            <li th:each="Subs : ${subscriptores}">
+                <h2 th:text="${Subs.getNombre}"></h2>
+                <h2 th:text="${Subs.getEmail}"></h2>
+            </li>
+        </ul>
+    </div>
 
 </div>
 <div class="box" style="transform: rotate(180deg)">
@@ -113,8 +129,8 @@
     <div class="d-grid grid-footer gap-5 pt-5">
     </div>
 </footer>
-<!-- Scripts de Bootstrap y cualquier otro script necesario -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="../../static/script/script.js"></script>
+<script src="../../static/script.js"></script>
 </body>
+</html>
