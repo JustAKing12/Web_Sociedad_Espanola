@@ -84,7 +84,6 @@ public class Evento {
 
     public void setImagen(MultipartFile file) throws IOException, SQLException {
         byte[] bytes = file.getBytes();
-        Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
-        this.imagen = blob;
+        this.imagen = new javax.sql.rowset.serial.SerialBlob(bytes);
     }
 }

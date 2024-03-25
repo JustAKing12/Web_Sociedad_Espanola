@@ -17,29 +17,33 @@ import java.sql.SQLException;
 @Controller
 public class ImageController {
 
-    @Autowired
-    private EventoService eventoService;
+    private final EventoService eventoService;
+
+    private final ActividadService actividadService;
 
     @Autowired
-    private ActividadService actividadService;
+    public ImageController(EventoService eventoService, ActividadService actividadService) {
+        this.eventoService = eventoService;
+        this.actividadService = actividadService;
+    }
 
     // muestra la imagen dado un id
     @Transactional
     @GetMapping("/display")
     public ResponseEntity<byte[]> displayImage(@RequestParam("id") long id) throws SQLException {
-        Evento evento = eventoService.get(id);
-        byte [] imageBytes = null;
-        imageBytes = evento.getImagen().getBytes(1,(int) evento.getImagen().length());
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
+        byte[] imageBytes = eventoService.getImageBytes(id);
+        if (imageBytes != null) {
+            return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @Transactional
     @GetMapping("/display/actividad")
     public ResponseEntity<byte[]> displayActivityImage(@RequestParam("id") long id) throws SQLException {
         Actividad actividad = actividadService.get(id);
-        byte [] imageBytes = null;
-        imageBytes = actividad.getImage().getBytes(1,(int) actividad.getImage().length());
+        byte [] imageBytes = actividad.getImage().getBytes(1,(int) actividad.getImage().length());
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
     }
-
 }

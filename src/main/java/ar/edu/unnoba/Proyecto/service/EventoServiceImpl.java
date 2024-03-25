@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -58,6 +59,17 @@ public class EventoServiceImpl implements EventoService {
             return findByTitleContainingIgnoreCase(title, pageRequest);
         } else {
             return getPage(pageRequest);
+        }
+    }
+
+    @Override
+    public byte[] getImageBytes(Long id) throws SQLException {
+        Evento evento = eventoRepository.findById(id).orElse(null);
+        if (evento != null) {
+            return evento.getImagen().getBytes(1, (int) evento.getImagen().length());
+        } else {
+            System.out.println("Imagen no disponible para el evento con ID: " + id);
+            return null;
         }
     }
 }

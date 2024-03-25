@@ -55,11 +55,11 @@ public class AdministradorController {
 
     @GetMapping("/eventos")
     public String eventos(Model model,
-                          @RequestParam(defaultValue = "0") int page,
+                          @RequestParam(defaultValue = "1") int page,
                           @RequestParam(defaultValue = "9") int size,
                           @RequestParam(required = false, defaultValue = "") String title) {
 
-        Page<Evento> eventoPage = eventoService.getPageWithTitleFilter(page, size, title);
+        Page<Evento> eventoPage = eventoService.getPageWithTitleFilter(page - 1, size, title);
 
         model.addAttribute("eventos", eventoPage);
         model.addAttribute("currentPage", page); // info de la pag actual para cambiar de pagina
@@ -156,13 +156,13 @@ public class AdministradorController {
 
     @GetMapping("/actividades")
     public String actividades(Model model,
-                              @RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "1") int page,
                               @RequestParam(defaultValue = "9") int size,
                               @RequestParam(required = false, defaultValue = "") String title,
                               Authentication authentication) {
         User sessionUser = (User) authentication.getPrincipal();
 
-        Page<Actividad> actividadPage = actividadService.getPageWithTitleFilter(page, size, title);
+        Page<Actividad> actividadPage = actividadService.getPageWithTitleFilter(page - 1, size, title);
 
         model.addAttribute("actividades", actividadPage);
         model.addAttribute("currentPage", page); // info de la pag actual para cambiar de pagina

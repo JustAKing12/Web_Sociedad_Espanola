@@ -1,6 +1,7 @@
 package ar.edu.unnoba.Proyecto.service;
 
 import ar.edu.unnoba.Proyecto.model.Actividad;
+import ar.edu.unnoba.Proyecto.model.Evento;
 import ar.edu.unnoba.Proyecto.repository.ActividadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -59,4 +61,15 @@ public class ActividadServiceImpl implements ActividadService {
             return getPage(pageRequest);
         }
     }
+
+    /*@Override
+    public byte[] getImageBytes(Long id) throws SQLException {
+        Actividad actividad = actividadRepository.findById(id).orElse(null);
+        if (actividad != null) {
+            return actividad.getImagen().getBytes(1, (int) actividad.getImagen().length());
+        } else {
+            // Manejar el caso en que el evento no se encuentre
+            return null;
+        }
+    }*/
 }

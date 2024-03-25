@@ -6,7 +6,6 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -41,17 +40,8 @@ public class EnviarMailServiceImpl implements EnviarMailService {
             List<String> destinatarios = obtenerDestinatarios();
             helper.setTo(destinatarios.toArray(new String[0]));
 
-            String htmlText = "<div style=\"text-align: center\">" +
-                    "    <img src=\"cid:logo\" alt=\"Logo de La Sociedad Española de Junín\">" +
-                    "    <p>¡Hola! Se te notifica de que se ha creado un nuevo evento en <strong>La Sociedad Española de Junín.</strong></p>" +
-                    "    <br>" +
-                    "    <p>Puedes visualizarlo aquí: <a href=\"http://localhost:8080/visitante/eventos\">http://localhost:8080/visitante/eventos</a></p>" +
-                    "    <br>" +
-                    "    <p>El evento se llama <strong>" + evento.getTitulo() + "</strong>, creado en la fecha <strong>" + evento.getFecha() + "</strong> por <strong>" + evento.getUsuario().getUsername() + "</strong>.</p>" +
-                    "</div>";
-
-            helper.setText(htmlText, true);
-            helper.addInline("logo", new ClassPathResource("static/imagenes/eventosImg/logo.svg"));
+            String text = getText(evento);
+            helper.setText(text, true);
 
             mailSender.send(mimeMessage);
         } catch (MessagingException | MailException e) {
@@ -59,6 +49,21 @@ public class EnviarMailServiceImpl implements EnviarMailService {
             // También puedes considerar reintentar el envío o notificar al usuario sobre el error.
             // Ejemplo: logger.error("Error al enviar el correo: " + e.getMessage());
         }
+    }
+
+    private static String getText(Evento evento) {
+        String eventoUrl = "http://localhost:8080/visitante/evento/" + evento.getId();
+
+        return "<div style=\"text-align: center; background-color: #cdcdcd; padding: 10px;\">" +
+                "    <p>¡Hola! Se te notifica de que se ha creado un nuevo evento en <strong>La Sociedad Española de Junín.</strong></p>" +
+                "    <br>" +
+                "    <p>Puedes visualizarlo aquí: <a style=\"color: #f00822;\" href=\"" + eventoUrl + "\">" + eventoUrl + "</a></p>" +
+                "    <br>" +
+                "    <p>El evento se llama <strong>" + evento.getTitulo() + "</strong>, creado en la fecha <strong>" + evento.getFecha() + "</strong> por <strong>" + evento.getUsuario().getUsername() + "</strong>.</p>" +
+                "</div>" +
+                "<div style=\"background-color: #d2b300; text-align: center; color: white; padding: 10px;\">" +
+                "    <h1>Sociedad Española de Junín</h1>" +
+                "</div>";
     }
 
     private List<String> obtenerDestinatarios() {

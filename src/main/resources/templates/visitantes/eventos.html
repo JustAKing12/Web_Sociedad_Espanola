@@ -92,20 +92,20 @@
 
             <div style="background-color: #d2b300">
                 <div class="container">
-                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-3">
-                        <a th:if="${currentPage > 0}"
+                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pt-3 paginado">
+                        <a th:if="${currentPage > 1}"
                            th:href="@{'/visitante/eventos?page=' + ${currentPage - 1}}">
                             <img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt>
                         </a>
-                        <span class="fs-5 text-white">Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
-                        <a th:if="${currentPage < totalPages - 1}"
+                        <span class="fs-5 text-white">Página <span th:text="${currentPage}"></span> de <span th:text="${totalPages}"></span></span>
+                        <a th:if="${currentPage < totalPages}"
                            th:href="@{'/visitante/eventos?page=' + ${currentPage + 1}}">
                             <img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt>
                         </a>
                     </div>
 
                     <div class="d-grid card-eventos gap-5 pb-5 pt-5">
-                        <div th:each="evento : ${eventos}">
+                        <a class="text-decoration-none mx-3 mx-sm-0" th:each="evento : ${eventos}" th:href="@{'/visitante/evento/' + ${evento.id}}">
                             <div class="card">
                                 <div class="ratio ratio-16x9">
                                     <img class="card-img top" th:src="@{${'/display?id=' + evento.getId()}}" alt="">
@@ -116,19 +116,19 @@
                                     <blockquote class="blockquote pt-1">
                                         <div class="blockquote-footer"><span th:text="${evento.usuario.username}"></span> | <span th:text="${evento.fecha}"></span></div>
                                     </blockquote>
-                                    <a th:href="@{'/visitante/evento/' + ${evento.id}}" class="btn rounded-0 btn-pseudoclase">Leer más</a>
+                                    <p><img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="20" height="20" alt> Leer más</p>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
-                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pb-3">
-                        <a th:if="${currentPage > 0}"
+                    <div class="d-flex flex-row align-items-center justify-content-center gap-3 pb-3 paginado">
+                        <a th:if="${currentPage > 1}"
                            th:href="@{'/visitante/eventos?page=' + ${currentPage - 1}}">
                             <img src="../../static/imagenes/izquierda.svg" width="30" height="30" alt>
                         </a>
-                        <span class="fs-5 text-white">Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
-                        <a th:if="${currentPage < totalPages - 1}"
+                        <span class="fs-5 text-white">Página <span th:text="${currentPage}"></span> de <span th:text="${totalPages}"></span></span>
+                        <a th:if="${currentPage < totalPages}"
                            th:href="@{'/visitante/eventos?page=' + ${currentPage + 1}}">
                             <img src="../../static/imagenes/izquierda.svg" style="transform: rotate(180deg)" width="30" height="30" alt>
                         </a>
