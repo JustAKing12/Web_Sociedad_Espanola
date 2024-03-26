@@ -94,7 +94,7 @@
                             <input type="hidden" th:if="${actividad.image}" th:value="${actividad.image}" name="imagen" />
                             <div>
                                 <!-- Imagen -->
-                                <img th:src="@{'/display?id=' + ${actividad.id}}" class="img-fluid mb-3" alt="Imagen del evento" style="max-width: 35%; height: auto;"/>
+                                <img th:src="@{'/display/actividad?id=' + ${actividad.id}}" class="img-fluid mb-3" alt="Imagen de la actividad" style="max-width: 35%; height: auto;"/>
                             </div>
                             <input class="p-3 form-control-file" type="file" id="image" name="image" th:field="${actividad.image}" />
 

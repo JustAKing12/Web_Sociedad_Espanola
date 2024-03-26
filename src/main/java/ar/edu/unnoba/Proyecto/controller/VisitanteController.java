@@ -64,14 +64,7 @@ public class VisitanteController {
         model.addAttribute("searchText", title);
         return "visitantes/eventos";
     }//FUNCIONALIDAD: Listado de todas los eventos
-    /* PROBAR LO DE ARRIBA
-        @GetMapping("/eventos")
-        public String eventos(Model model, @PageableDefault(size = 9) Pageable pageable) {
-            model.addAttribute("eventos", eventoService.getAll());//eventoService.extractEventos());
-            model.addAttribute("sub", new Subscriptor());
-            return "visitantes/eventos";
-        }//FUNCIONALIDAD: Listado de todas los eventos
-    */
+
     @PostMapping("/eventos")
     public String eventos(@ModelAttribute("sub") Subscriptor subscriptor) {
         subscriptorService.save(subscriptor);
@@ -84,10 +77,8 @@ public class VisitanteController {
     public String evento(@PathVariable Long id, Model model) {
 
         Evento evento = eventoService.get(id);
-        /* ver esto despues, Yo: quiere que veamos porque pasamos el nombre(revisar la vista como es que manejamos esa etiqueta enviada) */
-        /* String username = evento.getUsuario().getUsername(); */
         model.addAttribute("evento", evento);
-        /* model.addAttribute("username", username); */
+
 
         return "visitantes/evento";
     }//FUNCIONALIDAD: Mostrar en detalle un Evento
@@ -99,11 +90,6 @@ public class VisitanteController {
         return "visitantes/contacto";
     }//FUNCIONALIDAD: muestra la vista de contacto con su formulario
 
-//    @PostMapping("/contacto")
-//    public String enviarMensaje(@ModelAttribute("mensaje") Mensaje mensaje) {
-//        recibirMailService.recibir(mensaje);
-//        return "redirect:/visitante/inicio";
-   // }//FUNCIONALIDAD: Recibe el formulario de contacto y envía el correo electrónico
 
     @PostMapping("/contacto")
     public String recibirMensaje() {
@@ -115,11 +101,7 @@ public class VisitanteController {
         return "visitantes/historia";
     }
 
-//    @GetMapping("/actividades")
-//    public String actividades(Model model){
-//        model.addAttribute("actividades", actividadService.getAll());
-//        return "visitantes/actividades";
-//    } //Lo mismo que arriva el chano hizo algo, probar que onda
+
 
     @GetMapping("/actividades")
     public String actividades(Model model,

@@ -217,7 +217,7 @@ public class AdministradorController {
     }//FUNCIONALIDAD: muestra una actividad específica con sus detalles y permite modificarla
 
     @PostMapping("/actividad/{id}")
-    public String modificarActividad(Model model, @Valid @ModelAttribute("actividad") Actividad actividad, BindingResult bindingResult, @RequestParam("image") MultipartFile imagen) {
+    public String modificarActividad(Model model, @Valid @ModelAttribute("actividad") Actividad actividad, BindingResult bindingResult, @RequestParam("image") MultipartFile image) {
 
         if (bindingResult.hasErrors()) {
             return "administradores/actividades";
@@ -226,10 +226,10 @@ public class AdministradorController {
         // guarda el evento existente
         Actividad actAModificar = actividadService.get(actividad.getId());
 
-        if (!imagen.isEmpty()) {
+        if (!image.isEmpty()) {
             try {
                 // Actualizar la imagen del evento
-                actAModificar.setImage(imagen);
+                actAModificar.setImage(image);
             } catch (IOException | SQLException e) {
                 e.printStackTrace();
             }
