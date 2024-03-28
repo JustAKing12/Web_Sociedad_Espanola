@@ -76,7 +76,6 @@
                         />
                     </div>
 
-
                     <div class="form-group p-3">
                         <label for="horario"></label>
                         <input  class="shadow  bg-body-tertiary rounded p-3"
@@ -85,6 +84,17 @@
                                 name="horario"
                                 th:value="${actividad.getHorario()}"
                                 placeholder="Horario/s de atencion"
+                        />
+                    </div>
+
+                    <div class="form-group p-3">
+                        <label for="descripcion"></label>
+                        <input  class="shadow  bg-body-tertiary rounded p-3"
+                                type="text"
+                                id="descripcion"
+                                name="descripcion"
+                                th:value="${actividad.getDescripcion()}"
+                                placeholder="Descripcion de la actividad"
                         />
                     </div>
 

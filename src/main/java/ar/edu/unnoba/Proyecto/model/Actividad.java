@@ -21,6 +21,9 @@ public class Actividad{
     @Column(nullable = false)
     private String horario;
 
+    @Column(nullable = false)
+    private String descripcion;
+
     @Lob
     @Column
     private Blob image;
@@ -60,4 +63,11 @@ public class Actividad{
         this.image = blob;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

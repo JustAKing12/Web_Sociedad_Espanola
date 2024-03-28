@@ -84,6 +84,7 @@
                                 <div class="card-body">
                                     <h5 th:text="${actividad.getTitulo()}" class="card-title"></h5>
                                     <p th:text="${actividad.getHorario()}" class="card-text"></p>
+                                    <p th:text="${actividad.getDescripcion()}" class="card-text"></p>
                                     <a th:href="@{'/administrador/actividad/' + ${actividad.getId()}}" class="btn btn-primary">Modificar</a>
                                     <a th:href="@{'/administrador/actividades/eliminar/' + ${actividad.getId()}}" class="btn btn-primary">Eliminar</a>
                                 </div>
